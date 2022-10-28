@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+    //주의 화면이 꽉차면 다음 화면이 안나옴
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="7dp"
+        android:text="결제 완료"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_toRightOf="@id/tv1"
+        android:textColor="#673AB7"
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="7dp"
+        android:text="10/22일 도착 예정"
+        android:textSize="20sp" />
+
+    <ImageButton
+        android:layout_margin="7dp"
+        android:id="@+id/ib"
+        android:layout_below="@id/tv1"
+        android:layout_width="80dp"
+        android:layout_height="100dp"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        android:id="@+id/tv2"
+        android:layout_toRightOf="@id/ib"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv1"
+        android:layout_marginLeft="18dp"
+        android:text="이 편지는 영국에서 시작되어..."
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/tv2"
+        android:id="@+id/tv3"
+        android:textSize="20sp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="16000원"/>
+
+<!--    <CheckBox-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:id="@+id/check"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    <Button
+        android:layout_marginLeft="7dp"
+        android:layout_toRightOf="@id/ib"
+        android:layout_below="@id/tv2"
+        android:text="주문 취소"
+        android:id="@+id/bt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/bt1"
+        android:layout_below="@id/tv2"
+        android:text="평점 등록"
+        android:id="@+id/bt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

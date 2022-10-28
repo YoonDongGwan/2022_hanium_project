@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageButton
+        android:id="@+id/ib"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_margin="7dp" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_toRightOf="@id/ib"
+        android:text="이 편지는 영국에서 시작되어..."
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/ib"
+        android:text="정보통신공학과(프로그래밍1)"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_marginLeft="18dp"
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv2"
+        android:layout_toRightOf="@id/ib"
+        android:layout_marginTop="5dp"
+        android:text="평점: (4.5/5)"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+    <Button
+        android:id="@+id/bt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/ib"
+        android:text="평점 등록" />
+
+
+</RelativeLayout>
