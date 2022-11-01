@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "355319726794",
+    "firebase_url": "https://chat-exercise-eaf21-default-rtdb.firebaseio.com",
+    "project_id": "chat-exercise-eaf21",
+    "storage_bucket": "chat-exercise-eaf21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355319726794:android:479380a104658764ddaa33",
+        "android_client_info": {
+          "package_name": "com.hanium"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355319726794-r80pe3ka4hh46gjodpsoikuo9p919c3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6EjoT_OQ9fdvFAx6Rnsu3hrbBgxmqQQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355319726794-r80pe3ka4hh46gjodpsoikuo9p919c3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355319726794:android:7516b7ed5a1ef159ddaa33",
+        "android_client_info": {
+          "package_name": "com.icn.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355319726794-r80pe3ka4hh46gjodpsoikuo9p919c3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6EjoT_OQ9fdvFAx6Rnsu3hrbBgxmqQQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355319726794-r80pe3ka4hh46gjodpsoikuo9p919c3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

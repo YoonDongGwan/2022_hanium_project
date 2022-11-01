@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MyPageActivity">
+
+    <TextView
+        android:id="@+id/univTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:layout_margin="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="인천대학교"/>
+
+    <TextView
+        android:id="@+id/majorTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="65dp"
+        android:textColor="@color/black"
+        android:text="정보통신공학과"/>
+
+    <TextView
+        android:id="@+id/nameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="95dp"
+        android:textColor="@color/black"
+        android:text="윤동관"/>
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mainColor"
+        android:layout_below="@+id/nameTv"
+        android:id="@+id/scheduleBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이번 학기 시간표 등록"/>
+
+    <Button
+        android:id="@+id/mypage_purList_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mainColor"
+        android:layout_below="@+id/nameTv"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/scheduleBt"
+        android:text="구매 내역" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scheduleBt"
+        android:id="@+id/mypage_progressPur_btn"
+        android:background="@color/transparent"
+        android:textSize="18sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/black"
+        android:text="@string/processPurchase"/>
+
+
+</RelativeLayout>

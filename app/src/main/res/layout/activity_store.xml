@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.hanium.sjnjh.StoreActivity">
+
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/storeIv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/kyo" />
+
+    <TextView
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/storeIv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/storeTv"
+        android:text="교촌치킨"
+        android:textStyle="bold"
+        android:textSize="35sp"/>
+
+<!--    <TextView-->
+<!--        android:gravity="center"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/reviewTv"-->
+<!--        android:text="이 자리에 리뷰"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_below="@+id/storeTv"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="20sp"/>-->
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+
+            android:layout_below="@+id/reviewTv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/callBt"
+            android:background="@drawable/ic_baseline_call_24"
+            />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/callBt"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전화"
+            android:id="@+id/callTv"
+            android:textSize="22sp"
+            android:layout_below="@+id/reviewTv"/>
+
+        <ImageButton
+            android:layout_toRightOf="@+id/callTv"
+            android:layout_marginLeft="50dp"
+            android:layout_below="@+id/reviewTv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/heartBt"
+            android:background="@drawable/ic_baseline_favorite_border_24"
+            />
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/heartTv"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/heartBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="찜"
+            android:textSize="22sp"
+            android:layout_below="@+id/reviewTv"/>
+
+        <ImageButton
+            android:layout_toRightOf="@+id/heartTv"
+            android:layout_marginLeft="50dp"
+            android:layout_below="@+id/reviewTv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/shareBt"
+            android:background="@drawable/ic_baseline_share_24"
+            />
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/shareTv"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/shareBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공유"
+            android:textSize="22sp"
+            android:layout_below="@+id/reviewTv"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mainColor"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/startBt"
+        android:paddingTop="20dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/callBt"
+        android:text="같이 먹을 사람 구하기기"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="241dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startBt"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/startBt" />
+
+</LinearLayout>

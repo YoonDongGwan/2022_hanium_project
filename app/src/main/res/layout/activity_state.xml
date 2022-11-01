@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hanium.sjnjh.StateActivity">
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="100dp"
+        android:text="주문이 접수되었습니다."
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="80dp"
+        android:layout_below="@id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/first"
+        android:text="결제 완료"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="109dp"
+        android:layout_below="@id/titleTv"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:src="@drawable/arrow"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="160dp"
+        android:layout_below="@id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/second"
+        android:text="주문 접수"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="185dp"
+        android:layout_below="@id/titleTv"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:src="@drawable/arrow"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="245dp"
+        android:layout_below="@id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/third"
+        android:text="배달 시작"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="265dp"
+        android:layout_below="@id/titleTv"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:src="@drawable/arrow"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="330dp"
+        android:layout_below="@id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/forth"
+        android:text="배달 완료"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+
+
+
+
+
+
+    <ProgressBar
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@id/titleTv"
+        android:id="@+id/progressBar"
+        android:max="100"
+        android:progress="75"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/first"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/circle"/>
+
+    <ImageView
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="110dp"
+        android:layout_below="@+id/first"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/circle"/>
+
+    <ImageView
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="265dp"
+        android:layout_below="@+id/first"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/circle"/>
+
+    <ImageView
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="185dp"
+        android:layout_below="@+id/first"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/circle"/>
+
+    <ImageView
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="345dp"
+        android:layout_below="@+id/first"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/circle"/>
+
+</RelativeLayout>

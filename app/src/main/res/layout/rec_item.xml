@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+    //주의 화면이 꽉차면 다음 화면이 안나옴
+
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="7dp"
+         />
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:id="@+id/tv1"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv"
+        android:layout_marginLeft="15dp"
+        android:text="허니콤보"
+        android:textSize="20sp" />
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_toRightOf="@+id/iv"
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginLeft="15dp"
+        android:text="20,000원"
+        android:textSize="20sp" />
+
+
+
+
+</RelativeLayout>
