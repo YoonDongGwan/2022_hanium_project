@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Category"
-        android:textColor="@color/black"
+        android:textColor="@color/mainColor"
         android:textSize="30sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,10 +46,12 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageButton
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
                 android:id="@+id/chickenBt"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -58,12 +60,15 @@
                 tools:layout_editor_absoluteY="114dp" />
 
             <ImageButton
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
                 android:id="@+id/pizzaBt"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginLeft="60dp"
                 android:layout_toRightOf="@+id/chickenBt"
                 android:src="@drawable/pizza"
+
                 tools:layout_editor_absoluteX="295dp"
                 tools:layout_editor_absoluteY="177dp" />
 
@@ -83,7 +88,7 @@
                 android:layout_below="@+id/pizzaBt"
                 android:layout_marginLeft="30dp"
                 android:text="치킨"
-                android:textColor="#EAC645"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="220dp"
@@ -95,7 +100,7 @@
                 android:layout_below="@+id/pizzaBt"
                 android:layout_marginLeft="130dp"
                 android:text="피자"
-                android:textColor="#EAC645"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="220dp"
@@ -110,20 +115,24 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
                 android:id="@+id/hamBt"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@drawable/chicken"
+                android:src="@drawable/hamburger"
                 tools:layout_editor_absoluteX="57dp"
                 tools:layout_editor_absoluteY="114dp" />
 
             <ImageButton
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
                 android:id="@+id/chinaBt"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginLeft="60dp"
                 android:layout_toRightOf="@+id/chickenBt"
-                android:src="@drawable/pizza"
+                android:src="@drawable/noodles"
                 tools:layout_editor_absoluteX="295dp"
                 tools:layout_editor_absoluteY="177dp" />
 
@@ -141,9 +150,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pizzaBt"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 android:text="햄버거"
-                android:textColor="#EAC645"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
 
@@ -156,7 +165,7 @@
                 android:layout_below="@+id/pizzaBt"
                 android:layout_marginLeft="115dp"
                 android:text="중식"
-                android:textColor="#EAC645"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="220dp"
@@ -172,20 +181,24 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
                 android:id="@+id/koreaBt"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@drawable/chicken"
+                android:src="@drawable/tteokbokki"
                 tools:layout_editor_absoluteX="57dp"
                 tools:layout_editor_absoluteY="114dp" />
 
             <ImageButton
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
                 android:id="@+id/westBt"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginLeft="60dp"
                 android:layout_toRightOf="@+id/chickenBt"
-                android:src="@drawable/pizza"
+                android:src="@drawable/spaguetti"
                 tools:layout_editor_absoluteX="295dp"
                 tools:layout_editor_absoluteY="177dp" />
 
@@ -205,7 +218,7 @@
                 android:layout_below="@+id/pizzaBt"
                 android:layout_marginLeft="30dp"
                 android:text="분식"
-                android:textColor="#EAC645"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
 
@@ -218,7 +231,7 @@
                 android:layout_below="@+id/pizzaBt"
                 android:layout_marginLeft="130dp"
                 android:text="양식"
-                android:textColor="#EAC645"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="220dp"

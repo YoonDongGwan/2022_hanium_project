@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/activity_category.xml" value="0.12335359675785208" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/Delivery2/app/src/main/res/drawable/bt_theme.xml" value="0.185" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/Delivery2/app/src/main/res/drawable/et_theme.xml" value="0.154" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/Delivery2/app/src/main/res/layout/activity_main.xml" value="0.1125" />
@@ -68,7 +69,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
