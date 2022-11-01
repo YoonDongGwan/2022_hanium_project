@@ -16,6 +16,7 @@ import com.hanium.R
 
 class BestMenuActivity : AppCompatActivity() {
     lateinit var rv : RecyclerView
+    lateinit var backBt1 : ImageButton
     var arr: ArrayList<StoreData> = ArrayList()
     lateinit var chatBt : Button
     lateinit var spinner: Spinner
@@ -24,6 +25,8 @@ class BestMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_best_menu)
 
+
+        backBt1 = findViewById(R.id.backBt1)
         rv = findViewById(R.id.rv)
         spinner = findViewById(R.id.spinner)
         spinner.adapter = ArrayAdapter.createFromResource(this, R.array.itemList,android.R.layout.simple_spinner_item)
@@ -66,6 +69,10 @@ class BestMenuActivity : AppCompatActivity() {
 //                DividerItemDecoration.VERTICAL
 //            )
 //        )
+
+        backBt1.setOnClickListener(){
+            finish()
+        }
 
 
 

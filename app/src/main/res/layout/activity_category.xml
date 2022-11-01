@@ -1,127 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hanium.CategoryActivity">
+    tools:context="com.hanium.SJnJH.CategoryActivity">
+
 
     <ImageButton
-        android:id="@+id/backBt"
+        android:id="@+id/btBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back"/>
-
-    <TextView
         android:layout_marginTop="10dp"
-        android:textStyle="italic"
-        android:textColor="#2196F3"
-        android:textSize="30sp"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:id="@+id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:text="Category"
+        android:textColor="@color/mainColor"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Category"/>
-
-    <ImageButton
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="120dp"
-        android:id="@+id/chickenBt"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/chicken"/>
-
-    <TextView
-        android:layout_marginLeft="80dp"
-        android:layout_below="@+id/chickenBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="치킨"/>
-
-    <ImageButton
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/chickenBt"
-        android:layout_marginTop="120dp"
-        android:id="@+id/pizzaBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/pizza"/>
-
-    <TextView
-        android:layout_marginLeft="270dp"
-        android:layout_below="@+id/pizzaBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="피자"/>
-
-    <ImageButton
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="270dp"
-        android:id="@+id/hamburgerBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/hamburger"/>
-
-    <TextView
-        android:layout_marginLeft="80dp"
-        android:layout_below="@+id/hamburgerBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="햄버거"/>
-
-    <ImageButton
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/chickenBt"
-        android:layout_marginTop="270dp"
-        android:id="@+id/jajangBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/jajang"/>
-
-    <TextView
-        android:layout_marginLeft="270dp"
-        android:layout_below="@+id/jajangBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="중식"/>
-
-    <ImageButton
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="430dp"
-        android:id="@+id/westernBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/western"/>
-
-    <TextView
-        android:layout_marginLeft="80dp"
-        android:layout_below="@+id/westernBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="양식"/>
-
-    <ImageButton
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/chickenBt"
-        android:layout_marginTop="430dp"
-        android:id="@+id/etcBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/etc"/>
-
-    <TextView
-        android:layout_marginLeft="270dp"
-        android:layout_below="@+id/etcBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="기타"/>
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTv">
 
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal">
 
-</RelativeLayout>
+            <ImageButton
+                android:id="@+id/chickenBt"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/chicken"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="114dp" />
+
+            <ImageButton
+                android:id="@+id/pizzaBt"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="60dp"
+                android:layout_toRightOf="@+id/chickenBt"
+                android:src="@drawable/pizza"
+                tools:layout_editor_absoluteX="295dp"
+                tools:layout_editor_absoluteY="177dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pizzaBt"
+                android:layout_marginLeft="30dp"
+                android:text="치킨"
+                android:textColor="#EAC645"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="220dp"
+                tools:layout_editor_absoluteY="131dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pizzaBt"
+                android:layout_marginLeft="130dp"
+                android:text="피자"
+                android:textColor="#EAC645"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="220dp"
+                tools:layout_editor_absoluteY="131dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/hamBt"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/chicken"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="114dp" />
+
+            <ImageButton
+                android:id="@+id/chinaBt"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="60dp"
+                android:layout_toRightOf="@+id/chickenBt"
+                android:src="@drawable/pizza"
+                tools:layout_editor_absoluteX="295dp"
+                tools:layout_editor_absoluteY="177dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pizzaBt"
+                android:layout_marginLeft="15dp"
+                android:text="햄버거"
+                android:textColor="#EAC645"
+                android:textSize="30sp"
+                android:textStyle="bold"
+
+                tools:layout_editor_absoluteX="220dp"
+                tools:layout_editor_absoluteY="131dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pizzaBt"
+                android:layout_marginLeft="115dp"
+                android:text="중식"
+                android:textColor="#EAC645"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="220dp"
+                tools:layout_editor_absoluteY="131dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/koreaBt"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/chicken"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="114dp" />
+
+            <ImageButton
+                android:id="@+id/westBt"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="60dp"
+                android:layout_toRightOf="@+id/chickenBt"
+                android:src="@drawable/pizza"
+                tools:layout_editor_absoluteX="295dp"
+                tools:layout_editor_absoluteY="177dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pizzaBt"
+                android:layout_marginLeft="30dp"
+                android:text="분식"
+                android:textColor="#EAC645"
+                android:textSize="30sp"
+                android:textStyle="bold"
+
+                tools:layout_editor_absoluteX="220dp"
+                tools:layout_editor_absoluteY="131dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pizzaBt"
+                android:layout_marginLeft="130dp"
+                android:text="양식"
+                android:textColor="#EAC645"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="220dp"
+                tools:layout_editor_absoluteY="131dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

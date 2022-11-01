@@ -1,112 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hanium.SJnJH.IdPassActivity">
 
+
     <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
-        android:textSize="30sp"
         android:id="@+id/idTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="259dp"
         android:text="아이디 찾기"
-        />
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/et_theme"
+        android:id="@+id/idEt"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/idTv"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="181dp"
+        android:background="@drawable/rectangle_edit_text"
         android:hint="이름"
-        android:id="@+id/idEt"/>
-
-    <EditText
         android:paddingLeft="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/et_theme"
-        android:layout_below="@+id/idEt"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:hint="주소"
-        android:id="@+id/addrEt"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idTv" />
 
-    <Button
-        android:layout_marginLeft="30dp"
-        android:layout_below="@id/idEt"
-        android:id="@+id/idSearchBt"
+    <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="아이디 찾기"
-        android:layout_toRightOf="@id/addrEt"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.329"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idEt">
+
+        <EditText
+            android:id="@+id/addrEt"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/idEt"
+            android:background="@drawable/rectangle_edit_text"
+            android:hint="주소"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/idSearchBt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idEt" />
+
+        <Button
+            android:id="@+id/idSearchBt"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/idEt"
+            android:layout_marginStart="28dp"
+            android:layout_toRightOf="@id/addrEt"
+            android:backgroundTint="@color/mainColor"
+            android:text="아이디 찾기"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/addrEt"
+            tools:layout_editor_absoluteY="171dp" />
+
+    </LinearLayout>
 
     <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
-        android:textSize="30sp"
-        android:layout_below="@id/addrEt"
         android:id="@+id/passTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="89dp"
+        android:layout_marginEnd="235dp"
         android:text="비밀번호 찾기"
-        />
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
     <EditText
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/et_theme"
+        android:id="@+id/emailEt"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/passTv"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="181dp"
+        android:background="@drawable/rectangle_edit_text"
         android:hint="아이디"
-        android:id="@+id/emailEt"/>
-
-    <EditText
         android:paddingLeft="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/et_theme"
-        android:layout_below="@+id/emailEt"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:hint="이름"
-        android:id="@+id/nameEt"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passTv" />
 
-    <EditText
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/et_theme"
-        android:layout_below="@+id/nameEt"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:hint="인증번호"
-        android:id="@+id/ipEt"/>
-
-    <Button
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/emailEt"
-        android:id="@+id/ipBt"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="인증번호 발급"
-        android:layout_toRightOf="@id/nameEt"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEt">
 
-    <Button
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/nameEt"
-        android:id="@+id/okayBt"
+        <EditText
+
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/idEt"
+            android:background="@drawable/rectangle_edit_text"
+            android:hint="이름"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/idSearchBt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idEt" />
+
+        <Button
+            android:id="@+id/dBt"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/idEt"
+            android:layout_marginStart="28dp"
+            android:layout_toRightOf="@id/addrEt"
+            android:backgroundTint="@color/mainColor"
+            android:text="인증번호 발급"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/addrEt"
+            tools:layout_editor_absoluteY="171dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="확인"
-        android:layout_toRightOf="@id/ipEt"/>
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.329"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-</RelativeLayout>
+        <EditText
+
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/idEt"
+            android:background="@drawable/rectangle_edit_text"
+            android:hint="인증번호"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/idSearchBt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idEt" />
+
+        <Button
+            android:id="@+id/ddBt"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/idEt"
+            android:layout_marginStart="28dp"
+            android:layout_toRightOf="@id/addrEt"
+            android:backgroundTint="@color/mainColor"
+            android:text="확인"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/addrEt"
+            tools:layout_editor_absoluteY="171dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

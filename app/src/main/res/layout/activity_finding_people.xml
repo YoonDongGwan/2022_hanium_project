@@ -46,6 +46,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mainColor"
         android:id="@+id/button4"
         android:layout_width="0dp"
         android:layout_height="60dp"

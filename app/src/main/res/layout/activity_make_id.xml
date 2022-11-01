@@ -96,8 +96,10 @@
         app:layout_constraintTop_toBottomOf="@+id/editConfirmPW" />
 
     <Button
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mainColor"
         android:id="@+id/btnMakeId"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="4dp"
         android:text="회원가입"
@@ -110,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="중복체크"
-        android:textColor="#0000ff"
+        android:textColor="@color/mainColor"
         app:layout_constraintBottom_toBottomOf="@+id/editId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editId"

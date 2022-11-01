@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Chaper"
-        android:textColor="#0000ff"
+        android:textColor="@color/mainColor"
         android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,11 +68,15 @@
         android:layout_margin="20dp"
         android:layout_marginBottom="50dp"
         android:text="Delivery"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mainColor"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:backgroundTint="@color/mainColor"
+        android:textColor="@color/white"
         android:id="@+id/button3"
         android:layout_width="0dp"
         android:layout_height="100dp"

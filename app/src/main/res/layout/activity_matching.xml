@@ -42,8 +42,10 @@
          />
 
     <Button
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mainColor"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="56dp"
         android:id="@+id/nextBt"
         android:text="다음"
         android:textSize="20sp"

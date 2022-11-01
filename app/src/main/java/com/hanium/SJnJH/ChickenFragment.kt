@@ -15,6 +15,7 @@ import com.hanium.databinding.ItemStoresBinding
 
 class ChickenFragment : Fragment() {
 
+
     lateinit var recyclerView1 : RecyclerView
     val chickenStoreArray = mutableListOf<StoreInform>()
     override fun onCreateView(
@@ -49,6 +50,7 @@ class ChickenListAdapter(val context: Context, val chickenStoreArray: List<Store
                 storeName.text = store.name
                 minPrice.text = "${store.minPrice}원"
                 deliveryTip.text = "${store.deliveryTip}원"
+
             }
         }
     }
@@ -58,6 +60,16 @@ class ChickenListAdapter(val context: Context, val chickenStoreArray: List<Store
     }
     override fun getItemCount() = chickenStoreArray.size
 
-    override fun onBindViewHolder(holder: Holder, position: Int) = holder.setItem(chickenStoreArray.get(position))
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder.itemView.setOnClickListener(){
+//            val intent = Intent(this.context, StoreActivity::class.java)
+//            startActivity(intent)
+
+
+
+        }
+        holder.setItem(chickenStoreArray.get(position))
+    }
+
 
 }

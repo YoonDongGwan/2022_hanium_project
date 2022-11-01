@@ -4,14 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -60,7 +58,7 @@ class StoreActivity : AppCompatActivity() {
         RecyclerView.Adapter<MyRvAdapter.Holder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-            val view = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
+            val view = LayoutInflater.from(context).inflate(R.layout.rec_item, parent, false)
 
             return Holder(view)
         }
@@ -73,21 +71,21 @@ class StoreActivity : AppCompatActivity() {
             holder.iv.setImageResource(arr.get(position).menuImg)
             holder.tv1.setText(arr.get(position).menu)
             holder.tv2.setText(arr.get(position).price)
-
-
-
-            holder.iv.setOnClickListener {
-//                Log.d("aabb", "name: " + arr.get(position).name)
-//                Toast.makeText(
-//                    this@StoreActivity,
-//                    "name: " + arr.get(position).name,
-//                    Toast.LENGTH_SHORT
-//                ).show()
-            }
+//
+//
+//
+//            holder.iv.setOnClickListener {
+////                Log.d("aabb", "name: " + arr.get(position).name)
+////                Toast.makeText(
+////                    this@StoreActivity,
+////                    "name: " + arr.get(position).name,
+////                    Toast.LENGTH_SHORT
+////                ).show()
+//            }
 
             holder.itemView.setOnClickListener {
-                Log.d("aabb", "아이템 클릭!!")
-                Toast.makeText(this@StoreActivity, "아이템 클릭!!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, MatchingReadyActivity::class.java)
+                startActivity(intent)
             }
 
         }

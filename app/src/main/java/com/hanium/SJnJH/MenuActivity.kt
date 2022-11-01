@@ -8,10 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hanium.R
@@ -20,14 +17,16 @@ import com.hanium.R
 class MenuActivity : AppCompatActivity() {
     lateinit var rv : RecyclerView
     var arr: ArrayList<RoomData> = ArrayList()
-    lateinit var backBt : Button
+    lateinit var backBt : ImageButton
     lateinit var makeBt : RelativeLayout
     lateinit var recommendBt : RelativeLayout
+    lateinit var roomTv : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
+        roomTv = findViewById(R.id.roomTv)
         backBt = findViewById(R.id.backBt)
         rv = findViewById(R.id.rv)
         makeBt = findViewById(R.id.makeBt)
@@ -40,6 +39,21 @@ class MenuActivity : AppCompatActivity() {
 
         makeBt.setOnClickListener(){
             val nextIntent = Intent(this, MakeRoomDetailActivity::class.java)
+            startActivity(nextIntent)
+        }
+
+        backBt.setOnClickListener(){
+            finish()
+            Log.d("ddbb","da")
+        }
+
+        roomTv.setOnClickListener(){
+            val nextIntent = Intent(this, DeliveryStoresActivity::class.java)
+            startActivity(nextIntent)
+        }
+
+        rv.setOnClickListener(){
+            val nextIntent = Intent(this, DeliveryStoresActivity::class.java)
             startActivity(nextIntent)
         }
 
@@ -91,8 +105,8 @@ class MenuActivity : AppCompatActivity() {
             }
 
             holder.itemView.setOnClickListener {
-                Log.d("aabb", "아이템 클릭!!")
-                Toast.makeText(this@MenuActivity, "아이템 클릭!!", Toast.LENGTH_SHORT).show()
+                val nextIntent = Intent(context, DeliveryStoresActivity::class.java)
+                startActivity(nextIntent)
             }
 
         }

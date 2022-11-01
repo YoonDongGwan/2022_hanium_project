@@ -25,6 +25,8 @@
         android:layout_height="130dp" />
 
     <Button
+        android:textColor="@color/white"
+        android:backgroundTint="@color/mainColor"
         android:id="@+id/cancerBt"
         android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
