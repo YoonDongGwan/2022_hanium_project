@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         val arrayList: ArrayList<Int> = arrayListOf(1,2,3,4,5,6,7,8,9,10)
 
-        recyclerview.adapter = HomeRecyclerViewAdapter(arrayList)
+//        recyclerview.adapter = HomeRecyclerViewAdapter(arrayList)
         recyclerview.layoutManager = GridLayoutManager(this, 2)
 
         viewpager.adapter = HomeViewPagerAdapter(arrayList)
@@ -47,15 +47,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val onClickListener = View.OnClickListener { view ->
+        var intent = Intent(this, ProductListActivity::class.java)
         when(view.id){
-            R.id.home_list_btn8 -> {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
+            R.id.home_list_btn1 -> {
+                intent.putExtra("CATEGORY", 1)
             }
-            else -> {
-                val intent = Intent(this, ProductListActivity::class.java)
-                startActivity(intent)
+            R.id.home_list_btn2 -> {
+                intent.putExtra("CATEGORY", 2)
+            }
+            R.id.home_list_btn8 -> {
+                intent = Intent(this, LoginActivity::class.java)
             }
         }
+        startActivity(intent)
     }
 }

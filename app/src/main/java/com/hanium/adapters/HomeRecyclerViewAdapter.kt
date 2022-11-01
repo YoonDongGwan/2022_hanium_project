@@ -1,18 +1,24 @@
 package com.hanium.adapters
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.hanium.ProductData
 import com.hanium.R
 import com.hanium.activities.ProductActivity
 
-class HomeRecyclerViewAdapter(val arrayList: ArrayList<Int>) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+class HomeRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<ProductData>?) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val img: ImageView = itemView.findViewById(R.id.product_recyclerview_img)
+        val name: TextView = itemView.findViewById(R.id.product_recyclerview_name)
+        val price: TextView = itemView.findViewById(R.id.product_recyclerview_price)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecyclerViewAdapter.ViewHolder{
@@ -21,12 +27,14 @@ class HomeRecyclerViewAdapter(val arrayList: ArrayList<Int>) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: HomeRecyclerViewAdapter.ViewHolder, position: Int) {
-        holder.img.setImageResource(R.drawable.ipad)
+        holder.name.text = arrayList!!.get(position).name
+        Glide.with(context).load(arrayList.get(position).imgUrl).into(holder.img)
+        holder.price.text = arrayList.get(position).price.toString() + " 원"
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView?.context, ProductActivity::class.java)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
 
-    override fun getItemCount(): Int = arrayList.size
+    override fun getItemCount(): Int = arrayList!!.size
 }
