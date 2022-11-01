@@ -42,10 +42,12 @@
         android:text="내 수업에서 사용하는 책"
         android:textColor="@color/white"
         android:layout_gravity="right"
+        android:visibility="gone"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:id="@+id/product_list_recyclerview"
         />
 </LinearLayout>
