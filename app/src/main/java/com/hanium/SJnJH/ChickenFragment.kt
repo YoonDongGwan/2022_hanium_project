@@ -1,15 +1,18 @@
 package com.hanium.SJnJH
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hanium.R
+import com.hanium.activities.ProductActivity
 import com.hanium.databinding.ItemStoresBinding
 
 
@@ -62,14 +65,9 @@ class ChickenListAdapter(val context: Context, val chickenStoreArray: List<Store
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.itemView.setOnClickListener(){
-//            val intent = Intent(this.context, StoreActivity::class.java)
-//            startActivity(intent)
-
-
-
+            val intent = Intent(holder.itemView?.context, StoreActivity::class.java)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
         holder.setItem(chickenStoreArray.get(position))
     }
-
-
 }
