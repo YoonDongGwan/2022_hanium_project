@@ -25,6 +25,7 @@ class DeliveryStoresActivity : AppCompatActivity() {
             WesternFoodFragment(),
             RestFoodFragment()
         )
+
         val pagerAdapter = FragmentPagerAdapter(list,this)
         binding.viewPager.adapter=pagerAdapter
 
