@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -20,6 +22,7 @@ class StoreActivity : AppCompatActivity() {
     lateinit var startBt: Button
     lateinit var rv : RecyclerView
     var arr: ArrayList<ItemData> = ArrayList()
+    var isChecked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,7 @@ class StoreActivity : AppCompatActivity() {
         arr.add(ItemData(R.drawable.hoeny,"허니콤보","20,000원"))
         arr.add(ItemData(R.drawable.hoeny,"레드콤보","22,000원"))
         arr.add(ItemData(R.drawable.hoeny,"오리지널","23,000원"))
+        arr.add(ItemData(R.drawable.hoeny,"반반","24,000원"))
 
         adapter.notifyDataSetChanged()
 
@@ -71,26 +75,26 @@ class StoreActivity : AppCompatActivity() {
             holder.iv.setImageResource(arr.get(position).menuImg)
             holder.tv1.setText(arr.get(position).menu)
             holder.tv2.setText(arr.get(position).price)
-//
-//
-//
-//            holder.iv.setOnClickListener {
-////                Log.d("aabb", "name: " + arr.get(position).name)
-////                Toast.makeText(
-////                    this@StoreActivity,
-////                    "name: " + arr.get(position).name,
-////                    Toast.LENGTH_SHORT
-////                ).show()
-//            }
+
+
+            holder.chk.setOnClickListener(){
+                var menu = arr.get(position).menu
+                var priceString = arr.get(position).price
+
+                var price = priceString.split("원")
+                var num = price[0]
+                Log.d("ssdd","{$menu},가격: $num")
+            }
+
 
             holder.itemView.setOnClickListener {
-                val intent = Intent(context, MatchingReadyActivity::class.java)
-                startActivity(intent)
+
             }
 
         }
 
         inner class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+            var chk : CheckBox = itemView!!.findViewById(R.id.chk)
             var iv: ImageView = itemView!!.findViewById(R.id.iv)
             val tv1: TextView = itemView!!.findViewById(R.id.tv1)
             val tv2: TextView = itemView!!.findViewById(R.id.tv2)
