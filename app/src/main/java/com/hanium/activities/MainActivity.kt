@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.hanium.R
 import com.hanium.RetrofitResponse
 import com.hanium.RetrofitService
+import com.hanium.SJnJH.DeliveryStoresActivity
 import com.hanium.SJnJH.LoginActivity
 import com.hanium.adapters.HomeRecyclerViewAdapter
 import com.hanium.adapters.HomeViewPagerAdapter
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewpager: ViewPager2
     lateinit var recyclerview: RecyclerView
     lateinit var myPageBtn: ImageButton
-    var btns = arrayOfNulls<Button>(8)
+    var btns = arrayOfNulls<LinearLayout>(8)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,19 +41,20 @@ class MainActivity : AppCompatActivity() {
             btns[i]?.setOnClickListener(onClickListener)
         }
 
-        val arrayList: ArrayList<Int> = arrayListOf(1,2,3,4,5,6,7,8,9,10)
 
 
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
             .addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitService::class.java)
-        service.getBooks().enqueue(object : Callback<RetrofitResponse> {
+        service.getFoodRanking().enqueue(object : Callback<RetrofitResponse> {
             override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    recyclerview.adapter = HomeRecyclerViewAdapter(applicationContext, arrayList)
-                    recyclerview.layoutManager = GridLayoutManager(applicationContext, 2)
+                    viewpager.adapter = HomeViewPagerAdapter(applicationContext, arrayList)
+                    viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+
                 }
             }
 
@@ -63,8 +66,6 @@ class MainActivity : AppCompatActivity() {
 //        recyclerview.adapter = HomeRecyclerViewAdapter(this, arrayList)
 //        recyclerview.layoutManager = GridLayoutManager(this, 2)
 
-        viewpager.adapter = HomeViewPagerAdapter(arrayList)
-        viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         myPageBtn.setOnClickListener{
             val intent = Intent(this, MyPageActivity::class.java)
@@ -74,13 +75,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val onClickListener = View.OnClickListener { view ->
-        var intent = Intent(this, ProductListActivity::class.java)
+        var intent = Intent(this, DeliveryStoresActivity::class.java)
         when(view.id){
             R.id.home_list_btn1 -> {
                 intent.putExtra("CATEGORY", 1)
             }
             R.id.home_list_btn2 -> {
                 intent.putExtra("CATEGORY", 2)
+            }
+            R.id.home_list_btn3 -> {
+                intent.putExtra("CATEGORY", 3)
             }
             R.id.home_list_btn8 -> {
                 intent = Intent(this, LoginActivity::class.java)

@@ -27,7 +27,9 @@ class DeliveryStoresActivity : AppCompatActivity() {
         )
         val pagerAdapter = FragmentPagerAdapter(list,this)
         binding.viewPager.adapter=pagerAdapter
-
+        binding.deliveryStoresBackBtn.setOnClickListener{
+            finish()
+        }
         val titles = listOf("치킨","피자","햄버거","중식","양식","기타")
         TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position->
             tab.text = titles.get(position)

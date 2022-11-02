@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="인기 순위"
+                android:text="지금 제일 먹고 싶은 음식"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:layout_marginLeft="20dp"
@@ -67,59 +67,106 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="30dp"
                     >
-                    <Button
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:drawableTop="@drawable/ic_baseline_menu_book_24"
                         android:id="@+id/home_list_btn1"
-                        android:background="@color/transparent"
-                        android:text="도서"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/mainColor"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        />
-                    <Button
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/chicken"
+                            android:background="@color/transparent"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="치킨"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/home_list_btn2"
-                        android:drawableTop="@drawable/ic_baseline_laptop_mac_24"
-                        android:background="@color/transparent"
-                        android:text="전자제품"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/mainColor"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
-                    <Button
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/pizza"
+                            android:background="@color/transparent"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="피자"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/home_list_btn3"
-                        android:background="@color/transparent"
-                        android:drawableTop="@drawable/ic_baseline_brush_24"
-                        android:text="필기구"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/mainColor"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
-                    <Button
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/hamburger"
+                            android:background="@color/transparent"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="햄버거"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/home_list_btn4"
-                        android:background="@color/transparent"
-                        android:drawableTop="@drawable/ic_baseline_cleaning_services_24"
-                        android:text="생활용품"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/mainColor"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/noodles"
+                            android:background="@color/transparent"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="중식"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -127,66 +174,113 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="30dp"
                     >
-                    <Button
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/home_list_btn5"
-                        android:background="@color/transparent"
-                        android:drawableTop="@drawable/ic_baseline_eco_24"
-                        android:text="식재료"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/mainColor"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        />
-                    <Button
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/spaguetti"
+                            android:background="@color/transparent"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="양식"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/home_list_btn6"
-                        android:background="@color/transparent"
-                        android:drawableTop="@drawable/ic_baseline_checkroom_24"
-                        android:text="의류"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/mainColor"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
-                    <Button
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/tteokbokki"
+                            android:background="@color/transparent"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="분식"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/home_list_btn7"
-                        android:background="@color/transparent"
-                        android:drawableTop="@drawable/ic_baseline_handshake_24"
-                        android:text="중고"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/mainColor"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
-                    <Button
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/donut"
+                            android:background="@color/transparent"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="기타"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/home_list_btn8"
-                        android:background="@color/transparent"
-                        android:drawableTop="@drawable/ic_baseline_delivery_dining_24"
-                        android:text="배달"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/mainColor"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/cutlery"
+                            android:background="@color/transparent"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="오프라인"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="추천 목록"
+                android:text="이건 어때요?"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"

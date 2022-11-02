@@ -41,45 +41,61 @@ class ProductListActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitService::class.java)
 
-        when(categoryNum){
-            1 -> {
-                myClassBtn.visibility = View.VISIBLE
-
-                service.getBooks().enqueue(object : Callback<RetrofitResponse>{
-                    override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
-                        if (response.isSuccessful){
-                            var result: RetrofitResponse? = response.body()
-                            val arrayList = result?.data
-                            recyclerview.adapter = HomeRecyclerViewAdapter(applicationContext, arrayList)
-                            recyclerview.layoutManager = GridLayoutManager(applicationContext, 2)
-                        }
-                    }
-
-                    override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
-                        Log.d("state", "onFailure" + t.message.toString())
-                    }
-
-                })
-            }
-            2 -> {
-                service.getElectronics().enqueue(object : Callback<RetrofitResponse>{
-                    override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
-                        if (response.isSuccessful){
-                            var result: RetrofitResponse? = response.body()
-                            val arrayList = result?.data
-                            recyclerview.adapter = HomeRecyclerViewAdapter(applicationContext, arrayList)
-                            recyclerview.layoutManager = GridLayoutManager(applicationContext, 2)
-                        }
-                    }
-
-                    override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
-                        Log.d("state", "onFailure" + t.message.toString())
-                    }
-
-                })
-            }
-
-        }
+//        when(categoryNum){
+//            1 -> {
+//                myClassBtn.visibility = View.VISIBLE
+//
+//                service.getBooks().enqueue(object : Callback<RetrofitResponse>{
+//                    override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
+//                        if (response.isSuccessful){
+//                            var result: RetrofitResponse? = response.body()
+//                            val arrayList = result?.data
+//                            recyclerview.adapter = HomeRecyclerViewAdapter(applicationContext, arrayList)
+//                            recyclerview.layoutManager = GridLayoutManager(applicationContext, 2)
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+//                        Log.d("state", "onFailure" + t.message.toString())
+//                    }
+//
+//                })
+//            }
+//            2 -> {
+//                service.getElectronics().enqueue(object : Callback<RetrofitResponse>{
+//                    override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
+//                        if (response.isSuccessful){
+//                            var result: RetrofitResponse? = response.body()
+//                            val arrayList = result?.data
+//                            recyclerview.adapter = HomeRecyclerViewAdapter(applicationContext, arrayList)
+//                            recyclerview.layoutManager = GridLayoutManager(applicationContext, 2)
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+//                        Log.d("state", "onFailure" + t.message.toString())
+//                    }
+//
+//                })
+//            }
+//            3 -> {
+//                service.getWriting().enqueue(object : Callback<RetrofitResponse>{
+//                    override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
+//                        if (response.isSuccessful){
+//                            var result: RetrofitResponse? = response.body()
+//                            val arrayList = result?.data
+//                            recyclerview.adapter = HomeRecyclerViewAdapter(applicationContext, arrayList)
+//                            recyclerview.layoutManager = GridLayoutManager(applicationContext, 2)
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+//                        Log.d("state", "onFailure" + t.message.toString())
+//                    }
+//
+//                })
+//            }
+//        }
 
     }
     val onClickListener = View.OnClickListener { view ->

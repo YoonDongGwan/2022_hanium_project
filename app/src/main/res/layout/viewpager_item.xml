@@ -8,7 +8,6 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/viewpager_img"
-        android:src="@drawable/ipad"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,6 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/viewpager_rank_number"
             android:text="1위"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아이패드"
+            android:id="@+id/viewpager_company"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="24sp"
@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="929,000 원"
+            android:id="@+id/viewpager_food_name"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="24sp"
