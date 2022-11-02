@@ -78,13 +78,25 @@ class MainActivity : AppCompatActivity() {
         var intent = Intent(this, DeliveryStoresActivity::class.java)
         when(view.id){
             R.id.home_list_btn1 -> {
-                intent.putExtra("CATEGORY", 1)
+                intent.putExtra("CATEGORY", 0)
             }
             R.id.home_list_btn2 -> {
-                intent.putExtra("CATEGORY", 2)
+                intent.putExtra("CATEGORY", 1)
             }
             R.id.home_list_btn3 -> {
+                intent.putExtra("CATEGORY", 2)
+            }
+            R.id.home_list_btn4 -> {
                 intent.putExtra("CATEGORY", 3)
+            }
+            R.id.home_list_btn5 -> {
+                intent.putExtra("CATEGORY", 4)
+            }
+            R.id.home_list_btn6 -> {
+                intent.putExtra("CATEGORY", 5)
+            }
+            R.id.home_list_btn7 -> {
+                intent.putExtra("CATEGORY", 6)
             }
             R.id.home_list_btn8 -> {
                 intent = Intent(this, LoginActivity::class.java)
