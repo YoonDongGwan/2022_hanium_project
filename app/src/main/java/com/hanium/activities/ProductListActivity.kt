@@ -38,8 +38,8 @@ class ProductListActivity : AppCompatActivity() {
         myClassBtn.setOnClickListener(onClickListener)
 
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
-            .addConverterFactory(GsonConverterFactory.create()).build();
-        val service = retrofit.create(RetrofitService::class.java);
+            .addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit.create(RetrofitService::class.java)
 
         when(categoryNum){
             1 -> {
