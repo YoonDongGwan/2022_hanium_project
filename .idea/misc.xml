@@ -21,12 +21,15 @@
         <entry key="app/src/main/res/layout/activity_chatroom.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_class.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_class_item.xml" value="0.13229166666666667" />
+        <entry key="app/src/main/res/layout/activity_final_price.xml" value="0.18359360004026953" />
         <entry key="app/src/main/res/layout/activity_history.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.28596496582031256" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27794871794871795" />
         <entry key="app/src/main/res/layout/activity_main_login.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_make_room.xml" value="0.27794871794871795" />
         <entry key="app/src/main/res/layout/activity_make_room_detail.xml" value="0.27794871794871795" />
+        <entry key="app/src/main/res/layout/activity_matching.xml" value="0.13728470111448834" />
+        <entry key="app/src/main/res/layout/activity_matching_ready.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_mypage.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_num10.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_num5.xml" value="0.1" />
