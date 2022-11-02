@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,8 +8,9 @@
     android:layout_height="match_parent"
     tools:context="com.hanium.SJnJH.StoreActivity">
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nest"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -145,6 +146,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/startBt" />
+
+
+
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+
+
+    <RelativeLayout
+        android:background="@color/purple_200"
+        android:layout_below="@+id/nest"
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"/>
+
+
+
+</RelativeLayout>

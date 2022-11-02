@@ -29,7 +29,6 @@ class HomeRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<Pro
     override fun onBindViewHolder(holder: HomeRecyclerViewAdapter.ViewHolder, position: Int) {
         holder.name.text = arrayList!!.get(position).name
         Glide.with(context).load(arrayList.get(position).imgUrl).into(holder.img)
-        holder.price.text = arrayList.get(position).price.toString() + " 원"
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView?.context, ProductActivity::class.java)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
