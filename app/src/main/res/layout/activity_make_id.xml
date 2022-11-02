@@ -24,7 +24,7 @@
         android:id="@+id/editName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/rectangle_edit_text"
         android:ems="10"
         android:hint="이름"
@@ -36,32 +36,62 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editId"
+        android:id="@+id/editName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_edit_text"
+        android:ems="10"
+        android:hint="학교"
+        android:layout_marginTop="30dp"
+        android:inputType="textPersonName"
+        android:padding="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.243"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editName" />
+
+
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/rectangle_edit_text"
         android:ems="10"
-        android:hint="아이디(이메일)"
+        android:hint="전공"
         android:inputType="textPersonName"
         android:padding="7dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editName" />
+        app:layout_constraintTop_toBottomOf="@+id/editName2" />
+
+    <Button
+        android:id="@+id/btnCheckId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ff0000"
+        android:text="중복체크"
+        android:textColor="@color/mainColor"
+        app:layout_constraintBottom_toBottomOf="@+id/editId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toEndOf="@+id/editId"
+        app:layout_constraintTop_toTopOf="@+id/editId"
+        app:layout_constraintVertical_bias="0.3" />
 
     <EditText
         android:id="@+id/eidtPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/rectangle_edit_text"
         android:ems="10"
         android:hint="비밀번호"
         android:inputType="textPersonName"
         android:padding="7dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editId" />
 
@@ -76,47 +106,36 @@
         android:inputType="textPersonName"
         android:padding="7dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eidtPW" />
 
     <EditText
-        android:id="@+id/eidtAddress"
+        android:id="@+id/editId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:background="@drawable/rectangle_edit_text"
         android:ems="10"
-        android:hint="주소"
+        android:layout_marginTop="30dp"
+        android:hint="아이디(이메일)"
         android:inputType="textPersonName"
         android:padding="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editConfirmPW" />
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <Button
-        android:textColor="@color/white"
-        android:backgroundTint="@color/mainColor"
         android:id="@+id/btnMakeId"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/mainColor"
         android:text="회원가입"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toEndOf="@+id/eidtPW"
         app:layout_constraintTop_toTopOf="@+id/eidtPW" />
-
-    <Button
-        android:id="@+id/btnCheckId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="중복체크"
-        android:textColor="@color/mainColor"
-        app:layout_constraintBottom_toBottomOf="@+id/editId"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editId"
-        app:layout_constraintTop_toTopOf="@+id/editId"
-        android:background="#00ff0000"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
