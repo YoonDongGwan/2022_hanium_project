@@ -96,11 +96,10 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("CATEGORY", 5)
             }
             R.id.home_list_btn7 -> {
-                intent = Intent(this, MapActivity::class.java)
-//                intent.putExtra("CATEGORY", 6)
+                intent.putExtra("CATEGORY", 6)
             }
             R.id.home_list_btn8 -> {
-                intent = Intent(this, LoginActivity::class.java)
+                intent = Intent(this, MapActivity::class.java)
             }
         }
         startActivity(intent)
