@@ -10,3 +10,7 @@ data class RetrofitResponse(
     @SerializedName("data")
     val data: ArrayList<ProductData>
 )
+
+data class LoginResult(var UID:Int)
+data class LoginModel(var id: String, var password: String)
+

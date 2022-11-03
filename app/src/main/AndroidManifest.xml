@@ -17,13 +17,7 @@
         <activity android:name=".activities.ProductListActivity" />
         <activity android:name=".activities.ProductActivity" />
         <activity
-            android:name=".activities.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".activities.MainActivity"/>
         <activity
             android:name=".offline.Offline1Activity"
             android:windowSoftInputMode="adjustResize"/>
@@ -54,7 +48,13 @@
         <activity android:name=".SJnJH.RoomSelectActivity" />
         <activity android:name=".SJnJH.StateActivity" />
         <activity android:name=".SJnJH.StoreActivity" />
-        <activity android:name=".SJnJH.LoginActivity"/>
+        <activity android:name=".SJnJH.LoginActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>
