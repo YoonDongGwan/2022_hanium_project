@@ -29,8 +29,8 @@ class ChickenFragment : Fragment() {
         var rootView = inflater.inflate(R.layout.fragment_chicken, container, false)
         for (i in 1..100){
             val name = "교촌치킨$i"
-            val minPrice = i*100
-            val deliveryTip = i*30
+            val minPrice = i*10000
+            val deliveryTip = i*1000
             chickenStoreArray.add(StoreInform(context?.let { getDrawable(it,R.drawable.asd) }!!,name, minPrice,deliveryTip))
         }
 
@@ -51,9 +51,8 @@ class ChickenListAdapter(val context: Context, val chickenStoreArray: List<Store
             with(binding) {
                 imageView.setImageDrawable(store.image)
                 storeName.text = store.name
-                minPrice.text = "${store.minPrice}원"
-                deliveryTip.text = "${store.deliveryTip}원"
-
+                minPrice.text = "최소주문 ${store.minPrice}원"
+                deliveryTip.text = "배달팁 ${store.deliveryTip}원"
             }
         }
     }
