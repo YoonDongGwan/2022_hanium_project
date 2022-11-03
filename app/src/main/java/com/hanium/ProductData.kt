@@ -3,6 +3,8 @@ package com.hanium
 import com.google.gson.annotations.SerializedName
 
 data class ProductData(
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("name")
     val name: String,
     @SerializedName("company")

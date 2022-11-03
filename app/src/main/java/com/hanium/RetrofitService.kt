@@ -8,4 +8,24 @@ interface RetrofitService {
     @GET("/foods/ranking")
     fun getFoodRanking(): Call<RetrofitResponse>
 
+    @GET("/foods/chicken")
+    fun getChickenStores(): Call<RetrofitResponse>
+
+    @GET("/foods/pizza")
+    fun getPizzaStores(): Call<RetrofitResponse>
+
+    @GET("/foods/hamburger")
+    fun getHamburgerStores(): Call<RetrofitResponse>
+
+    @GET("/foods/chinese")
+    fun getChineseStores(): Call<RetrofitResponse>
+
+    @GET("/foods/western")
+    fun getWesternStores(): Call<RetrofitResponse>
+
+    @GET("/foods/school")
+    fun getSchoolStores(): Call<RetrofitResponse>
+
+    @GET("/foods/other")
+    fun getOtherStores(): Call<RetrofitResponse>
 }

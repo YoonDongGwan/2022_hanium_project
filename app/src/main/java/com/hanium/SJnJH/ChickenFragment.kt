@@ -26,8 +26,6 @@ class ChickenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-
         var rootView = inflater.inflate(R.layout.fragment_chicken, container, false)
         for (i in 1..100){
             val name = "교촌치킨$i"
@@ -35,6 +33,8 @@ class ChickenFragment : Fragment() {
             val deliveryTip = i*30
             chickenStoreArray.add(StoreInform(context?.let { getDrawable(it,R.drawable.asd) }!!,name, minPrice,deliveryTip))
         }
+
+
         recyclerView1 = rootView.findViewById(R.id.recyclerView1!!)as RecyclerView
         recyclerView1.layoutManager = LinearLayoutManager(requireContext())
         recyclerView1.adapter = ChickenListAdapter(requireContext(),chickenStoreArray)
