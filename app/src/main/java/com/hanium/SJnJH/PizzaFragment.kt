@@ -2,6 +2,7 @@ package com.hanium.SJnJH
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +11,21 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hanium.R
+import com.hanium.RetrofitResponse
+import com.hanium.RetrofitService
+import com.hanium.adapters.StoreRecyclerViewAdapter
 import com.hanium.databinding.ItemStoresBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class PizzaFragment : Fragment() {
 
     lateinit var recyclerView : RecyclerView
-    val pizzaStoreArray = mutableListOf<StoreInform>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,44 +34,26 @@ class PizzaFragment : Fragment() {
 
 
         var rootView = inflater.inflate(R.layout.fragment_pizza, container, false)
-        for (i in 1..100){
-            val name = "도미노$i"
-            val minPrice = i*100
-            val deliveryTip = i*30
-            pizzaStoreArray.add(StoreInform(context?.let {
-                AppCompatResources.getDrawable(
-                    it,
-                    R.drawable.asd
-                )
-            }!!,name, minPrice,deliveryTip))
-        }
         recyclerView = rootView.findViewById(R.id.pizzaRecyclerView!!)as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = PizzaListAdapter(requireContext(),pizzaStoreArray)
+        val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
+            .addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit.create(RetrofitService::class.java)
+        service.getPizzaStores().enqueue(object : Callback<RetrofitResponse> {
+            override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
+                if (response.isSuccessful){
+                    var result: RetrofitResponse? = response.body()
+                    val arrayList = result?.data
+                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList)
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+                Log.d("state", "onFailure" + t.message.toString())
+            }
+
+        })
 
         return rootView
     }
-}
-
-
-class PizzaListAdapter(val context: Context, val pizzaStoreArray: List<StoreInform>) : RecyclerView.Adapter<PizzaListAdapter.Holder>() {
-
-    class Holder(val binding: ItemStoresBinding) : RecyclerView.ViewHolder(binding.root){
-        fun setItem(store: StoreInform) {
-            with(binding) {
-                imageView.setImageDrawable(store.image)
-                storeName.text = store.name
-                minPrice.text = "${store.minPrice}원"
-                deliveryTip.text = "${store.deliveryTip}원"
-            }
-        }
-    }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding = ItemStoresBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return Holder(binding)
-    }
-    override fun getItemCount() = pizzaStoreArray.size
-
-    override fun onBindViewHolder(holder: Holder, position: Int) = holder.setItem(pizzaStoreArray.get(position))
-
 }

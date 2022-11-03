@@ -9,6 +9,11 @@ data class ProductData(
     val name: String,
     @SerializedName("company")
     val company: String,
+    @SerializedName("minPrice")
+    val minPrice: Int,
+    @SerializedName("deliveryTip")
+    val deliveryTip: Int,
     @SerializedName("imgUrl")
     val imgUrl: String,
+
 )
