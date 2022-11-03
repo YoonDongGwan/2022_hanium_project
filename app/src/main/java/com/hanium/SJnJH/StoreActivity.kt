@@ -1,7 +1,9 @@
 package com.hanium.SJnJH
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +29,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class StoreActivity : AppCompatActivity() {
+    lateinit var a : ImageButton
+    lateinit var b : ImageButton
+    lateinit var c : ImageButton
     lateinit var startBt: Button
+    lateinit var callBt : RelativeLayout
+    lateinit var heartBt : RelativeLayout
+    lateinit var shareBt : RelativeLayout
     lateinit var rv : RecyclerView
     var arr: ArrayList<ItemData> = ArrayList()
     var allChecked = 0
@@ -36,13 +44,80 @@ class StoreActivity : AppCompatActivity() {
     var menu = ""
     var finalPrice = 0
     var priceString = ""
+    var zzim = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store)
 
+        a = findViewById(R.id.a)
+        b = findViewById(R.id.b)
+        c = findViewById(R.id.c)
         rv = findViewById(R.id.rv)
         startBt = findViewById(R.id.startBt)
+        callBt = findViewById(R.id.callBt)
+        heartBt = findViewById(R.id.heartBt)
+        shareBt = findViewById(R.id.shareBt)
+
+        a.setOnClickListener(){
+            var intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:0537207900")
+            if(intent.resolveActivity(packageManager) != null){
+                startActivity(intent)
+            }
+        }
+
+        callBt.setOnClickListener(){
+            var intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:0328157900")
+            if(intent.resolveActivity(packageManager) != null){
+                startActivity(intent)
+            }
+        }
+
+        b.setOnClickListener(){
+            if (!zzim) {
+                b.setImageResource(R.drawable.ic_baseline_favorite_24)
+                zzim = true
+            }
+            else{
+                b.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                zzim = false
+            }
+
+
+        }
+
+        heartBt.setOnClickListener(){
+            if (!zzim) {
+                b.setImageResource(R.drawable.ic_baseline_favorite_24)
+                zzim = true
+            }
+            else{
+                b.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                zzim = false
+            }
+
+
+        }
+
+        c.setOnClickListener(){
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.type = "text/plain"
+            startActivity(Intent.createChooser(sendIntent, "Share"))
+
+        }
+
+        shareBt.setOnClickListener(){
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.type = "text/plain"
+            startActivity(Intent.createChooser(sendIntent, "Share"))
+
+        }
+
+
         val intent = intent
         val company = intent.getStringExtra("company")
 
