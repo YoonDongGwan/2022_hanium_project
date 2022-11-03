@@ -12,26 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hanium"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCb9nLDVhkd0TXnFMZryrTKQtgLYkTwuls"/>
+
+        <activity
+            android:name=".activities.MapActivity"
+            android:exported="false" />
         <activity android:name=".activities.BuyingActivity" />
         <activity android:name=".activities.ClassActivity" />
         <activity android:name=".activities.ProductListActivity" />
         <activity android:name=".activities.ProductActivity" />
-        <activity
-            android:name=".activities.MainActivity"/>
+        <activity android:name=".activities.MainActivity" />
         <activity
             android:name=".offline.Offline1Activity"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".Chat.PostActivity"/>
-        <activity android:name=".offline.Offline2Activity"/>
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Chat.PostActivity" />
+        <activity android:name=".offline.Offline2Activity" />
         <activity
             android:name=".Chat.ChatRoomActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".activities.ClassItemActivity"/>
-        <activity android:name=".activities.MyPageActivity"/>
-        <activity android:name=".activities.HistoryActivity"/>
-        <activity android:name=".activities.PaymentActivity"/>
-        <activity android:name=".activities.ProgressPurActivity"/>
+        <activity android:name=".activities.ClassItemActivity" />
+        <activity android:name=".activities.MyPageActivity" />
+        <activity android:name=".activities.HistoryActivity" />
+        <activity android:name=".activities.PaymentActivity" />
+        <activity android:name=".activities.ProgressPurActivity" />
         <activity android:name=".SJnJH.FinalPriceActivity" />
         <activity android:name=".SJnJH.BestMenuActivity" />
         <activity android:name=".SJnJH.CategoryActivity" />
@@ -48,12 +55,14 @@
         <activity android:name=".SJnJH.RoomSelectActivity" />
         <activity android:name=".SJnJH.StateActivity" />
         <activity android:name=".SJnJH.StoreActivity" />
-        <activity android:name=".SJnJH.LoginActivity"
+        <activity
+            android:name=".SJnJH.LoginActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
