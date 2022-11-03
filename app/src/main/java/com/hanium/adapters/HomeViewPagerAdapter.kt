@@ -10,13 +10,11 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hanium.ProductData
+import com.hanium.ResponseData
 import com.hanium.R
 import com.hanium.activities.ProductActivity
-import com.hanium.activities.ProductListActivity
-import kotlinx.coroutines.NonDisposableHandle.parent
 
-class HomeViewPagerAdapter(val context: Context, var arrayList: ArrayList<ProductData>?) :
+class HomeViewPagerAdapter(val context: Context, var arrayList: ArrayList<ResponseData>?) :
     RecyclerView.Adapter<HomeViewPagerAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val img: ImageView = itemView.findViewById(R.id.viewpager_img)
@@ -32,10 +30,10 @@ class HomeViewPagerAdapter(val context: Context, var arrayList: ArrayList<Produc
 
 
     override fun onBindViewHolder(holder: HomeViewPagerAdapter.ViewHolder, position: Int) {
-        holder.company.text = arrayList!!.get(position).company
-        holder.name.text = arrayList!!.get(position).name
+        holder.company.text = arrayList!![position].company
+        holder.name.text = arrayList!![position].name
         holder.rankNum.text = "${position+1}위"
-        Glide.with(context).load(arrayList!!.get(position).imgUrl).into(holder.img)
+        Glide.with(context).load(arrayList!![position].imgUrl).into(holder.img)
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView?.context, ProductActivity::class.java)
             ContextCompat.startActivity(holder.itemView.context, intent, null)

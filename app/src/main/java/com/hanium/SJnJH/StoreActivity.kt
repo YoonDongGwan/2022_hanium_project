@@ -12,7 +12,18 @@ import android.widget.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.hanium.R
+import com.hanium.ResponseData
+import com.hanium.RetrofitResponse
+import com.hanium.RetrofitService
+import com.hanium.adapters.HomeViewPagerAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class StoreActivity : AppCompatActivity() {
@@ -32,11 +43,33 @@ class StoreActivity : AppCompatActivity() {
 
         rv = findViewById(R.id.rv)
         startBt = findViewById(R.id.startBt)
+        val intent = intent
+        val company = intent.getStringExtra("company")
 
+        val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
+            .addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit.create(RetrofitService::class.java)
+        if (company != null) {
+            service.getStoreMenu(company).enqueue(object : Callback<RetrofitResponse> {
+                override fun onResponse(
+                    call: Call<RetrofitResponse>,
+                    response: Response<RetrofitResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        var result: RetrofitResponse? = response.body()
+                        val arrayList = result?.data
+                        rv.adapter = MyRvAdapter(this@StoreActivity, arrayList)
 
+                    }
+                }
 
-        var adapter : MyRvAdapter = MyRvAdapter(this,arr)
-        rv.adapter = adapter
+                override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+                    Log.d("state", "onFailure" + t.message.toString())
+                }
+
+            })
+        }
+
         rv.layoutManager = LinearLayoutManager(this)
 
         val dividerItemDecoration =
@@ -44,15 +77,7 @@ class StoreActivity : AppCompatActivity() {
 
         rv.addItemDecoration(dividerItemDecoration)
 
-
-        arr.add(ItemData(R.drawable.hoeny,"허니콤보","20000원"))
-        arr.add(ItemData(R.drawable.hoeny,"레드콤보","22000원"))
-        arr.add(ItemData(R.drawable.hoeny,"오리지널","23000원"))
-        arr.add(ItemData(R.drawable.hoeny,"반반","24000원"))
-        arr.add(ItemData(R.drawable.hoeny,"윙윙","27000원"))
-        arr.add(ItemData(R.drawable.hoeny,"다리다리","26000원"))
-
-        adapter.notifyDataSetChanged()
+//        adapter.notifyDataSetChanged()
 
 
         startBt.setOnClickListener(){
@@ -64,9 +89,16 @@ class StoreActivity : AppCompatActivity() {
     }
 
 
-    inner class MyRvAdapter(val context: Context, val arr: ArrayList<ItemData>) :
+    inner class MyRvAdapter(val context: Context, val arr: ArrayList<ResponseData>?) :
         RecyclerView.Adapter<MyRvAdapter.Holder>() {
 
+        inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
+            var chk : CheckBox = itemView.findViewById(R.id.chk)
+            var iv: ImageView = itemView.findViewById(R.id.iv)
+            val tv1: TextView = itemView.findViewById(R.id.tv1)
+            val tv2: TextView = itemView.findViewById(R.id.tv2)
+
+        }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             val view = LayoutInflater.from(context).inflate(R.layout.rec_item, parent, false)
 
@@ -74,13 +106,13 @@ class StoreActivity : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int {
-            return arr.size
+            return arr!!.size
         }
 
         override fun onBindViewHolder(holder: Holder, position: Int) {
-            holder.iv.setImageResource(arr.get(position).menuImg)
-            holder.tv1.setText(arr.get(position).menu)
-            holder.tv2.setText(arr.get(position).price)
+            Glide.with(context).load(arr!![position].imgUrl).into(holder.iv)
+            holder.tv1.text = arr[position].name
+            holder.tv2.text = "${arr[position].price} 원"
 
 
             holder.chk.setOnClickListener(){
@@ -92,9 +124,9 @@ class StoreActivity : AppCompatActivity() {
                         startBt.visibility = View.GONE
                     }
 
-                    var menu = arr.get(position).menu
-                    var priceT = arr.get(position).price.split("원")
-                    var price = priceT[0].toInt()
+                    val menu = arr[position].name
+                    val price = arr[position].price
+
 
                     var tempMenu = MenuData()
                     tempMenu.menu = menu
@@ -102,13 +134,13 @@ class StoreActivity : AppCompatActivity() {
 
                     menuArr.remove(tempMenu)
 
+                    finalPrice -= price
 
 
-
-                    priceString = arr.get(position).price
-                    var temp = priceString.split("원")
-                    var tempPrice = temp[0].toInt()
-                    finalPrice -= tempPrice
+//                    priceString = arr.get(position).price.toString()
+//                    var temp = priceString.split("원")
+//                    var tempPrice = temp[0].toInt()
+//                    finalPrice -= tempPrice
 
                     startBt.setText(finalPrice.toString()+"원 매칭하기")
 
@@ -122,9 +154,9 @@ class StoreActivity : AppCompatActivity() {
                         startBt.visibility = View.VISIBLE
                     }
 
-                    var menu = arr.get(position).menu
-                    var priceT = arr.get(position).price.split("원")
-                    var price = priceT[0].toInt()
+                    var menu = arr[position].name
+                    val price= arr[position].price
+
                     var tempMenu = MenuData()
                     tempMenu.menu = menu
                     tempMenu.price = price
@@ -132,10 +164,10 @@ class StoreActivity : AppCompatActivity() {
                     menuArr.add(tempMenu)
 
 
-                    priceString = arr.get(position).price
-                    var temp = priceString.split("원")
-                    var tempPrice = temp[0].toInt()
-                    finalPrice += tempPrice
+//                    priceString = arr.get(position).price
+//                    var temp = priceString.split("원")
+//                    var tempPrice = temp[0].toInt()
+                    finalPrice += price
 
                     startBt.setText(finalPrice.toString()+"원 매칭하기")
                 }
@@ -165,13 +197,6 @@ class StoreActivity : AppCompatActivity() {
 
         }
 
-        inner class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-            var chk : CheckBox = itemView!!.findViewById(R.id.chk)
-            var iv: ImageView = itemView!!.findViewById(R.id.iv)
-            val tv1: TextView = itemView!!.findViewById(R.id.tv1)
-            val tv2: TextView = itemView!!.findViewById(R.id.tv2)
-
-        }
     }
 
 

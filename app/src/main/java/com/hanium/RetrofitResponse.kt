@@ -8,7 +8,7 @@ data class RetrofitResponse(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data: ArrayList<ProductData>
+    val data: ArrayList<ResponseData>
 )
 
 data class LoginResult(var UID:Int)

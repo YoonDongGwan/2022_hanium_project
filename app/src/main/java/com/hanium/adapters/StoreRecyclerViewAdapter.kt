@@ -10,11 +10,11 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hanium.ProductData
+import com.hanium.ResponseData
 import com.hanium.R
 import com.hanium.SJnJH.StoreActivity
 
-class StoreRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<ProductData>?) : RecyclerView.Adapter<StoreRecyclerViewAdapter.Holder>() {
+class StoreRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<ResponseData>?) : RecyclerView.Adapter<StoreRecyclerViewAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view){
         val img: ImageView = itemView.findViewById(R.id.store_item_img)
@@ -35,6 +35,7 @@ class StoreRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<Pr
         holder.deliveryTip.text = "배달비 ${arrayList[position].deliveryTip} 원"
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView?.context, StoreActivity::class.java)
+            intent.putExtra("company", arrayList[position].name)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
 //        holder.setItem(chickenStoreArray.get(position))

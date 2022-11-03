@@ -1,10 +1,7 @@
 package com.hanium
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RetrofitService {
     @GET("/foods/ranking")
@@ -30,6 +27,9 @@ interface RetrofitService {
 
     @GET("/foods/other")
     fun getOtherStores(): Call<RetrofitResponse>
+
+    @GET("/store/menu")
+    fun getStoreMenu(@Query("company") company: String): Call<RetrofitResponse>
 
     @POST("/user/login")
     fun login(@Body jsonparams: LoginModel) : Call<LoginResult>
