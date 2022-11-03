@@ -3,6 +3,7 @@ package com.hanium
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface RetrofitService {
@@ -32,4 +33,8 @@ interface RetrofitService {
 
     @POST("/user/login")
     fun login(@Body jsonparams: LoginModel) : Call<LoginResult>
+
+    @POST("/user/signup")
+    @Headers("accept: application/json", "content-type: application/json")
+    fun signUp(@Body jsonparams: SignUpModel) : Call<SignUpResult>
 }

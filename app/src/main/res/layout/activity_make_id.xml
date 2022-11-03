@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editName2"
+        android:id="@+id/editSchool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_edit_text"
@@ -52,7 +52,7 @@
 
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editMajor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editName2" />
+        app:layout_constraintTop_toBottomOf="@+id/editSchool" />
 
     <Button
         android:id="@+id/btnCheckId"
@@ -81,14 +81,14 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <EditText
-        android:id="@+id/eidtPW"
+        android:id="@+id/editPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/rectangle_edit_text"
         android:ems="10"
         android:hint="비밀번호"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:padding="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.238"
@@ -103,12 +103,12 @@
         android:background="@drawable/rectangle_edit_text"
         android:ems="10"
         android:hint="비밀번호 확인"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:padding="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eidtPW" />
+        app:layout_constraintTop_toBottomOf="@+id/editPW" />
 
     <EditText
         android:id="@+id/editId"
@@ -123,7 +123,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editMajor" />
 
     <Button
         android:id="@+id/btnMakeId"
@@ -135,7 +135,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toEndOf="@+id/eidtPW"
-        app:layout_constraintTop_toTopOf="@+id/eidtPW" />
+        app:layout_constraintStart_toEndOf="@+id/editPW"
+        app:layout_constraintTop_toTopOf="@+id/editPW" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
