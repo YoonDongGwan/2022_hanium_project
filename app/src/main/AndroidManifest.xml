@@ -15,7 +15,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCb9nLDVhkd0TXnFMZryrTKQtgLYkTwuls"/>
+            android:value="AIzaSyCb9nLDVhkd0TXnFMZryrTKQtgLYkTwuls" />
 
         <activity
             android:name=".activities.MapActivity"
@@ -25,6 +25,7 @@
         <activity android:name=".activities.ProductListActivity" />
         <activity android:name=".activities.ProductActivity" />
         <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.DeliveryInformationActivity" />
         <activity
             android:name=".offline.Offline1Activity"
             android:windowSoftInputMode="adjustResize" />

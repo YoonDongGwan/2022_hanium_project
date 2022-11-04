@@ -17,5 +17,4 @@ data class ResponseData(
     val deliveryTip: Int,
     @SerializedName("imgUrl")
     val imgUrl: String,
-
 )

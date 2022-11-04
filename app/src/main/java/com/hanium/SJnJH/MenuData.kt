@@ -1,6 +1,3 @@
 package com.hanium.SJnJH
 
-class MenuData {
-    var menu = ""
-    var price = 0
-}
+class MenuData(var menu: String, var price: Int)

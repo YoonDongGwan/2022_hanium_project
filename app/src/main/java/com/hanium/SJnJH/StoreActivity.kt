@@ -20,6 +20,7 @@ import com.hanium.R
 import com.hanium.ResponseData
 import com.hanium.RetrofitResponse
 import com.hanium.RetrofitService
+import com.hanium.activities.DeliveryInformationActivity
 import com.hanium.adapters.HomeViewPagerAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -156,8 +157,9 @@ class StoreActivity : AppCompatActivity() {
 
 
         startBt.setOnClickListener(){
-            val nextIntent = Intent(this, FindingPeopleActivity::class.java)
-            startActivity(nextIntent)
+            val intent = Intent(this, DeliveryInformationActivity::class.java)
+//            val nextIntent = Intent(this, FindingPeopleActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -202,20 +204,11 @@ class StoreActivity : AppCompatActivity() {
                     val menu = arr[position].name
                     val price = arr[position].price
 
+//                    for (i in 0 until )
 
-                    var tempMenu = MenuData()
-                    tempMenu.menu = menu
-                    tempMenu.price = price
 
-                    menuArr.remove(tempMenu)
 
                     finalPrice -= price
-
-
-//                    priceString = arr.get(position).price.toString()
-//                    var temp = priceString.split("원")
-//                    var tempPrice = temp[0].toInt()
-//                    finalPrice -= tempPrice
 
                     startBt.setText(finalPrice.toString()+"원 매칭하기")
 
@@ -229,19 +222,10 @@ class StoreActivity : AppCompatActivity() {
                         startBt.visibility = View.VISIBLE
                     }
 
-                    var menu = arr[position].name
+                    val menu = arr[position].name
                     val price= arr[position].price
 
-                    var tempMenu = MenuData()
-                    tempMenu.menu = menu
-                    tempMenu.price = price
-
-                    menuArr.add(tempMenu)
-
-
-//                    priceString = arr.get(position).price
-//                    var temp = priceString.split("원")
-//                    var tempPrice = temp[0].toInt()
+                    menuArr.add(MenuData(menu, price))
                     finalPrice += price
 
                     startBt.setText(finalPrice.toString()+"원 매칭하기")
