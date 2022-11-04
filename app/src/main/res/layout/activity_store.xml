@@ -61,64 +61,82 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageButton
-
+                <RelativeLayout
                     android:id="@+id/callBt"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_below="@+id/reviewTv"
-                    android:background="@drawable/ic_baseline_call_24" />
-
-                <TextView
-                    android:id="@+id/callTv"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/reviewTv"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/callBt"
-                    android:text="전화"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <ImageButton
+                    <ImageButton
+                        android:id="@+id/a"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ic_baseline_call_24" />
+
+                    <TextView
+                        android:layout_toRightOf="@+id/a"
+                        android:id="@+id/callTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="전화"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/heartBt"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_below="@+id/reviewTv"
-                    android:layout_marginLeft="50dp"
-                    android:layout_toRightOf="@+id/callTv"
-                    android:background="@drawable/ic_baseline_favorite_border_24" />
-
-                <TextView
-                    android:id="@+id/heartTv"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/reviewTv"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/heartBt"
-                    android:text="찜"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <ImageButton
+
+
+                    <ImageButton
+                        android:id="@+id/b"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+
+                        android:layout_marginLeft="50dp"
+
+                        android:background="@drawable/ic_baseline_favorite_border_24" />
+
+                    <TextView
+                        android:id="@+id/heartTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/b"
+                        android:layout_marginLeft="5dp"
+                        android:text="찜"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/shareBt"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_below="@+id/reviewTv"
-                    android:layout_marginLeft="50dp"
-                    android:layout_toRightOf="@+id/heartTv"
-                    android:background="@drawable/ic_baseline_share_24" />
-
-                <TextView
-                    android:id="@+id/shareTv"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/reviewTv"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/shareBt"
-                    android:text="공유"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
+
+
+
+                    <ImageButton
+                        android:id="@+id/c"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+
+                        android:layout_marginLeft="50dp"
+                        android:background="@drawable/ic_baseline_share_24" />
+
+                    <TextView
+                        android:id="@+id/shareTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/c"
+                        android:text="공유"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
