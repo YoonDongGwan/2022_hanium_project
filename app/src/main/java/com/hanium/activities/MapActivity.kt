@@ -1,35 +1,70 @@
 package com.hanium.activities
 
-import androidx.appcompat.app.AppCompatActivity
+//import android.R
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hanium.R
 
+
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var map : GoogleMap
     lateinit var card_view : LinearLayout
     lateinit var storeImg : ImageView
+    lateinit var makeOffBt : Button
+    lateinit var currentMarker: Marker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map)
+        setContentView(com.hanium.R.layout.activity_map)
 
-        card_view = findViewById(R.id.card_view)
-        storeImg = findViewById(R.id.storeImg)
+        makeOffBt = findViewById(R.id.makeOffBt)
+        card_view = findViewById(com.hanium.R.id.card_view)
+        storeImg = findViewById(com.hanium.R.id.storeImg)
 
-        var mapFragment : SupportMapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        var mapFragment : SupportMapFragment = supportFragmentManager.findFragmentById(com.hanium.R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+
+        makeOffBt.setOnClickListener(){
+            var url = currentMarker.tag
+            var lng = currentMarker.position
+            var title = currentMarker.title
+            currentMarker.remove()
+
+            val tempMakerOptions = MarkerOptions()
+            tempMakerOptions.position(lng)
+            tempMakerOptions.title(title)
+
+            val bd = getResources().getDrawable(com.hanium.R.drawable.dddd) as BitmapDrawable
+            val b = bd.bitmap
+            val bitMapImage = Bitmap.createScaledBitmap(b, 10, 20, false)
+            tempMakerOptions.icon(BitmapDescriptorFactory.fromBitmap(b))
+            val tempMarker: Marker = map.addMarker(tempMakerOptions)
+            tempMarker.tag = url
+
+
+
+
+
+        }
+
+
 
 
     }
@@ -52,6 +87,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         makerOptions2.position(china)
         makerOptions2.title("샹차이")
         makerOptions2.snippet("샹차이 가실분")
+
+        val bd = getResources().getDrawable(com.hanium.R.drawable.dddd) as BitmapDrawable
+        val b = bd.bitmap
+        val bitMapImage = Bitmap.createScaledBitmap(b, 10, 20, false)
+        makerOptions2.icon(BitmapDescriptorFactory.fromBitmap(b))
         val marker2: Marker = map.addMarker(makerOptions2)
         marker2.tag =
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZURWXtA7dNpyFqr8OrOfiF9iIu41oeXLa2A&usqp=CAU"
@@ -125,8 +165,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         map!!.setOnMarkerClickListener(object : GoogleMap.OnMarkerClickListener {
             override fun onMarkerClick(marker: Marker): Boolean {
                 card_view.visibility = View.VISIBLE
-                var storeTv = findViewById<TextView>(R.id.storeTv)
-                var contentTv = findViewById<TextView>(R.id.contentTv)
+                var storeTv = findViewById<TextView>(com.hanium.R.id.storeTv)
+                var contentTv = findViewById<TextView>(com.hanium.R.id.contentTv)
 //                var numTv = findViewById<TextView>(R.id.numTv)
 
                 var temp = marker.tag
@@ -136,6 +176,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 Glide.with(this@MapActivity)
                     .load(temp)
                     .into(storeImg)
+
+                currentMarker = marker
 
 
 
