@@ -1,6 +1,5 @@
 package com.hanium.SJnJH
 
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -14,14 +13,12 @@ import android.widget.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.hanium.R
 import com.hanium.ResponseData
 import com.hanium.RetrofitResponse
 import com.hanium.RetrofitService
 import com.hanium.activities.DeliveryInformationActivity
-import com.hanium.adapters.HomeViewPagerAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,11 +30,13 @@ class StoreActivity : AppCompatActivity() {
     lateinit var a : ImageButton
     lateinit var b : ImageButton
     lateinit var c : ImageButton
-    lateinit var startBt: Button
+    lateinit var nextBtn: Button
     lateinit var callBt : RelativeLayout
     lateinit var heartBt : RelativeLayout
     lateinit var shareBt : RelativeLayout
     lateinit var rv : RecyclerView
+    lateinit var bottomBar: LinearLayout
+    lateinit var finalPriceTextView: TextView
     var arr: ArrayList<ItemData> = ArrayList()
     var allChecked = 0
     var menuArr : ArrayList<MenuData> = ArrayList()
@@ -55,10 +54,13 @@ class StoreActivity : AppCompatActivity() {
         b = findViewById(R.id.b)
         c = findViewById(R.id.c)
         rv = findViewById(R.id.rv)
-        startBt = findViewById(R.id.startBt)
+        nextBtn = findViewById(R.id.store_next_btn)
         callBt = findViewById(R.id.callBt)
         heartBt = findViewById(R.id.heartBt)
         shareBt = findViewById(R.id.shareBt)
+        val storeName: TextView = findViewById(R.id.store_name)
+        bottomBar = findViewById(R.id.store_bottom_bar)
+        finalPriceTextView = findViewById(R.id.store_final_price)
 
         a.setOnClickListener(){
             var intent = Intent(Intent.ACTION_DIAL)
@@ -121,7 +123,7 @@ class StoreActivity : AppCompatActivity() {
 
         val intent = intent
         val company = intent.getStringExtra("company")
-
+        storeName.text = company
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
             .addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitService::class.java)
@@ -156,8 +158,11 @@ class StoreActivity : AppCompatActivity() {
 //        adapter.notifyDataSetChanged()
 
 
-        startBt.setOnClickListener(){
+        nextBtn.setOnClickListener(){
             val intent = Intent(this, DeliveryInformationActivity::class.java)
+            intent.putParcelableArrayListExtra("selectedFoods", menuArr)
+            intent.putExtra("priceSum", finalPrice)
+            intent.putExtra("storeName", company)
 //            val nextIntent = Intent(this, FindingPeopleActivity::class.java)
             startActivity(intent)
         }
@@ -198,19 +203,22 @@ class StoreActivity : AppCompatActivity() {
                     allChecked--
 
                     if (allChecked == 0){
-                        startBt.visibility = View.GONE
+                        bottomBar.visibility = View.GONE
                     }
 
                     val menu = arr[position].name
                     val price = arr[position].price
 
-//                    for (i in 0 until )
 
-
+                    for (i in 0 until menuArr.size){
+                        if (menuArr[i].menu == menu){
+                            menuArr.removeAt(i)
+                            break
+                        }
+                    }
 
                     finalPrice -= price
-
-                    startBt.setText(finalPrice.toString()+"원 매칭하기")
+                    finalPriceTextView.setText(finalPrice.toString()+"원 매칭하기")
 
                 }
 
@@ -219,7 +227,7 @@ class StoreActivity : AppCompatActivity() {
                     allChecked++
 
                     if (allChecked != 0){
-                        startBt.visibility = View.VISIBLE
+                        bottomBar.visibility = View.VISIBLE
                     }
 
                     val menu = arr[position].name
@@ -228,7 +236,7 @@ class StoreActivity : AppCompatActivity() {
                     menuArr.add(MenuData(menu, price))
                     finalPrice += price
 
-                    startBt.setText(finalPrice.toString()+"원 매칭하기")
+                    finalPriceTextView.setText(finalPrice.toString()+"원 매칭하기")
                 }
 
 
