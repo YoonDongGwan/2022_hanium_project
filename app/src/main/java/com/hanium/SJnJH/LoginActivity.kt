@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
                     if (user_uid!=-1){
                         Log.d("login", "성공 +${user_uid}")
                         val nextIntent = Intent(this@LoginActivity, MainActivity::class.java)
-                        nextIntent.putExtra("id", idEt.text.toString())
+                        nextIntent.putExtra("UID", user_uid)
                         startActivity(nextIntent)
                     }
                     else{

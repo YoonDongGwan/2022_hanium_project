@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         recyclerview = findViewById(R.id.home_recyclerview)
         myPageBtn = findViewById(R.id.myPageBtn)
 
+        val user_uid=getIntent().getIntExtra("UID",0)
+
         for(i in 0..7){
             btns[i] = findViewById(resources.getIdentifier("home_list_btn${i+1}","id",packageName))
             btns[i]?.setOnClickListener(onClickListener)
@@ -69,6 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         myPageBtn.setOnClickListener{
             val intent = Intent(this, MyPageActivity::class.java)
+            intent.putExtra("UID", user_uid)
             startActivity(intent)
         }
 

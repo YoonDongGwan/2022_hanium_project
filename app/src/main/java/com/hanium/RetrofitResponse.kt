@@ -16,3 +16,5 @@ data class LoginModel(var id: String, var password: String)
 data class SignUpModel(var name: String, var id: String, var password: String, var school: String, var major : String)
 data class SignUpResult(var message: Boolean)
 data class LocationResponse(val code: Int, val message: String, val data: ArrayList<String>)
+data class MypageResponse(var school:String, var major:String,var name:String)
+
