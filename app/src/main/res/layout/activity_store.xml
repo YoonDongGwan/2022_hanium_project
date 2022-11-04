@@ -168,6 +168,39 @@
     </androidx.core.widget.NestedScrollView>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/store_bottom_bar"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:id="@+id/store_final_price"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/mainColor"
+            android:text="가격"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:id="@+id/store_next_btn"
+            android:background="@color/mainColor"
+            android:textColor="@color/white"
+            android:text="다음으로"
+            android:textStyle="bold"
+            android:layout_weight="2"
+            />
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/startBt"
         android:layout_width="match_parent"
