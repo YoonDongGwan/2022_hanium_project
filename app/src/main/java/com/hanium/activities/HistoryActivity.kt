@@ -3,20 +3,29 @@ package com.hanium.activities
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hanium.PurchaseListData
-import com.hanium.R
+import com.hanium.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class HistoryActivity : AppCompatActivity() {
+
+    val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
+        .addConverterFactory(GsonConverterFactory.create()).build()
+    val service = retrofit.create(RetrofitService::class.java)
+
     lateinit var rv : RecyclerView
-    var purlistArr : ArrayList<PurchaseListData> = ArrayList()
+    var orderListArr : ArrayList<OrderListData> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,17 +34,35 @@ class HistoryActivity : AppCompatActivity() {
 
         rv = findViewById(R.id.rv)
 
-        var adapter : MyRvAdapter = MyRvAdapter(this,purlistArr)
+        var adapter : MyAdapter = MyAdapter(this,orderListArr)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(this)
+        val user_id=getIntent().getStringExtra("id")
 
         val dividerItemDecoration =
             DividerItemDecoration(rv.context, LinearLayoutManager(this).orientation)
 
         rv.addItemDecoration(dividerItemDecoration)
 
-        purlistArr.add(PurchaseListData(R.drawable.book,"안드로이드 프로그래밍","앱 프로그래밍 책~","정보통신공학과(앱프로그래밍)","평점: (4.5/5)"))
-        purlistArr.add(PurchaseListData(R.drawable.book,"Perfect C","프로그래밍1 책~","정보통신공학과(프로그래밍1)","평점: (4.7/5)"))
+
+        service.getOrderList(user_id.toString()).enqueue(object : Callback<OrderListResponse> {
+            override fun onResponse(
+                call: Call<OrderListResponse>,
+                response: Response<OrderListResponse>
+            ) {
+                if (response.isSuccessful) {
+                    var result = response.body()
+                    val arrayList = result?.data
+                    rv.adapter = MyAdapter(this@HistoryActivity, arrayList)
+
+                }
+            }
+
+            override fun onFailure(call: Call<OrderListResponse>, t: Throwable) {
+                Log.d("state", "onFailure" + t.message.toString())
+            }
+
+        })
 
 
 
@@ -44,24 +71,23 @@ class HistoryActivity : AppCompatActivity() {
     }
 
 
-    inner class MyRvAdapter(val context: Context, val arr: ArrayList<PurchaseListData>) :
-        RecyclerView.Adapter<MyRvAdapter.Holder>() {
+    inner class MyAdapter(val context: Context, val arr: ArrayList<OrderListData>?) :
+        RecyclerView.Adapter<MyAdapter.Holder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-            val view = LayoutInflater.from(context).inflate(R.layout.purlist, parent, false)
-
+            val view = LayoutInflater.from(context).inflate(R.layout.orderlist, parent, false)
             return Holder(view)
         }
 
         override fun getItemCount(): Int {
-            return arr.size
+            return arr!!.size
         }
 
         override fun onBindViewHolder(holder: Holder, position: Int) {
-            holder.ib.setImageResource(arr.get(position).bookImg)
-            holder.tv1.setText(arr.get(position).title)
-            holder.tv2.setText(arr.get(position).major)
-            holder.tv3.setText(arr.get(position).rate)
+            holder.storeName.text = arr?.get(position)?.store
+            holder.deliveryFood.text = arr?.get(position)?.deliveryFood
+            holder.date.text = arr?.get(position)?.date
+            holder.price.text ="${arr?.get(position)?.price}원"
 
 
 
@@ -75,23 +101,14 @@ class HistoryActivity : AppCompatActivity() {
 //                arr.get(position).isChecked = holder.chk.isChecked
 //            }
 
-            holder.tv1.setOnClickListener {
-
-            }
-
-            holder.itemView.setOnClickListener {
-//                Toast.makeText(this@Num5Activity, "아이템 클릭!!", Toast.LENGTH_SHORT).show()
-            }
-
 
         }
 
         inner class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-            var ib : ImageButton = itemView!!.findViewById(R.id.ib)
-            var tv1: TextView = itemView!!.findViewById(R.id.tv1)
-            val tv2: TextView = itemView!!.findViewById(R.id.tv2)
-            val tv3: TextView = itemView!!.findViewById(R.id.tv3)
-            val bt1: TextView = itemView!!.findViewById(R.id.bt1)
+            var storeName : TextView = itemView!!.findViewById(R.id.storeName)
+            var deliveryFood : TextView = itemView!!.findViewById(R.id.deliveryFood)
+            var date : TextView = itemView!!.findViewById(R.id.date)
+            var price : TextView = itemView!!.findViewById(R.id.price)
 
 
         }

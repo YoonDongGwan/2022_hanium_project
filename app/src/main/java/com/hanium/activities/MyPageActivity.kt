@@ -19,8 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MyPageActivity : AppCompatActivity() {
 
-
-
     val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
         .addConverterFactory(GsonConverterFactory.create()).build()
     val service = retrofit.create(RetrofitService::class.java)
@@ -29,15 +27,15 @@ class MyPageActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage)
-        val purListBtn: Button = findViewById(R.id.mypage_purList_btn)
+        val orderListBtn: Button = findViewById(R.id.mypage_orderList_btn)
         val processPurBtn: Button = findViewById(R.id.mypage_progressPur_btn)
 
 
         val univTv = findViewById<TextView>(R.id.univTv)
         val majorTv = findViewById<TextView>(R.id.majorTv)
         val nameTv = findViewById<TextView>(R.id.nameTv)
-
-        purListBtn.setOnClickListener(onClickListener)
+        var id=""
+        orderListBtn.setOnClickListener(onClickListener)
         processPurBtn.setOnClickListener(onClickListener)
         val user_uid=getIntent().getIntExtra("UID",0)
 
@@ -48,6 +46,7 @@ class MyPageActivity : AppCompatActivity() {
                     univTv.text=result?.school
                     majorTv.text = result?.major
                     nameTv.text=result?.name
+                    id = result?.id.toString()
                 }
             }
             override fun onFailure(call: Call<MypageResponse>, t: Throwable) {
@@ -55,13 +54,14 @@ class MyPageActivity : AppCompatActivity() {
             }
 
         })
+        orderListBtn.setOnClickListener(){
+            var intent = Intent(this, HistoryActivity::class.java)
+            intent.putExtra("id",id)
+            startActivity(intent)
+        }
     }
     private val onClickListener = View.OnClickListener { view ->
         when(view.id){
-            R.id.mypage_purList_btn -> {
-                var intent = Intent(this, HistoryActivity::class.java)
-                startActivity(intent)
-            }
             R.id.mypage_progressPur_btn -> {
                 var intent = Intent(this, ProgressPurActivity::class.java)
                 startActivity(intent)
