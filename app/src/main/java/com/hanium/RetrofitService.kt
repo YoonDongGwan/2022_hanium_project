@@ -37,4 +37,7 @@ interface RetrofitService {
     @POST("/user/signup")
     @Headers("accept: application/json", "content-type: application/json")
     fun signUp(@Body jsonparams: SignUpModel) : Call<SignUpResult>
+
+    @GET("user/mypage")
+    fun getMypage(@Query("UID") UID: Int): Call<MypageResponse>
 }
