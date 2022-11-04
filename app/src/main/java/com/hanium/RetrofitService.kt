@@ -43,4 +43,7 @@ interface RetrofitService {
 
     @GET("user/mypage")
     fun getMypage(@Query("UID") UID: Int): Call<MypageResponse>
+
+    @GET("user/orderlist")
+    fun getOrderList(@Query("id") id: String): Call<OrderListResponse>
 }

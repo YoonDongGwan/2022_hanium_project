@@ -58,7 +58,7 @@
         app:layout_constraintVertical_bias="0.666" />
 
     <Button
-        android:id="@+id/mypage_purList_btn"
+        android:id="@+id/mypage_orderList_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/scheduleBt"
