@@ -31,6 +31,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var makeOffBt : Button
     lateinit var currentMarker: Marker
     lateinit var storeInfo : TextView
+    lateinit var gatherBt : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         card_view = findViewById(com.hanium.R.id.card_view)
         storeImg = findViewById(com.hanium.R.id.storeImg)
         storeInfo = findViewById(R.id.storeInfo)
+        gatherBt = findViewById(R.id.gatherBt)
 
         var mapFragment : SupportMapFragment = supportFragmentManager.findFragmentById(com.hanium.R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -224,11 +226,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 if(marker.title.equals("샹차이") || marker.alpha == 0.98f) {
                     storeInfo.text = "내용: "
-                    makeOffBt.visibility = View.INVISIBLE
+                    makeOffBt.visibility = View.GONE
+                    gatherBt.visibility = View.VISIBLE
                 }
                 else {
                     storeInfo.text = "가게 정보: "
                     makeOffBt.visibility = View.VISIBLE
+                    gatherBt.visibility = View.GONE
                 }
 
 
