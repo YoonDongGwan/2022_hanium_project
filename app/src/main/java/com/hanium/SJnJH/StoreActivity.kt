@@ -59,7 +59,7 @@ class StoreActivity : AppCompatActivity() {
         callBt = findViewById(R.id.callBt)
         heartBt = findViewById(R.id.heartBt)
         shareBt = findViewById(R.id.shareBt)
-
+        val storeName: TextView = findViewById(R.id.store_name)
         a.setOnClickListener(){
             var intent = Intent(Intent.ACTION_DIAL)
             intent.data = Uri.parse("tel:0537207900")
@@ -121,7 +121,7 @@ class StoreActivity : AppCompatActivity() {
 
         val intent = intent
         val company = intent.getStringExtra("company")
-
+        storeName.text = company
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
             .addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitService::class.java)
@@ -158,6 +158,9 @@ class StoreActivity : AppCompatActivity() {
 
         startBt.setOnClickListener(){
             val intent = Intent(this, DeliveryInformationActivity::class.java)
+            intent.putParcelableArrayListExtra("selectedFoods", menuArr)
+            intent.putExtra("priceSum", finalPrice)
+            intent.putExtra("storeName", company)
 //            val nextIntent = Intent(this, FindingPeopleActivity::class.java)
             startActivity(intent)
         }
@@ -204,12 +207,15 @@ class StoreActivity : AppCompatActivity() {
                     val menu = arr[position].name
                     val price = arr[position].price
 
-//                    for (i in 0 until )
 
-
+                    for (i in 0 until menuArr.size){
+                        if (menuArr[i].menu == menu){
+                            menuArr.removeAt(i)
+                            break
+                        }
+                    }
 
                     finalPrice -= price
-
                     startBt.setText(finalPrice.toString()+"원 매칭하기")
 
                 }

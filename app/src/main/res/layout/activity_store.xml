@@ -31,13 +31,13 @@
                 android:src="@drawable/ddd" />
 
             <TextView
-                android:id="@+id/storeTv"
+                android:id="@+id/store_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/storeIv"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="교촌치킨"
+                android:text="가게 이름"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="35sp"
@@ -141,23 +141,17 @@
             </LinearLayout>
 
 
-            <Button
-
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/callBt"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/mainColor"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="디자이너 수정 부탁드려요"
-                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:text="메뉴"
+                android:textColor="@color/black"
                 android:textSize="20sp"
-                tools:layout_editor_absoluteX="77dp"
-                tools:layout_editor_absoluteY="241dp" />
+                android:textStyle="bold"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"

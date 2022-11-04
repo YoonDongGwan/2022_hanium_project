@@ -57,10 +57,11 @@
         <entry key="app/src/main/res/layout/activity_progress_pur.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_room_list.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_state.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_store.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_store.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_sub.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/buying_recyclerview_item.xml" value="0.165" />
         <entry key="app/src/main/res/layout/chatitem.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/del_inf_recyclerview_item.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/fragment_chicken_list.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_chinese_food_list.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_hamburger_list.xml" value="0.19610507246376813" />
