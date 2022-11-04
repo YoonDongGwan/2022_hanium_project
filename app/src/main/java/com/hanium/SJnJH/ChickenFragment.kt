@@ -43,7 +43,7 @@ class ChickenFragment : Fragment() {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    recyclerView1.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList)
+                    recyclerView1.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 1)
 
 
                 }

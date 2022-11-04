@@ -11,9 +11,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="58dp"
-        app:layout_constraintBottom_toTopOf="@+id/startBt"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,13 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <ImageView
-                android:id="@+id/storeIv"
+                android:id="@+id/store_img"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ddd" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ddd"
+                android:background="@color/white"
+                />
 
             <TextView
                 android:id="@+id/store_name"
@@ -73,11 +72,11 @@
                         android:background="@drawable/ic_baseline_call_24" />
 
                     <TextView
-                        android:layout_toRightOf="@+id/a"
                         android:id="@+id/callTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/a"
                         android:text="전화"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -87,7 +86,6 @@
                     android:id="@+id/heartBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-
 
 
                     <ImageButton
@@ -103,8 +101,8 @@
                         android:id="@+id/heartTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/b"
                         android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/b"
                         android:text="찜"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -115,7 +113,6 @@
                     android:id="@+id/shareBt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-
 
 
                     <ImageButton
@@ -150,8 +147,7 @@
                 android:text="메뉴"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"

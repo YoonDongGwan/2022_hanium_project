@@ -45,7 +45,7 @@ class ChineseFoodFragment : Fragment() {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList)
+                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 4)
                 }
             }
 

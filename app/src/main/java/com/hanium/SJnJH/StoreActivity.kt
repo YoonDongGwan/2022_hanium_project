@@ -59,6 +59,7 @@ class StoreActivity : AppCompatActivity() {
         heartBt = findViewById(R.id.heartBt)
         shareBt = findViewById(R.id.shareBt)
         val storeName: TextView = findViewById(R.id.store_name)
+        val storeImg: ImageView = findViewById(R.id.store_img)
         bottomBar = findViewById(R.id.store_bottom_bar)
         finalPriceTextView = findViewById(R.id.store_final_price)
 
@@ -123,11 +124,36 @@ class StoreActivity : AppCompatActivity() {
 
         val intent = intent
         val company = intent.getStringExtra("company")
+        val category = intent.getIntExtra("category", 0)
+        val id = intent.getIntExtra("id",0)
         storeName.text = company
+
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
             .addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitService::class.java)
+
+
         if (company != null) {
+            if (category == 1){
+                service.findChickenStore(id).enqueue(object : Callback<RetrofitResponse> {
+                    override fun onResponse(
+                        call: Call<RetrofitResponse>,
+                        response: Response<RetrofitResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            var result: RetrofitResponse? = response.body()
+                            val arrayList = result?.data
+                            Glide.with(this@StoreActivity).load(arrayList!![0].imgUrl).into(storeImg)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+                        Log.d("state", "onFailure" + t.message.toString())
+                    }
+
+                })
+            }
+
             service.getStoreMenu(company).enqueue(object : Callback<RetrofitResponse> {
                 override fun onResponse(
                     call: Call<RetrofitResponse>,
@@ -236,7 +262,7 @@ class StoreActivity : AppCompatActivity() {
                     menuArr.add(MenuData(menu, price))
                     finalPrice += price
 
-                    finalPriceTextView.setText(finalPrice.toString()+"원 매칭하기")
+                    finalPriceTextView.setText(finalPrice.toString()+" 원")
                 }
 
 
