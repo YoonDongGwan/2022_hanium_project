@@ -32,11 +32,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var currentMarker: Marker
     lateinit var storeInfo : TextView
     lateinit var gatherBt : Button
+    lateinit var noV : TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.hanium.R.layout.activity_map)
 
+        noV = findViewById(R.id.noV)
         makeOffBt = findViewById(R.id.makeOffBt)
         card_view = findViewById(com.hanium.R.id.card_view)
         storeImg = findViewById(com.hanium.R.id.storeImg)
@@ -48,15 +51,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         makeOffBt.setOnClickListener(){
-
             showDialog()
-
-
-
-
-
-
-
         }
 
 
@@ -75,26 +70,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-
-
-
-
-
-
-
-
         builder.setPositiveButton("확인", object : DialogInterface.OnClickListener {
             override fun onClick(p0: DialogInterface?, p1: Int) {
                 var url = currentMarker.tag
                 var lng = currentMarker.position
                 var title = currentMarker.title
+                var snip = currentMarker.snippet
                 currentMarker.remove()
 
                 val tempMakerOptions = MarkerOptions()
                 tempMakerOptions.position(lng)
                 tempMakerOptions.title(title)
-                tempMakerOptions.snippet(contents.toString())
                 tempMakerOptions.alpha(0.98f)
+                tempMakerOptions.snippet(snip+"\n$contents")
+
+
 
                 val bd = getResources().getDrawable(com.hanium.R.drawable.dddd) as BitmapDrawable
                 val b = bd.bitmap
@@ -102,10 +92,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 tempMakerOptions.icon(BitmapDescriptorFactory.fromBitmap(b))
                 val tempMarker: Marker = map.addMarker(tempMakerOptions)
                 tempMarker.tag = url
-                storeInfo.text= "내용: "
 
 
                 card_view.visibility = View.GONE
+
             }
 
         })
@@ -141,7 +131,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         makerOptions2.position(china)
         makerOptions2.title("샹차이")
 
-        makerOptions2.snippet("학생세트 같이 먹어요")
+        makerOptions2.snippet("인천대 유일 중국집\n학생세트 같이 먹어요")
         makerOptions2.alpha(0.98f)
 
 
@@ -211,9 +201,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         makerOptions8.title("BBQ 치킨")
         makerOptions8.snippet("황금올리브 후라이드로 유명")
         val marker8: Marker = map.addMarker(makerOptions8)
-        marker7.tag =
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8bPD8FHqU3AQQXlIiy2tvvMcZKCe7B_fRQ&usqp=CAU";
-
+        marker8.tag =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8bPD8FHqU3AQQXlIiy2tvvMcZKCe7B_fRQ&usqp=CAU"
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(dormitory,15f))
 
 
@@ -224,15 +213,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onMarkerClick(marker: Marker): Boolean {
                 card_view.visibility = View.VISIBLE
 
-                if(marker.title.equals("샹차이") || marker.alpha == 0.98f) {
-                    storeInfo.text = "내용: "
+                if(marker.alpha == 0.98f || marker.title.equals("샹차이")) {
                     makeOffBt.visibility = View.GONE
                     gatherBt.visibility = View.VISIBLE
+                    noV.visibility = View.VISIBLE
                 }
                 else {
-                    storeInfo.text = "가게 정보: "
                     makeOffBt.visibility = View.VISIBLE
                     gatherBt.visibility = View.GONE
+                    noV.visibility = View.INVISIBLE
                 }
 
 
@@ -249,6 +238,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                     .into(storeImg)
 
                 currentMarker = marker
+
 
 
 
