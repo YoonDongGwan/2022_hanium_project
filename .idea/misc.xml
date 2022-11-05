@@ -8,9 +8,7 @@
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/activity_offline1.xml" value="0.1125" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/activity_offline2.xml" value="0.1125" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/activity_product_list.xml" value="0.21784420289855072" />
-        <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/activity_store.xml" value="0.264" />
-        <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/dialog.xml" value="0.2" />
-        <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/item_stores.xml" value="0.1125" />
+        <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/activity_store.xml" value="0.12335359675785208" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/2022_hanium_project/app/src/main/res/layout/rec_item.xml" value="0.21784420289855072" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/Delivery2/app/src/main/res/drawable/bt_theme.xml" value="0.185" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/Delivery2/app/src/main/res/drawable/et_theme.xml" value="0.154" />
@@ -22,6 +20,8 @@
         <entry key="app/src/main/res/drawable/bt_theme.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/chicken.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1035" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_left_24.xml" value="0.2195" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_right_24.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.114" />
         <entry key="app/src/main/res/layout/activity_best_menu.xml" value="0.13728470111448834" />
@@ -30,6 +30,7 @@
         <entry key="app/src/main/res/layout/activity_chatroom.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_class.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_class_item.xml" value="0.13229166666666667" />
+        <entry key="app/src/main/res/layout/activity_delivery_information.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_delivery_stores.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_final_price.xml" value="0.18359360004026953" />
         <entry key="app/src/main/res/layout/activity_history.xml" value="0.28229166666666666" />
@@ -38,6 +39,7 @@
         <entry key="app/src/main/res/layout/activity_main_login.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_make_room.xml" value="0.27794871794871795" />
         <entry key="app/src/main/res/layout/activity_make_room_detail.xml" value="0.27794871794871795" />
+        <entry key="app/src/main/res/layout/activity_map.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_matching.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_matching_ready.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_mypage.xml" value="0.165" />
@@ -69,6 +71,7 @@
         <entry key="app/src/main/res/layout/idpass.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/item.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/item_recyclerview.xml" value="0.27794871794871795" />
+        <entry key="app/src/main/res/layout/item_stores.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/join.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/login.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/make.xml" value="0.19610507246376813" />
@@ -84,7 +87,11 @@
       </map>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+>>>>>>> e41ba3172ba8e9c03257dce3f82bb94c19bf434a
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

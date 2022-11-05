@@ -34,17 +34,7 @@ class WesternFoodFragment : Fragment() {
 
 
         var rootView = inflater.inflate(R.layout.fragment_western_food, container, false)
-        for (i in 1..100){
-            val name = "파스타$i"
-            val minPrice = i*100
-            val deliveryTip = i*30
-            westernFoodStoreArray.add(StoreInform(context?.let {
-                AppCompatResources.getDrawable(
-                    it,
-                    R.drawable.asd
-                )
-            }!!,name, minPrice,deliveryTip))
-        }
+
         recyclerView = rootView.findViewById(R.id.westernFoodRecyclerView!!)as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
@@ -56,7 +46,7 @@ class WesternFoodFragment : Fragment() {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList)
+                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 6)
                 }
             }
 

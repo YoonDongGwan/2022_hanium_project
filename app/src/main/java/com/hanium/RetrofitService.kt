@@ -34,6 +34,9 @@ interface RetrofitService {
     @GET("/delivery/location")
     fun getDeliveryLocation(): Call<LocationResponse>
 
+    @GET("/foods/chicken/find")
+    fun findChickenStore(@Query("id") id: Int): Call<RetrofitResponse>
+
     @POST("/user/login")
     fun login(@Body jsonparams: LoginModel) : Call<LoginResult>
 
