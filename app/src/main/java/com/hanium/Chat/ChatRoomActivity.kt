@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.LinearLayout
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 
 import com.google.firebase.database.ktx.database
@@ -24,11 +22,11 @@ data class ChatData(val message: String = "", val nickname: String = "")
 class ChatRoomActivity : AppCompatActivity(){
     lateinit var rv : RecyclerView
     lateinit var et: EditText
-    lateinit var send_btn: Button
+    lateinit var send_btn: ImageButton
     lateinit var adapter: ChatRecyclerAdapter
     private val array = ArrayList<ChatData>()
     private val db = Firebase.database
-    private val myRef = db.getReference("chat").child("cindy-david")
+    private var myRef = db.getReference("chat")
     private val myNickname = "david"
 
 
@@ -38,14 +36,25 @@ class ChatRoomActivity : AppCompatActivity(){
         rv = findViewById(R.id.chat_recyclerview)
         et = findViewById(R.id.chat_message)
         send_btn = findViewById(R.id.send_btn)
-        val refresh_btn: ImageButton = findViewById(R.id.refresh_btn)
         val layoutManager = LinearLayoutManager(applicationContext)
         layoutManager.stackFromEnd = true
         rv.layoutManager = layoutManager
 
+
+
+        val intent = intent
+        val storeNameTv: TextView = findViewById(R.id.chatroom_store_name)
+        val storeContentTextView: TextView = findViewById(R.id.chatroom_store_content)
+        val storeImage: ImageView = findViewById(R.id.chatroom_img)
+
+        val storeName = intent.getStringExtra("storeName")
+        Glide.with(this).load(intent.getStringExtra("imgUrl")).into(storeImage)
+        myRef = myRef.child(storeName!!)
+        storeNameTv.text = storeName
+        storeContentTextView.text = intent.getStringExtra("content")
+
         myRef.addChildEventListener(childEventListener)
         send_btn.setOnClickListener(onClickListener)
-        refresh_btn.setOnClickListener(onClickListener)
         adapter = ChatRecyclerAdapter(array, myNickname)
         rv.adapter = adapter
 
@@ -82,9 +91,6 @@ class ChatRoomActivity : AppCompatActivity(){
                 val data = ChatData(message, myNickname)
                 myRef.push().setValue(data)
                 et.text.clear()
-            }
-            R.id.refresh_btn -> {
-
             }
         }
 

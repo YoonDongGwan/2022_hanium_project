@@ -3,6 +3,7 @@ package com.hanium.activities
 //import android.R
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -25,6 +26,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hanium.Chat.ChatRoomActivity
 import com.hanium.OfflineData
 import com.hanium.R
 import org.json.JSONObject
@@ -39,8 +41,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var storeInfo : TextView
     lateinit var gatherBt : Button
     lateinit var noV : TextView
+    lateinit var storeTv: TextView
+    lateinit var contentTv: TextView
     var offArr : ArrayList<OfflineData> = ArrayList()
-
+    var imgUrl: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +60,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         var mapFragment : SupportMapFragment = supportFragmentManager.findFragmentById(com.hanium.R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        gatherBt.setOnClickListener{
+            val intent = Intent(this, ChatRoomActivity::class.java)
+            intent.putExtra("storeName", storeTv.text.toString())
+            intent.putExtra("content", contentTv.text.toString())
+            intent.putExtra("imgUrl", imgUrl)
+            startActivity(intent)
+        }
         getData()
-
 
 
         makeOffBt.setOnClickListener(){
@@ -143,7 +153,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 val makerOptions = MarkerOptions()
                 makerOptions.position(tempLan)
                 makerOptions.title(title)
-
                 makerOptions.snippet(snippet+"\n$content")
                 makerOptions.alpha(alpha.toFloat())
 
@@ -153,7 +162,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 makerOptions.icon(BitmapDescriptorFactory.fromBitmap(b))
                 val marker: Marker = map.addMarker(makerOptions)
                 marker.tag = tag
-
 
             }
 
@@ -203,12 +211,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-                var storeTv = findViewById<TextView>(com.hanium.R.id.storeTv)
-                var contentTv = findViewById<TextView>(com.hanium.R.id.contentTv)
+                storeTv = findViewById<TextView>(com.hanium.R.id.storeTv)
+                contentTv = findViewById<TextView>(com.hanium.R.id.contentTv)
 
 
                 // 마커 클릭시 카드뷰 보여줌
                 var temp = marker.tag
+                imgUrl = marker.tag.toString()
                 storeTv.text = marker.title
                 contentTv.text = marker.snippet
 
