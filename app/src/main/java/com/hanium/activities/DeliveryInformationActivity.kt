@@ -1,6 +1,7 @@
 package com.hanium.activities
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import com.hanium.LocationResponse
 import com.hanium.R
 import com.hanium.RetrofitResponse
 import com.hanium.RetrofitService
+import com.hanium.SJnJH.MatchingReadyActivity
 import com.hanium.SJnJH.MenuData
 import com.hanium.adapters.HomeViewPagerAdapter
 import retrofit2.Call
@@ -36,6 +38,7 @@ class DeliveryInformationActivity : AppCompatActivity() {
         matchDownBtn = findViewById(R.id.matching_down_btn)
         matchUpBtn = findViewById(R.id.matching_up_btn)
         matchNum = findViewById(R.id.matching_number)
+        val information_match_btn :Button = findViewById(R.id.information_match_btn)
         val storeName: TextView = findViewById(R.id.del_inf_store_name)
         val priceSum: TextView = findViewById(R.id.del_inf_price_sum)
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
@@ -79,6 +82,14 @@ class DeliveryInformationActivity : AppCompatActivity() {
             }
             matchNum.text = num.toString()
         }
+        information_match_btn.setOnClickListener{
+            val intent = Intent(this, MatchingReadyActivity::class.java)
+            intent.putExtra("totalPrice",priceSum.text.toString())
+            intent.putExtra("matchNum",matchNum.text.toString())
+            Log.d("asd",matchNum.text.toString())
+            startActivity(intent)
+        }
+
     }
 }
 class DelInfRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<MenuData>): RecyclerView.Adapter<DelInfRecyclerViewAdapter.ViewHolder>(){
