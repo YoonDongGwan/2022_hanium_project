@@ -19,4 +19,5 @@ data class LocationResponse(val code: Int, val message: String, val data: ArrayL
 data class MypageResponse(var school:String, var major:String,var name:String,val id:String)
 data class OrderListResponse(var code:Int, var message : String, val data :ArrayList<OrderListData>)
 data class OrderListData(var id:String, var store : String, var date:String, var deliveryFood:String,var price:Int)
+data class NowNumResult(var nowNum:Int)
 

@@ -59,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
             service.login(loginUser).enqueue(object : Callback<LoginResult> {
                 override fun onResponse(call: Call<LoginResult>, response: Response<LoginResult>) {
                     val user_uid = response.body()?.UID ?: return
+
                     if (user_uid!=-1){
                         Log.d("login", "성공 +${user_uid}")
                         val nextIntent = Intent(this@LoginActivity, MainActivity::class.java)

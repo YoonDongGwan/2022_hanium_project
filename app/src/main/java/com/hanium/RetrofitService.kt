@@ -49,4 +49,8 @@ interface RetrofitService {
 
     @GET("user/orderlist")
     fun getOrderList(@Query("id") id: String): Call<OrderListResponse>
+
+    @GET("delivery/nownum")
+    fun getNowNum(@Query("matchNum") matchNum : Int,@Query("location") location :String) : Call<NowNumResult>
+
 }

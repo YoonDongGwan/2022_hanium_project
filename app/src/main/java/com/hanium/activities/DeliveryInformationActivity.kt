@@ -57,6 +57,15 @@ class DeliveryInformationActivity : AppCompatActivity() {
                     val arrayAdapter = ArrayAdapter<String>(this@DeliveryInformationActivity, R.layout.support_simple_spinner_dropdown_item, arrayList!!)
                     spinner.adapter = arrayAdapter
 
+                    information_match_btn.setOnClickListener{
+                        val intent = Intent(this@DeliveryInformationActivity, MatchingReadyActivity::class.java)
+                        intent.putExtra("totalPrice",intent.getIntExtra("priceSum", 0))
+                        intent.putExtra("matchNum",Integer.parseInt(matchNum.text.toString()))
+                        intent.putExtra("deliveryPlace",arrayList[spinner.selectedItemId.toInt()])
+                        startActivity(intent)
+                    }
+
+
                 }
             }
 
@@ -82,13 +91,7 @@ class DeliveryInformationActivity : AppCompatActivity() {
             }
             matchNum.text = num.toString()
         }
-        information_match_btn.setOnClickListener{
-            val intent = Intent(this, MatchingReadyActivity::class.java)
-            intent.putExtra("totalPrice",priceSum.text.toString())
-            intent.putExtra("matchNum",matchNum.text.toString())
-            Log.d("asd",matchNum.text.toString())
-            startActivity(intent)
-        }
+
 
     }
 }
