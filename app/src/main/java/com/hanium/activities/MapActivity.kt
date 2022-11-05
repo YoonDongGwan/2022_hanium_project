@@ -3,6 +3,7 @@ package com.hanium.activities
 //import android.R
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hanium.Chat.ChatRoomActivity
 import com.hanium.R
 
 
@@ -49,7 +51,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         var mapFragment : SupportMapFragment = supportFragmentManager.findFragmentById(com.hanium.R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-
+        gatherBt.setOnClickListener{
+            val intent = Intent(this, ChatRoomActivity::class.java)
+            startActivity(intent)
+        }
         makeOffBt.setOnClickListener(){
             showDialog()
         }
