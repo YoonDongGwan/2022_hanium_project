@@ -114,7 +114,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 tempMakerOptions.icon(BitmapDescriptorFactory.fromBitmap(b))
                 val tempMarker: Marker = map.addMarker(tempMakerOptions)
                 tempMarker.tag = url
+                var content = contents.toString()
 
+                Log.d("aabbb","contents : $content, title: $title")
+                putData(content,title)
 
                 card_view.visibility = View.GONE
 
@@ -247,7 +250,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     fun getData(){
-        var url = "http://52.78.209.45:3000/store/offline"
+        var url = "http://52.78.209.45:3000/offline/get_data"
         val requestQueue = Volley.newRequestQueue(this)
 
         val request: StringRequest = object : StringRequest(
@@ -297,7 +300,53 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         }
+
+    fun putData(content : String, title : String){
+        var url = "http://52.78.209.45:3000/offline/put_data"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val request: StringRequest = object : StringRequest(
+            Request.Method.POST, url,request2,fail ) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params : MutableMap<String,String> = HashMap()
+
+                params.put("content",content)
+                params.put("title",title)
+                Log.d("aacc","cont: $content, title: $title")
+
+                return params
+            }
+        }
+
+        requestQueue.add(request)
     }
+
+    var request2 = object  : Response.Listener<String> {
+        override fun onResponse(response: String) {
+
+            }
+
+
+
+
+        }
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 
     var fail = object  : Response.ErrorListener {
