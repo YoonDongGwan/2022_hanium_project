@@ -108,7 +108,7 @@
         android:layout_below="@+id/first"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/circle"/>
+        android:src="@drawable/chat_circle"/>
 
     <ImageView
         android:layout_marginTop="35dp"
@@ -116,7 +116,7 @@
         android:layout_below="@+id/first"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/circle"/>
+        android:src="@drawable/chat_circle"/>
 
     <ImageView
         android:layout_marginTop="35dp"
@@ -124,7 +124,7 @@
         android:layout_below="@+id/first"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/circle"/>
+        android:src="@drawable/chat_circle"/>
 
     <ImageView
         android:layout_marginTop="35dp"
@@ -132,7 +132,7 @@
         android:layout_below="@+id/first"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/circle"/>
+        android:src="@drawable/chat_circle"/>
 
     <ImageView
         android:layout_marginTop="35dp"
@@ -140,6 +140,6 @@
         android:layout_below="@+id/first"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/circle"/>
+        android:src="@drawable/chat_circle"/>
 
 </RelativeLayout>

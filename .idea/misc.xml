@@ -17,17 +17,21 @@
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/Delivery2/app/src/main/res/layout/item.xml" value="0.1" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/Delivery2/app/src/main/res/layout/join.xml" value="0.4" />
         <entry key="..\:/Users/JiHwan/AndroidStudioProjects/Delivery2/app/src/main/res/layout/login.xml" value="0.264" />
+        <entry key="app/src/main/res/drawable-xxhdpi/chat_et_theme.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/bt_theme.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/chicken.xml" value="0.2195" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.1035" />
+        <entry key="app/src/main/res/drawable/et_theme.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_left_24.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_right_24.xml" value="0.2195" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_upward_24.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.114" />
         <entry key="app/src/main/res/layout/activity_best_menu.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_buying.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.13728470111448834" />
-        <entry key="app/src/main/res/layout/activity_chatroom.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_chatroom.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_class.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_class_item.xml" value="0.13229166666666667" />
         <entry key="app/src/main/res/layout/activity_delivery_information.xml" value="0.25" />

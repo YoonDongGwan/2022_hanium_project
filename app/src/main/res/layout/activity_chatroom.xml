@@ -9,7 +9,7 @@
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="56dp">
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -40,7 +40,7 @@
         <ImageView
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:id="@+id/refresh_img"
+            android:id="@+id/chatroom_img"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,14 +51,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/refresh_img"
+            app:layout_constraintLeft_toRightOf="@+id/chatroom_img"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginLeft="10dp"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OO치킨"
+                android:id="@+id/chatroom_store_name"
+                android:text="가게 이름"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -66,22 +67,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="최소주문 18,000원"
+                android:id="@+id/chatroom_store_content"
+                android:text="설명"
                 android:textColor="@color/black"
                 android:layout_marginTop="5dp"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="배달팁 5,000원"
-                android:textColor="@color/black"
-                android:layout_marginTop="5dp"
-                />
+
         </LinearLayout>
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/refresh_confirm"
+            android:visibility="gone"
             android:src="@drawable/ic_baseline_check_24"
             android:backgroundTint="@color/transparent"
             app:layout_constraintTop_toTopOf="parent"
@@ -92,7 +89,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/refresh_btn"
-
+            android:visibility="gone"
             android:src="@drawable/ic_baseline_refresh_24"
             android:backgroundTint="@color/transparent"
             app:layout_constraintTop_toTopOf="parent"
@@ -103,28 +100,39 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#D8EEFF"
         android:id="@+id/chat_recyclerview"
         android:layout_weight="1"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:background="@color/white"
         android:id="@+id/chat_text_field"
         app:layout_constraintBottom_toBottomOf="parent"
 
         >
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/chat_et_theme"
             android:id="@+id/chat_message"
             android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:paddingLeft="20dp"
             />
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/send_btn"
-            android:text="전송"
+            android:src="@drawable/ic_baseline_arrow_upward_24"
+            android:adjustViewBounds="true"
+            android:background="@drawable/chat_circle"
+            android:layout_margin="2dp"
 
             />
     </LinearLayout>
