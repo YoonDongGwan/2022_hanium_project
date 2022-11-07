@@ -18,6 +18,8 @@ class DeliveryStoresActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val getIntent = getIntent().getIntExtra("CATEGORY",1)
+        val user_id=getIntent().getIntExtra("UID",0)
+
         val list = listOf(
             ChickenFragment(),
             PizzaFragment(),

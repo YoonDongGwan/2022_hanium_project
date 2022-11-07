@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewpager: ViewPager2
     lateinit var recyclerview: RecyclerView
     lateinit var myPageBtn: ImageButton
+
     var btns = arrayOfNulls<LinearLayout>(8)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         viewpager = findViewById(R.id.home_viewpager)
         recyclerview = findViewById(R.id.home_recyclerview)
         myPageBtn = findViewById(R.id.myPageBtn)
-
         val user_uid=getIntent().getIntExtra("UID",0)
+
 
         for(i in 0..7){
             btns[i] = findViewById(resources.getIdentifier("home_list_btn${i+1}","id",packageName))
@@ -82,24 +83,31 @@ class MainActivity : AppCompatActivity() {
         when(view.id){
             R.id.home_list_btn1 -> {
                 intent.putExtra("CATEGORY", 0)
+                intent.putExtra("UID", getIntent().getIntExtra("UID",0))
             }
             R.id.home_list_btn2 -> {
                 intent.putExtra("CATEGORY", 1)
+//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn3 -> {
                 intent.putExtra("CATEGORY", 2)
+//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn4 -> {
                 intent.putExtra("CATEGORY", 3)
+//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn5 -> {
                 intent.putExtra("CATEGORY", 4)
+//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn6 -> {
                 intent.putExtra("CATEGORY", 5)
+//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn7 -> {
                 intent.putExtra("CATEGORY", 6)
+//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn8 -> {
                 intent = Intent(this, MapActivity::class.java)

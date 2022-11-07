@@ -22,12 +22,14 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.concurrent.thread
 
 
 class MatchingReadyActivity : AppCompatActivity() {
     lateinit var cancerBt : Button
     lateinit var now_num : TextView
     lateinit var match_num : TextView
+    lateinit var textMid : TextView
 
     val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
         .addConverterFactory(GsonConverterFactory.create()).build()
@@ -41,43 +43,50 @@ class MatchingReadyActivity : AppCompatActivity() {
         cancerBt = findViewById(R.id.cancerBt)
         match_num = findViewById(R.id.matchNum)
         now_num = findViewById(R.id.now_num)
+        textMid = findViewById(R.id.textMid)
 
         val totalPrice=getIntent().getIntExtra("totalPrice",0)
         val matchNum=getIntent().getIntExtra("matchNum",0)
         val location =getIntent().getStringExtra("deliveryPlace")
 
-        match_num.text=matchNum.toString()
+        var nowNum=5
+        var cnt=0
 
-        service.getNowNum(matchNum, location.toString()).enqueue(object : Callback<NowNumResult> {
-            override fun onResponse(call: Call<NowNumResult>, response: Response<NowNumResult>) {
-                var nowNum=response.body()?.nowNum ?: return
-                now_num.text=nowNum.toString()
-//               if (user_uid!=-1){
-//                    Log.d("login", "성공 +${user_uid}")
-//                    val nextIntent = Intent(this@MatchingReadyActivity, MainActivity::class.java)
-//                    nextIntent.putExtra("UID", user_uid)
-//                    startActivity(nextIntent)
-//                }
-//                else{
-//                    Toast.makeText(applicationContext, "로그인 실패, 아이디 또는 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
-//                }
+
+        thread(start = true) {
+            while (nowNum!=matchNum) {
+                Thread.sleep(1000)
+                runOnUiThread{
+                    service.getNowNum(matchNum, location.toString()).enqueue(object : Callback<NowNumResult> {
+                        override fun onResponse(call: Call<NowNumResult>, response: Response<NowNumResult>) {
+                            nowNum= response.body()?.nowNum!!
+                            now_num.text=nowNum.toString()
+                            textMid.text="/"
+                            match_num.text=matchNum.toString()
+                            if (nowNum==matchNum && cnt==0){
+                                cnt+=1
+                                val intent = Intent(this@MatchingReadyActivity, MatchingActivity::class.java)
+                                intent.putExtra("num",matchNum)
+                                startActivity(intent)
+                                finish()
+                            }
+
+                        }
+
+                        override fun onFailure(call: Call<NowNumResult>, t: Throwable) {
+                            Log.d("state", "onFailure" + t.message.toString())
+                        }
+
+                    })
+                }
+
             }
+        }
 
-            override fun onFailure(call: Call<NowNumResult>, t: Throwable) {
-                Log.d("state", "onFailure" + t.message.toString())
-            }
-
-        })
 
         cancerBt.setOnClickListener(){
             finish()
         }
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent: Intent = Intent(this, MatchingActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 5000)
 
     }
 }
