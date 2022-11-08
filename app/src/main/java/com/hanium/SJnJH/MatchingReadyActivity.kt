@@ -11,6 +11,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.hanium.Chat.PostActivity
 import com.hanium.LoginResult
 import com.hanium.NowNumResult
@@ -85,8 +89,48 @@ class MatchingReadyActivity : AppCompatActivity() {
 
 
         cancerBt.setOnClickListener(){
+//            orderCancel(UID)
             finish()
         }
 
     }
+
+    fun orderCancel(UID : String){
+        var url = "http://52.78.209.45:3000/offline/temp"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val request: StringRequest = object : StringRequest(
+            Request.Method.POST, url,request,fail ) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params : MutableMap<String,String> = HashMap()
+
+                params.put("UID",UID)
+
+                return params
+            }
+        }
+
+        requestQueue.add(request)
+    }
+
+    var request = object  : com.android.volley.Response.Listener<String> {
+        override fun onResponse(response: String) {
+
+        }
+    }
+
+
+}
+
+
+
+var fail = object  : com.android.volley.Response.ErrorListener {
+    override fun onErrorResponse(error: VolleyError?) {
+        Log.d("aabb","서버 연결 실패 : $error")
+    }
+}
+
+
+
 }
