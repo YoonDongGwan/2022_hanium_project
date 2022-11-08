@@ -16,14 +16,19 @@
         android:paddingEnd="10dp"
         />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
         android:textSize="14sp"
-        android:gravity="right"
+        android:gravity="center"
+        android:background="@drawable/chat_et_theme"
         android:textColor="@color/black"
+        android:backgroundTint="@color/white"
         android:id="@+id/myChatContent"
         android:layout_marginTop="5dp"
         android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:layout_marginRight="10dp"
         />
 
 </LinearLayout>

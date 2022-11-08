@@ -37,7 +37,7 @@ class ChatRoomActivity : AppCompatActivity(){
         et = findViewById(R.id.chat_message)
         send_btn = findViewById(R.id.send_btn)
         val layoutManager = LinearLayoutManager(applicationContext)
-        layoutManager.stackFromEnd = true
+//        layoutManager.stackFromEnd = true
         rv.layoutManager = layoutManager
 
 
@@ -54,10 +54,16 @@ class ChatRoomActivity : AppCompatActivity(){
         storeContentTextView.text = intent.getStringExtra("content")
 
         myRef.addChildEventListener(childEventListener)
+        et.setOnClickListener(onClickListener)
         send_btn.setOnClickListener(onClickListener)
         adapter = ChatRecyclerAdapter(array, myNickname)
         rv.adapter = adapter
+        rv.addOnLayoutChangeListener { view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+            if (bottom < oldBottom){
+                rv.scrollToPosition(adapter.itemCount - 1)
+            }
 
+        }
 
     }
     private val childEventListener = object : ChildEventListener{
