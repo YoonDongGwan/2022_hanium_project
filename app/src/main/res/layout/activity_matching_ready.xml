@@ -21,15 +21,14 @@
             android:id="@+id/now_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
             android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/textMid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="/"
             android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold" />
@@ -38,7 +37,6 @@
             android:id="@+id/matchNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4"
             android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold" />

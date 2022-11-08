@@ -12,10 +12,7 @@ import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.hanium.LocationResponse
-import com.hanium.R
-import com.hanium.RetrofitResponse
-import com.hanium.RetrofitService
+import com.hanium.*
 import com.hanium.SJnJH.MatchingReadyActivity
 import com.hanium.SJnJH.MenuData
 import com.hanium.adapters.HomeViewPagerAdapter
@@ -49,6 +46,7 @@ class DeliveryInformationActivity : AppCompatActivity() {
 
         storeName.text = intent.getStringExtra("storeName")
 
+        val user_uid=4
         service.getDeliveryLocation().enqueue(object : Callback<LocationResponse> {
             override fun onResponse(call: Call<LocationResponse>, response: Response<LocationResponse>) {
                 if (response.isSuccessful){
@@ -58,11 +56,19 @@ class DeliveryInformationActivity : AppCompatActivity() {
                     spinner.adapter = arrayAdapter
 
                     information_match_btn.setOnClickListener{
-                        val intent = Intent(this@DeliveryInformationActivity, MatchingReadyActivity::class.java)
-                        intent.putExtra("totalPrice",intent.getIntExtra("priceSum", 0))
-                        intent.putExtra("matchNum",Integer.parseInt(matchNum.text.toString()))
-                        intent.putExtra("deliveryPlace",arrayList[spinner.selectedItemId.toInt()])
-                        startActivity(intent)
+                        service.postPreMatching(PreMatchingModel("김지환",intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],user_uid)).enqueue(object : Callback<PreMatchingResult> {
+                            override fun onResponse(call: Call<PreMatchingResult>, response: Response<PreMatchingResult>) {
+                                val intent = Intent(this@DeliveryInformationActivity, MatchingReadyActivity::class.java)
+                                intent.putExtra("totalPrice",intent.getIntExtra("priceSum", 0))
+                                intent.putExtra("matchNum",Integer.parseInt(matchNum.text.toString()))
+                                intent.putExtra("deliveryPlace",arrayList[spinner.selectedItemId.toInt()])
+                                startActivity(intent)
+                            }
+                            override fun onFailure(call: Call<PreMatchingResult>, t: Throwable) {
+                                Log.d("state", "onFailure" + t.message.toString())
+                            }
+                        })
+
                     }
 
 

@@ -18,6 +18,8 @@ class DeliveryStoresActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val getIntent = getIntent().getIntExtra("CATEGORY",1)
+        val user_id=getIntent().getIntExtra("UID",0)
+
         val list = listOf(
             ChickenFragment(),
             PizzaFragment(),
@@ -42,6 +44,7 @@ class FragmentPagerAdapter(val fragmentList : List<Fragment>, fragmentActivity :
     FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = fragmentList.size
     override fun createFragment(position: Int) = fragmentList.get(position)
+
 }
 
 data class StoreInform(val image: Drawable?, val name:String, val minPrice:Int, val deliveryTip : Int)
