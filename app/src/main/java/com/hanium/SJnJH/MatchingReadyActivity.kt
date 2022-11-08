@@ -21,6 +21,7 @@ import com.hanium.NowNumResult
 import com.hanium.R
 import com.hanium.RetrofitService
 import com.hanium.activities.MainActivity
+import com.hanium.activities.fail
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,6 +90,8 @@ class MatchingReadyActivity : AppCompatActivity() {
 
 
         cancerBt.setOnClickListener(){
+            //테스트
+//            var UID = "김지환"
 //            orderCancel(UID)
             finish()
         }
@@ -120,17 +123,18 @@ class MatchingReadyActivity : AppCompatActivity() {
         }
     }
 
-
-}
-
-
-
-var fail = object  : com.android.volley.Response.ErrorListener {
-    override fun onErrorResponse(error: VolleyError?) {
-        Log.d("aabb","서버 연결 실패 : $error")
+    var fail = object  : com.android.volley.Response.ErrorListener {
+        override fun onErrorResponse(error: VolleyError?) {
+            Log.d("aabb","서버 연결 실패 : $error")
+        }
     }
-}
 
 
 
 }
+
+
+
+
+
+
