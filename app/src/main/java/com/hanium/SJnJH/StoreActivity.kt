@@ -63,6 +63,9 @@ class StoreActivity : AppCompatActivity() {
         bottomBar = findViewById(R.id.store_bottom_bar)
         finalPriceTextView = findViewById(R.id.store_final_price)
 
+
+        val uid = intent.getIntExtra("uid",0)
+
         a.setOnClickListener(){
             var intent = Intent(Intent.ACTION_DIAL)
             intent.data = Uri.parse("tel:0537207900")
@@ -126,6 +129,7 @@ class StoreActivity : AppCompatActivity() {
         val company = intent.getStringExtra("company")
         val category = intent.getIntExtra("category", 0)
         val id = intent.getIntExtra("id",0)
+
         storeName.text = company
 
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
@@ -189,7 +193,7 @@ class StoreActivity : AppCompatActivity() {
             intent.putParcelableArrayListExtra("selectedFoods", menuArr)
             intent.putExtra("priceSum", finalPrice)
             intent.putExtra("storeName", company)
-//            val nextIntent = Intent(this, FindingPeopleActivity::class.java)
+            intent.putExtra("uid", uid)
             startActivity(intent)
         }
 

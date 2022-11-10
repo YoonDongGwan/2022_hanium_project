@@ -34,7 +34,7 @@ class WesternFoodFragment : Fragment() {
 
 
         var rootView = inflater.inflate(R.layout.fragment_western_food, container, false)
-
+        val uid = activity?.intent?.getIntExtra("UID",0)
         recyclerView = rootView.findViewById(R.id.westernFoodRecyclerView!!)as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
@@ -46,7 +46,7 @@ class WesternFoodFragment : Fragment() {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 6)
+                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 6, uid!!)
                 }
             }
 

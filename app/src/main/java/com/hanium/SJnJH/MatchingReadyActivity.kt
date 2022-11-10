@@ -4,19 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import com.hanium.Chat.PostActivity
-import com.hanium.LoginResult
+import com.android.volley.Request
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.hanium.NowNumResult
 import com.hanium.R
 import com.hanium.RetrofitService
-import com.hanium.activities.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,7 +45,7 @@ class MatchingReadyActivity : AppCompatActivity() {
         val totalPrice=getIntent().getIntExtra("totalPrice",0)
         val matchNum=getIntent().getIntExtra("matchNum",0)
         val location =getIntent().getStringExtra("deliveryPlace")
-
+        val username = intent.getStringExtra("username")
         var nowNum=5
         var cnt=0
 
@@ -85,8 +82,50 @@ class MatchingReadyActivity : AppCompatActivity() {
 
 
         cancerBt.setOnClickListener(){
+            //테스트
+            orderCancel(username!!)
             finish()
         }
 
     }
+
+    fun orderCancel(UID : String){
+        var url = "http://52.78.209.45:3000/offline/temp"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val request: StringRequest = object : StringRequest(
+            Request.Method.POST, url,request,fail ) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params : MutableMap<String,String> = HashMap()
+
+                params.put("UID",UID)
+
+                return params
+            }
+        }
+
+        requestQueue.add(request)
+    }
+
+    var request = object  : com.android.volley.Response.Listener<String> {
+        override fun onResponse(response: String) {
+
+        }
+    }
+
+    var fail = object  : com.android.volley.Response.ErrorListener {
+        override fun onErrorResponse(error: VolleyError?) {
+            Log.d("aabb","서버 연결 실패 : $error")
+        }
+    }
+
+
+
 }
+
+
+
+
+
+

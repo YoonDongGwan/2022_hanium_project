@@ -43,6 +43,7 @@ class FragmentPagerAdapter(val fragmentList : List<Fragment>, fragmentActivity :
     FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = fragmentList.size
     override fun createFragment(position: Int) = fragmentList.get(position)
+
 }
 
 data class StoreInform(val image: Drawable?, val name:String, val minPrice:Int, val deliveryTip : Int)

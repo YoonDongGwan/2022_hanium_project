@@ -14,7 +14,7 @@ import com.hanium.ResponseData
 import com.hanium.R
 import com.hanium.SJnJH.StoreActivity
 
-class StoreRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<ResponseData>?, val category: Int) : RecyclerView.Adapter<StoreRecyclerViewAdapter.Holder>() {
+class StoreRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<ResponseData>?, val category: Int, val uid: Int) : RecyclerView.Adapter<StoreRecyclerViewAdapter.Holder>() {
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view){
         val img: ImageView = itemView.findViewById(R.id.store_item_img)
@@ -38,6 +38,7 @@ class StoreRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<Re
             intent.putExtra("company", arrayList[position].name)
             intent.putExtra("category", category)
             intent.putExtra("id", arrayList[position].id)
+            intent.putExtra("uid", uid)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
 //        holder.setItem(chickenStoreArray.get(position))
