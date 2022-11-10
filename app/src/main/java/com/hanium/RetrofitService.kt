@@ -54,6 +54,6 @@ interface RetrofitService {
     fun getNowNum(@Query("matchNum") matchNum : Int,@Query("location") location :String) : Call<NowNumResult>
 
     @POST("delivery/prematching")
-    fun postPreMatching(@Body jsonparams:PreMatchingModel) : Call<PreMatchingResult>
+    fun postPreMgatching(@Body jsonparams:PreMatchingModel) : Call<PreMatchingResult>
 
 }
