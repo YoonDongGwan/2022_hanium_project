@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.hanium.R
@@ -66,8 +67,24 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-//        recyclerview.adapter = HomeRecyclerViewAdapter(this, arrayList)
-//        recyclerview.layoutManager = GridLayoutManager(this, 2)
+        service.randomRecommend().enqueue(object : Callback<RetrofitResponse> {
+            override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
+                if (response.isSuccessful){
+                    var result: RetrofitResponse? = response.body()
+                    val arrayList = result?.data
+                    Log.d("test", arrayList!![0].name.toString())
+                    recyclerview.adapter = HomeRecyclerViewAdapter(this@MainActivity, arrayList)
+                    recyclerview.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+
+
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+                Log.d("state", "onFailure" + t.message.toString())
+            }
+
+        })
 
 
         myPageBtn.setOnClickListener{

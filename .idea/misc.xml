@@ -81,6 +81,7 @@
         <entry key="app/src/main/res/layout/item_stores.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/join.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/login.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/main_recyclerview_item.xml" value="0.1286231884057971" />
         <entry key="app/src/main/res/layout/make.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/menu.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/mychat.xml" value="0.13728470111448834" />
