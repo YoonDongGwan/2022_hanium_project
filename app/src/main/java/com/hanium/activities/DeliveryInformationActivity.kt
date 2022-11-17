@@ -48,8 +48,10 @@ class DeliveryInformationActivity : AppCompatActivity() {
         val editor = preferences.edit()
         val uid = preferences.getInt("uid", 0)
 
-
+        var menuArr = intent.getParcelableArrayListExtra<MenuData>("selectedFoods")
         val deliveryTip = intent.getIntExtra("deliveryTip",0)
+        val storeName2 = intent.getStringExtra("storeName").toString()
+        Log.d("ddd","msg:$storeName2")
 
         service.getDeliveryLocation().enqueue(object : Callback<LocationResponse> {
             override fun onResponse(call: Call<LocationResponse>, response: Response<LocationResponse>) {
@@ -60,7 +62,7 @@ class DeliveryInformationActivity : AppCompatActivity() {
                     spinner.adapter = arrayAdapter
 
                     information_match_btn.setOnClickListener{
-                        service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid,deliveryTip)).enqueue(object : Callback<PreMatchingResult> {
+                        service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid,deliveryTip,storeName2)).enqueue(object : Callback<PreMatchingResult> {
                             override fun onResponse(call: Call<PreMatchingResult>, response: Response<PreMatchingResult>) {
                                 val result = response.body()
                                 val intent = Intent(this@DeliveryInformationActivity, MatchingReadyActivity::class.java)
@@ -68,6 +70,8 @@ class DeliveryInformationActivity : AppCompatActivity() {
                                 intent.putExtra("matchNum",Integer.parseInt(matchNum.text.toString()))
                                 intent.putExtra("deliveryPlace",arrayList[spinner.selectedItemId.toInt()])
                                 intent.putExtra("deliveryTip",deliveryTip)
+                                intent.putExtra("storeName2",storeName2)
+                                intent.putParcelableArrayListExtra("selectedFoods", menuArr)
                                 editor.putString("username", result?.name)
                                 editor.commit()
 

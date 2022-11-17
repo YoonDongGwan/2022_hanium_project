@@ -20,6 +20,6 @@ data class MypageResponse(var school:String, var major:String,var name:String,va
 data class OrderListResponse(var code:Int, var message : String, val data :ArrayList<OrderListData>)
 data class OrderListData(var id:String, var store : String, var date:String, var deliveryFood:String,var price:Int)
 data class NowNumResult(var nowNum:Int)
-data class PreMatchingModel(var totalPrice:Int,var matchNum:Int,var location:String,var UID:Int,var deliveryTip:Int)
+data class PreMatchingModel(var totalPrice:Int,var matchNum:Int,var location:String,var UID:Int,var deliveryTip:Int,var storeName2:String)
 data class PreMatchingResult(var message: Boolean, var name: String)
 
