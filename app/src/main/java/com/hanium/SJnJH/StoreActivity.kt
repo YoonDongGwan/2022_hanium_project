@@ -63,10 +63,12 @@ class StoreActivity : AppCompatActivity() {
         bottomBar = findViewById(R.id.store_bottom_bar)
         finalPriceTextView = findViewById(R.id.store_final_price)
 
+
         var deliveryTip = 0
 
 
         val uid = intent.getIntExtra("uid",0)
+
 
         a.setOnClickListener(){
             var intent = Intent(Intent.ACTION_DIAL)
@@ -199,6 +201,7 @@ class StoreActivity : AppCompatActivity() {
             intent.putExtra("storeName", company)
             intent.putExtra("uid", uid)
             intent.putExtra("deliveryTip",deliveryTip)
+
             startActivity(intent)
         }
 

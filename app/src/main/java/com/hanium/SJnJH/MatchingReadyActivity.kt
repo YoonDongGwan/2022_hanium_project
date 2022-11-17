@@ -2,6 +2,7 @@ package com.hanium.SJnJH
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -45,7 +46,8 @@ class MatchingReadyActivity : AppCompatActivity() {
         val totalPrice=getIntent().getIntExtra("totalPrice",0)
         val matchNum=getIntent().getIntExtra("matchNum",0)
         val location =getIntent().getStringExtra("deliveryPlace")
-        val username = intent.getStringExtra("username")
+        val preferences: SharedPreferences = getSharedPreferences("UserInfo", 0)
+        val username = preferences.getString("username", null)
         var nowNum=5
         var cnt=0
 

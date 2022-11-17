@@ -1,6 +1,7 @@
 package com.hanium.SJnJH
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +26,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var loginBt : Button
     lateinit var idEt : EditText
     lateinit var passEt : EditText
+    lateinit var preferences: SharedPreferences
+    lateinit var editor: SharedPreferences.Editor
     var token =""
 
     val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
@@ -63,7 +66,11 @@ class LoginActivity : AppCompatActivity() {
                     if (user_uid!=-1){
                         Log.d("login", "성공 +${user_uid}")
                         val nextIntent = Intent(this@LoginActivity, MainActivity::class.java)
-                        nextIntent.putExtra("UID", user_uid)
+                        preferences = getSharedPreferences("UserInfo", 0)
+                        editor = preferences.edit()
+                        editor.putInt("uid", user_uid)
+                        editor.commit()
+
                         startActivity(nextIntent)
                     }
                     else{

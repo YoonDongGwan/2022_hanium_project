@@ -1,5 +1,6 @@
 package com.hanium.SJnJH
 
+import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,7 +19,6 @@ class DeliveryStoresActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val getIntent = getIntent().getIntExtra("CATEGORY",1)
-        val user_id=getIntent().getIntExtra("UID",0)
 
         val list = listOf(
             ChickenFragment(),
