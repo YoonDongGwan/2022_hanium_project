@@ -54,7 +54,7 @@ interface RetrofitService {
     fun getMypage(@Query("UID") UID: Int): Call<MypageResponse>
 
     @GET("user/orderlist")
-    fun getOrderList(@Query("id") id: String): Call<OrderListResponse>
+    fun getOrderList(@Query("name") name: String): Call<OrderListResponse>
 
     @GET("delivery/nownum")
     fun getNowNum(@Query("matchNum") matchNum : Int,@Query("location") location :String) : Call<NowNumResult>

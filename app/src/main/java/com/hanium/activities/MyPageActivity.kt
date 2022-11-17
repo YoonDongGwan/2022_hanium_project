@@ -49,6 +49,11 @@ class MyPageActivity : AppCompatActivity() {
                     majorTv.text = result?.major
                     nameTv.text=result?.name
                     id = result?.id.toString()
+                    orderListBtn.setOnClickListener(){
+                        var intent = Intent(this@MyPageActivity, HistoryActivity::class.java)
+                        intent.putExtra("name",result?.name)
+                        startActivity(intent)
+                    }
                 }
             }
             override fun onFailure(call: Call<MypageResponse>, t: Throwable) {
@@ -56,11 +61,7 @@ class MyPageActivity : AppCompatActivity() {
             }
 
         })
-        orderListBtn.setOnClickListener(){
-            var intent = Intent(this, HistoryActivity::class.java)
-            intent.putExtra("id",id)
-            startActivity(intent)
-        }
+
     }
     private val onClickListener = View.OnClickListener { view ->
         when(view.id){

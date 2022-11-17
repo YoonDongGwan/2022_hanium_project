@@ -37,7 +37,7 @@ class HistoryActivity : AppCompatActivity() {
         var adapter : MyAdapter = MyAdapter(this,orderListArr)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(this)
-        val user_id=getIntent().getStringExtra("id")
+        val name=getIntent().getStringExtra("name")
 
         val dividerItemDecoration =
             DividerItemDecoration(rv.context, LinearLayoutManager(this).orientation)
@@ -45,7 +45,7 @@ class HistoryActivity : AppCompatActivity() {
         rv.addItemDecoration(dividerItemDecoration)
 
 
-        service.getOrderList(user_id.toString()).enqueue(object : Callback<OrderListResponse> {
+        service.getOrderList(name.toString()).enqueue(object : Callback<OrderListResponse> {
             override fun onResponse(
                 call: Call<OrderListResponse>,
                 response: Response<OrderListResponse>
@@ -80,7 +80,7 @@ class HistoryActivity : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int {
-            return arr!!.size
+            return arr?.size ?: 0
         }
 
         override fun onBindViewHolder(holder: Holder, position: Int) {
