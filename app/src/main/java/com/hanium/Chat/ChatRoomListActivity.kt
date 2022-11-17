@@ -1,26 +1,63 @@
 package com.hanium.Chat
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.hanium.R
+import com.hanium.ResponseData
+import com.hanium.RetrofitResponse
+import com.hanium.RetrofitService
+import com.hanium.adapters.HomeViewPagerAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ChatRoomListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_room_list)
         val rv: RecyclerView = findViewById(R.id.chat_list_recyclerview)
-        val arrayList = arrayListOf("교촌치킨 (1기숙사)", "미스터피자 (1기숙사)", "맘스터치 (1기숙사)")
-        rv.adapter = ChatListAdapter(arrayList)
-        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val backBtn: ImageButton = findViewById(R.id.chat_list_back_btn)
+        val preferences = getSharedPreferences("UserInfo", 0)
+        val name = preferences.getString("username", null)
+        val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
+            .addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit.create(RetrofitService::class.java)
+        if (name != null) {
+            service.getChatList(name).enqueue(object : Callback<RetrofitResponse> {
+                override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
+                    if (response.isSuccessful){
+                        var result: RetrofitResponse? = response.body()
+                        val arrayList = result?.data
+                        rv.adapter = ChatListAdapter(arrayList)
+                        rv.layoutManager = LinearLayoutManager(this@ChatRoomListActivity, LinearLayoutManager.VERTICAL, false)
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+                    Log.d("state", "onFailure" + t.message.toString())
+                }
+
+            })
+        }
+
+        backBtn.setOnClickListener{
+            finish()
+        }
     }
 }
-class ChatListAdapter(val arrayList: ArrayList<String>): RecyclerView.Adapter<ChatListAdapter.ViewHolder>(){
+class ChatListAdapter(val arrayList: ArrayList<ResponseData>?): RecyclerView.Adapter<ChatListAdapter.ViewHolder>(){
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val textview: TextView = itemView.findViewById(R.id.chat_list_store_name)
     }
@@ -31,8 +68,8 @@ class ChatListAdapter(val arrayList: ArrayList<String>): RecyclerView.Adapter<Ch
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textview.text = arrayList[position]
+        holder.textview.text = "${arrayList!![position].company} (${arrayList[position].location})"
     }
 
-    override fun getItemCount(): Int = arrayList.size
+    override fun getItemCount(): Int = arrayList!!.size
 }

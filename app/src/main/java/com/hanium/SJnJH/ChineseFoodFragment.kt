@@ -30,7 +30,7 @@ class ChineseFoodFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var rootView = inflater.inflate(R.layout.fragment_chinese_food, container, false)
-        val uid = activity?.intent?.getIntExtra("UID",0)
+
         recyclerView = rootView.findViewById(R.id.chineseFoodRecyclerView!!)as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -42,7 +42,7 @@ class ChineseFoodFragment : Fragment() {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 4, uid!!)
+                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 4)
                 }
             }
 

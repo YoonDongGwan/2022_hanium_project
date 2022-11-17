@@ -63,9 +63,6 @@ class StoreActivity : AppCompatActivity() {
         bottomBar = findViewById(R.id.store_bottom_bar)
         finalPriceTextView = findViewById(R.id.store_final_price)
 
-
-        val uid = intent.getIntExtra("uid",0)
-
         a.setOnClickListener(){
             var intent = Intent(Intent.ACTION_DIAL)
             intent.data = Uri.parse("tel:0537207900")
@@ -193,7 +190,7 @@ class StoreActivity : AppCompatActivity() {
             intent.putParcelableArrayListExtra("selectedFoods", menuArr)
             intent.putExtra("priceSum", finalPrice)
             intent.putExtra("storeName", company)
-            intent.putExtra("uid", uid)
+
             startActivity(intent)
         }
 

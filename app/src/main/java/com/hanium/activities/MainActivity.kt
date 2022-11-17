@@ -1,6 +1,7 @@
 package com.hanium.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -40,9 +41,6 @@ class MainActivity : AppCompatActivity() {
         recyclerview = findViewById(R.id.home_recyclerview)
         myPageBtn = findViewById(R.id.myPageBtn)
         chatBtn = findViewById(R.id.main_chat_btn)
-
-        val user_uid= intent.getIntExtra("UID",0)
-
 
         for(i in 0..7){
             btns[i] = findViewById(resources.getIdentifier("home_list_btn${i+1}","id",packageName))
@@ -91,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
         myPageBtn.setOnClickListener{
             val intent = Intent(this, MyPageActivity::class.java)
-            intent.putExtra("UID", user_uid)
+
             startActivity(intent)
         }
         chatBtn.setOnClickListener{
@@ -105,31 +103,24 @@ class MainActivity : AppCompatActivity() {
         when(view.id){
             R.id.home_list_btn1 -> {
                 intent.putExtra("CATEGORY", 0)
-                intent.putExtra("UID", getIntent().getIntExtra("UID",0))
             }
             R.id.home_list_btn2 -> {
                 intent.putExtra("CATEGORY", 1)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn3 -> {
                 intent.putExtra("CATEGORY", 2)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn4 -> {
                 intent.putExtra("CATEGORY", 3)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn5 -> {
                 intent.putExtra("CATEGORY", 4)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn6 -> {
                 intent.putExtra("CATEGORY", 5)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn7 -> {
                 intent.putExtra("CATEGORY", 6)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn8 -> {
                 intent = Intent(this, MapActivity::class.java)
