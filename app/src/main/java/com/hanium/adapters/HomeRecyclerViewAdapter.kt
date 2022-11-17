@@ -16,23 +16,21 @@ import com.hanium.activities.ProductActivity
 
 class HomeRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<ResponseData>?) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val img: ImageView = itemView.findViewById(R.id.product_recyclerview_img)
-        val name: TextView = itemView.findViewById(R.id.product_recyclerview_name)
-        val price: TextView = itemView.findViewById(R.id.product_recyclerview_price)
+        val img: ImageView = itemView.findViewById(R.id.main_recyclerview_img)
+        val foodName: TextView = itemView.findViewById(R.id.main_recyclerview_food_name)
+        val storeName: TextView = itemView.findViewById(R.id.main_recyclerview_store_name)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecyclerViewAdapter.ViewHolder{
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.product_recyclerview_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.main_recyclerview_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: HomeRecyclerViewAdapter.ViewHolder, position: Int) {
-        holder.name.text = arrayList!![position].name
+        holder.foodName.text = arrayList!![position].name
+        holder.storeName.text = arrayList[position].company
         Glide.with(context).load(arrayList[position].imgUrl).into(holder.img)
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView?.context, ProductActivity::class.java)
-            ContextCompat.startActivity(holder.itemView.context, intent, null)
-        }
+
     }
 
     override fun getItemCount(): Int = arrayList!!.size

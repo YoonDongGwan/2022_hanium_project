@@ -1,5 +1,6 @@
 package com.hanium.SJnJH
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -31,7 +32,6 @@ class ChickenFragment : Fragment() {
 
         var rootView = inflater.inflate(R.layout.fragment_chicken, container, false)
 
-        val uid = activity?.intent?.getIntExtra("UID",0)
 
         recyclerView1 = rootView.findViewById(R.id.recyclerView1!!)as RecyclerView
         recyclerView1.layoutManager = LinearLayoutManager(requireContext())
@@ -44,7 +44,7 @@ class ChickenFragment : Fragment() {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    recyclerView1.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 1, uid!!)
+                    recyclerView1.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 1)
 
 
                 }

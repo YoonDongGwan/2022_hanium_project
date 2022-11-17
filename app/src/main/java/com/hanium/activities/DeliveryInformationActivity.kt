@@ -2,6 +2,7 @@ package com.hanium.activities
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -43,8 +44,13 @@ class DeliveryInformationActivity : AppCompatActivity() {
         val selectedFoods: ArrayList<MenuData> = intent.getParcelableArrayListExtra("selectedFoods")!!
 
         storeName.text = intent.getStringExtra("storeName")
+        val preferences: SharedPreferences = getSharedPreferences("UserInfo", 0)
+        val editor = preferences.edit()
+        val uid = preferences.getInt("uid", 0)
 
-        val uid = intent.getIntExtra("uid",0)
+
+        val deliveryTip = intent.getIntExtra("deliveryTip",0)
+
         service.getDeliveryLocation().enqueue(object : Callback<LocationResponse> {
             override fun onResponse(call: Call<LocationResponse>, response: Response<LocationResponse>) {
                 if (response.isSuccessful){
@@ -54,14 +60,16 @@ class DeliveryInformationActivity : AppCompatActivity() {
                     spinner.adapter = arrayAdapter
 
                     information_match_btn.setOnClickListener{
-                        service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid)).enqueue(object : Callback<PreMatchingResult> {
+                        service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid,deliveryTip)).enqueue(object : Callback<PreMatchingResult> {
                             override fun onResponse(call: Call<PreMatchingResult>, response: Response<PreMatchingResult>) {
                                 val result = response.body()
                                 val intent = Intent(this@DeliveryInformationActivity, MatchingReadyActivity::class.java)
                                 intent.putExtra("totalPrice",intent.getIntExtra("priceSum", 0))
                                 intent.putExtra("matchNum",Integer.parseInt(matchNum.text.toString()))
                                 intent.putExtra("deliveryPlace",arrayList[spinner.selectedItemId.toInt()])
-                                intent.putExtra("username", result?.name)
+                                intent.putExtra("deliveryTip",deliveryTip)
+                                editor.putString("username", result?.name)
+                                editor.commit()
 
                                 startActivity(intent)
                             }

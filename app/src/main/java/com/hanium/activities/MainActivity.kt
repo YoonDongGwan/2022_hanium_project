@@ -1,6 +1,7 @@
 package com.hanium.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +10,11 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hanium.Chat.ChatRoomListActivity
 import com.hanium.R
 import com.hanium.RetrofitResponse
 import com.hanium.RetrofitService
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewpager: ViewPager2
     lateinit var recyclerview: RecyclerView
     lateinit var myPageBtn: ImageButton
-
+    lateinit var chatBtn: FloatingActionButton
     var btns = arrayOfNulls<LinearLayout>(8)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +40,7 @@ class MainActivity : AppCompatActivity() {
         viewpager = findViewById(R.id.home_viewpager)
         recyclerview = findViewById(R.id.home_recyclerview)
         myPageBtn = findViewById(R.id.myPageBtn)
-        val user_uid=getIntent().getIntExtra("UID",0)
-
+        chatBtn = findViewById(R.id.main_chat_btn)
 
         for(i in 0..7){
             btns[i] = findViewById(resources.getIdentifier("home_list_btn${i+1}","id",packageName))
@@ -57,6 +60,22 @@ class MainActivity : AppCompatActivity() {
                     viewpager.adapter = HomeViewPagerAdapter(applicationContext, arrayList)
                     viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+                Log.d("state", "onFailure" + t.message.toString())
+            }
+
+        })
+        service.randomRecommend().enqueue(object : Callback<RetrofitResponse> {
+            override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
+                if (response.isSuccessful){
+                    var result: RetrofitResponse? = response.body()
+                    val arrayList = result?.data
+
+                    recyclerview.adapter = HomeRecyclerViewAdapter(this@MainActivity, arrayList)
+                    recyclerview.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
 
                 }
             }
@@ -66,16 +85,17 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-//        recyclerview.adapter = HomeRecyclerViewAdapter(this, arrayList)
-//        recyclerview.layoutManager = GridLayoutManager(this, 2)
 
 
         myPageBtn.setOnClickListener{
             val intent = Intent(this, MyPageActivity::class.java)
-            intent.putExtra("UID", user_uid)
+
             startActivity(intent)
         }
-
+        chatBtn.setOnClickListener{
+            val intent = Intent(this, ChatRoomListActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private val onClickListener = View.OnClickListener { view ->
@@ -83,31 +103,24 @@ class MainActivity : AppCompatActivity() {
         when(view.id){
             R.id.home_list_btn1 -> {
                 intent.putExtra("CATEGORY", 0)
-                intent.putExtra("UID", getIntent().getIntExtra("UID",0))
             }
             R.id.home_list_btn2 -> {
                 intent.putExtra("CATEGORY", 1)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn3 -> {
                 intent.putExtra("CATEGORY", 2)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn4 -> {
                 intent.putExtra("CATEGORY", 3)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn5 -> {
                 intent.putExtra("CATEGORY", 4)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn6 -> {
                 intent.putExtra("CATEGORY", 5)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn7 -> {
                 intent.putExtra("CATEGORY", 6)
-//                intent.putExtra("UID", user_uid)
             }
             R.id.home_list_btn8 -> {
                 intent = Intent(this, MapActivity::class.java)

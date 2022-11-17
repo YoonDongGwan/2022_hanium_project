@@ -1,5 +1,6 @@
 package com.hanium.Chat
 
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +28,7 @@ class ChatRoomActivity : AppCompatActivity(){
     private val array = ArrayList<ChatData>()
     private val db = Firebase.database
     private var myRef = db.getReference("chat")
-    private val myNickname = "david"
+    private var myNickname: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +41,8 @@ class ChatRoomActivity : AppCompatActivity(){
 //        layoutManager.stackFromEnd = true
         rv.layoutManager = layoutManager
 
-
+        val preferences = getSharedPreferences("UserInfo", 0)
+        myNickname = preferences.getString("username", null)
 
         val intent = intent
         val storeNameTv: TextView = findViewById(R.id.chatroom_store_name)
@@ -48,15 +50,24 @@ class ChatRoomActivity : AppCompatActivity(){
         val storeImage: ImageView = findViewById(R.id.chatroom_img)
 
         val storeName = intent.getStringExtra("storeName")
-        Glide.with(this).load(intent.getStringExtra("imgUrl")).into(storeImage)
-        myRef = myRef.child(storeName!!)
-        storeNameTv.text = storeName
-        storeContentTextView.text = intent.getStringExtra("content")
+        if (storeName != null){
+            Glide.with(this).load(intent.getStringExtra("imgUrl")).into(storeImage)
+            myRef = myRef.child(storeName!!)
+            storeNameTv.text = storeName
+            storeContentTextView.text = intent.getStringExtra("content")
+        }
+        else{
+            val id = intent.getIntExtra("id", 0)
+            myRef = myRef.child(id.toString())
+            storeImage.visibility = View.GONE
+            storeNameTv.text = intent.getStringExtra("company")
+            storeContentTextView.text = "배달지 : ${intent.getStringExtra("location")}"
+        }
 
         myRef.addChildEventListener(childEventListener)
         et.setOnClickListener(onClickListener)
         send_btn.setOnClickListener(onClickListener)
-        adapter = ChatRecyclerAdapter(array, myNickname)
+        adapter = ChatRecyclerAdapter(array, myNickname!!)
         rv.adapter = adapter
         rv.addOnLayoutChangeListener { view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
             if (bottom < oldBottom){
@@ -94,7 +105,7 @@ class ChatRoomActivity : AppCompatActivity(){
         when (view.id){
             R.id.send_btn -> {
                 val message = et.text.toString()
-                val data = ChatData(message, myNickname)
+                val data = ChatData(message, myNickname!!)
                 myRef.push().setValue(data)
                 et.text.clear()
             }

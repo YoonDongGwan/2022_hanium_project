@@ -64,7 +64,11 @@ class StoreActivity : AppCompatActivity() {
         finalPriceTextView = findViewById(R.id.store_final_price)
 
 
+        var deliveryTip = 0
+
+
         val uid = intent.getIntExtra("uid",0)
+
 
         a.setOnClickListener(){
             var intent = Intent(Intent.ACTION_DIAL)
@@ -130,6 +134,7 @@ class StoreActivity : AppCompatActivity() {
         val category = intent.getIntExtra("category", 0)
         val id = intent.getIntExtra("id",0)
 
+
         storeName.text = company
 
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
@@ -147,6 +152,7 @@ class StoreActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             var result: RetrofitResponse? = response.body()
                             val arrayList = result?.data
+                            deliveryTip =arrayList!![0].deliveryTip
                             Glide.with(this@StoreActivity).load(arrayList!![0].imgUrl).into(storeImg)
                         }
                     }
@@ -194,6 +200,8 @@ class StoreActivity : AppCompatActivity() {
             intent.putExtra("priceSum", finalPrice)
             intent.putExtra("storeName", company)
             intent.putExtra("uid", uid)
+            intent.putExtra("deliveryTip",deliveryTip)
+
             startActivity(intent)
         }
 

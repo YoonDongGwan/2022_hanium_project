@@ -34,7 +34,7 @@ class HamburgerFragment : Fragment() {
 
 
         var rootView = inflater.inflate(R.layout.fragment_hamburger, container, false)
-        val uid = activity?.intent?.getIntExtra("UID",0)
+
         recyclerView = rootView.findViewById(R.id.hamburgerRecyclerView!!)as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
@@ -45,7 +45,7 @@ class HamburgerFragment : Fragment() {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 3, uid!!)
+                    recyclerView.adapter = StoreRecyclerViewAdapter(requireContext(),arrayList, 3)
                 }
             }
 

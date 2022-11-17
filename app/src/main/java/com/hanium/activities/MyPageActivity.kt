@@ -1,6 +1,7 @@
 package com.hanium.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -37,7 +38,8 @@ class MyPageActivity : AppCompatActivity() {
         var id=""
         orderListBtn.setOnClickListener(onClickListener)
         processPurBtn.setOnClickListener(onClickListener)
-        val user_uid=getIntent().getIntExtra("UID",0)
+        val preferences: SharedPreferences = getSharedPreferences("UserInfo", 0)
+        val user_uid= preferences.getInt("uid", 0)
 
         service.getMypage(user_uid).enqueue(object : Callback<MypageResponse> {
             override fun onResponse(call: Call<MypageResponse>, response: Response<MypageResponse>) {

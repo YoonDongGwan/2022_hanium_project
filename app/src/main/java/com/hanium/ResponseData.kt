@@ -15,6 +15,8 @@ data class ResponseData(
     val minPrice: Int,
     @SerializedName("deliveryTip")
     val deliveryTip: Int,
+    @SerializedName("location")
+    val location: String,
     @SerializedName("imgUrl")
     val imgUrl: String,
 )
