@@ -43,6 +43,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/rv2"/>
 
+    <ProgressBar
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_toRightOf="@+id/numTv"
+        android:layout_width="70dp"
+        android:layout_height="70dp"/>
+
     <Button
         android:textSize="18sp"
         android:id="@+id/payBt"
