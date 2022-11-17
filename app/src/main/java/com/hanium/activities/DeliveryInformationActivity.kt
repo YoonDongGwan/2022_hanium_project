@@ -45,6 +45,7 @@ class DeliveryInformationActivity : AppCompatActivity() {
         storeName.text = intent.getStringExtra("storeName")
 
         val uid = intent.getIntExtra("uid",0)
+        val deliveryTip = intent.getIntExtra("deliveryTip",0)
         service.getDeliveryLocation().enqueue(object : Callback<LocationResponse> {
             override fun onResponse(call: Call<LocationResponse>, response: Response<LocationResponse>) {
                 if (response.isSuccessful){
@@ -54,7 +55,7 @@ class DeliveryInformationActivity : AppCompatActivity() {
                     spinner.adapter = arrayAdapter
 
                     information_match_btn.setOnClickListener{
-                        service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid)).enqueue(object : Callback<PreMatchingResult> {
+                        service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid,deliveryTip)).enqueue(object : Callback<PreMatchingResult> {
                             override fun onResponse(call: Call<PreMatchingResult>, response: Response<PreMatchingResult>) {
                                 val result = response.body()
                                 val intent = Intent(this@DeliveryInformationActivity, MatchingReadyActivity::class.java)
@@ -62,6 +63,8 @@ class DeliveryInformationActivity : AppCompatActivity() {
                                 intent.putExtra("matchNum",Integer.parseInt(matchNum.text.toString()))
                                 intent.putExtra("deliveryPlace",arrayList[spinner.selectedItemId.toInt()])
                                 intent.putExtra("username", result?.name)
+                                intent.putExtra("deliveryTip",deliveryTip)
+
 
                                 startActivity(intent)
                             }
