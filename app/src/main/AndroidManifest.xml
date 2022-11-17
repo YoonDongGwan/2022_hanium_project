@@ -29,7 +29,7 @@
         <activity
             android:name=".offline.Offline1Activity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".Chat.PostActivity" />
+        <activity android:name=".Chat.ChatRoomListActivity" />
         <activity android:name=".offline.Offline2Activity" />
         <activity
             android:name=".Chat.ChatRoomActivity"

@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hanium.Chat.ChatRoomListActivity
 import com.hanium.R
 import com.hanium.RetrofitResponse
 import com.hanium.RetrofitService
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewpager: ViewPager2
     lateinit var recyclerview: RecyclerView
     lateinit var myPageBtn: ImageButton
-
+    lateinit var chatBtn: FloatingActionButton
     var btns = arrayOfNulls<LinearLayout>(8)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,9 @@ class MainActivity : AppCompatActivity() {
         viewpager = findViewById(R.id.home_viewpager)
         recyclerview = findViewById(R.id.home_recyclerview)
         myPageBtn = findViewById(R.id.myPageBtn)
-        val user_uid=getIntent().getIntExtra("UID",0)
+        chatBtn = findViewById(R.id.main_chat_btn)
+
+        val user_uid= intent.getIntExtra("UID",0)
 
 
         for(i in 0..7){
@@ -58,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                     viewpager.adapter = HomeViewPagerAdapter(applicationContext, arrayList)
                     viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-
                 }
             }
 
@@ -76,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                     recyclerview.adapter = HomeRecyclerViewAdapter(this@MainActivity, arrayList)
                     recyclerview.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
 
-
                 }
             }
 
@@ -92,7 +94,10 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("UID", user_uid)
             startActivity(intent)
         }
-
+        chatBtn.setOnClickListener{
+            val intent = Intent(this, ChatRoomListActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private val onClickListener = View.OnClickListener { view ->
