@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hanium"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".PriceResultActivity"
-            android:exported="false" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -24,6 +22,7 @@
             android:name=".activities.MapActivity"
             android:exported="false" />
         <activity android:name=".activities.BuyingActivity" />
+        <activity android:name=".activities.PriceResultActivity" />
         <activity android:name=".activities.ClassActivity" />
         <activity android:name=".activities.ProductListActivity" />
         <activity android:name=".activities.ProductActivity" />

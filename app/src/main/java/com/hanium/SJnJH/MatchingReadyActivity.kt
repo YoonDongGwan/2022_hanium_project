@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley
 import com.hanium.NowNumResult
 import com.hanium.R
 import com.hanium.RetrofitService
+import com.hanium.activities.PriceResultActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,6 +49,8 @@ class MatchingReadyActivity : AppCompatActivity() {
         val location =getIntent().getStringExtra("deliveryPlace")
         val preferences: SharedPreferences = getSharedPreferences("UserInfo", 0)
         val username = preferences.getString("username", null)
+        val storeName2 = getIntent().getStringExtra("storeName2")
+        val userName = getIntent().getStringExtra("userName")
         var nowNum=5
         var cnt=0
 
@@ -84,9 +87,13 @@ class MatchingReadyActivity : AppCompatActivity() {
 
 
         cancerBt.setOnClickListener(){
-            //테스트
-            orderCancel(username!!)
-            finish()
+            val intent = Intent(this, PriceResultActivity::class.java)
+            intent.putExtra("userName",username)
+            intent.putExtra("storeName2",storeName2)
+            intent.putExtra("location",location)
+            startActivity(intent)
+//            orderCancel(username!!)
+//            finish()
         }
 
     }
