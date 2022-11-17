@@ -1,5 +1,6 @@
 package com.hanium.Chat
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -69,6 +71,13 @@ class ChatListAdapter(val arrayList: ArrayList<ResponseData>?): RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textview.text = "${arrayList!![position].company} (${arrayList[position].location})"
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, ChatRoomActivity::class.java)
+            intent.putExtra("id", arrayList[position].id)
+            intent.putExtra("company", arrayList[position].company)
+            intent.putExtra("location", arrayList[position].location)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
+        }
     }
 
     override fun getItemCount(): Int = arrayList!!.size

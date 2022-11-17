@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful){
                     var result: RetrofitResponse? = response.body()
                     val arrayList = result?.data
-                    Log.d("test", arrayList!![0].name.toString())
+
                     recyclerview.adapter = HomeRecyclerViewAdapter(this@MainActivity, arrayList)
                     recyclerview.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
 

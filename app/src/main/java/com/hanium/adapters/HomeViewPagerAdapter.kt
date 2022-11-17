@@ -34,10 +34,10 @@ class HomeViewPagerAdapter(val context: Context, var arrayList: ArrayList<Respon
         holder.name.text = arrayList!![position].name
         holder.rankNum.text = "${position+1}위"
         Glide.with(context).load(arrayList!![position].imgUrl).into(holder.img)
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView?.context, ProductActivity::class.java)
-            ContextCompat.startActivity(holder.itemView.context, intent, null)
-        }
+//        holder.itemView.setOnClickListener {
+//            val intent = Intent(holder.itemView?.context, ProductActivity::class.java)
+//            ContextCompat.startActivity(holder.itemView.context, intent, null)
+//        }
     }
 
     override fun getItemCount(): Int = arrayList!!.size
