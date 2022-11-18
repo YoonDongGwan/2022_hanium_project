@@ -3,6 +3,8 @@ package com.hanium.activities
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -27,8 +29,12 @@ class PriceResultActivity : AppCompatActivity() {
     lateinit var rv : RecyclerView
     lateinit var rv2: RecyclerView
     lateinit var payBt : Button
-
+    var deliveryTip = 0
     var stateArr : ArrayList<StateData> = ArrayList()
+    var matchNum = 0
+    var location =""
+    var storeName2 =""
+    var menuArr : ArrayList<MenuData> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,12 +43,14 @@ class PriceResultActivity : AppCompatActivity() {
         rv = findViewById(R.id.rv)
         rv2 = findViewById(R.id.rv2)
         payBt = findViewById(R.id.payBt)
-        val matchNum = intent.getIntExtra("matchNum",0)
-        val location = intent.getStringExtra("location").toString()
-        val storeName2 = intent.getStringExtra("storeName2").toString()
-        var menuArr = intent.getParcelableArrayListExtra<MenuData>("menuArr")
+        matchNum = intent.getIntExtra("matchNum",0)
+        location = intent.getStringExtra("location").toString()
+        storeName2 = intent.getStringExtra("storeName2").toString()
+        menuArr = intent.getParcelableArrayListExtra<MenuData>("menuArr")!!
 
-        getPeople(matchNum, location, storeName2)
+
+        handler.sendEmptyMessage(0)
+//        getPeople(matchNum, location, storeName2)
 
         payBt.setOnClickListener(){
 //            var i = 0
@@ -55,11 +63,6 @@ class PriceResultActivity : AppCompatActivity() {
 //            }
         }
 
-        var adapter2 : MyRvAdapter2 = MyRvAdapter2(this@PriceResultActivity,menuArr!!)
-        rv2.adapter = adapter2
-        rv2.layoutManager = LinearLayoutManager(this@PriceResultActivity)
-
-        adapter2.notifyDataSetChanged()
 
 
 
@@ -146,7 +149,7 @@ class PriceResultActivity : AppCompatActivity() {
 
             override fun getParams(): MutableMap<String, String> {
                 val params : MutableMap<String,String> = HashMap()
-
+                stateArr.clear()
                 params.put("matchNum",matchNum.toString())
                 params.put("location",location)
                 params.put("storeName2",storeName2)
@@ -168,15 +171,33 @@ class PriceResultActivity : AppCompatActivity() {
                 var name = tempArray.getString("name")
                 var state = tempArray.getString("state")
                 var tempState = StateData(name, state)
+                if (i==0) {
+                    deliveryTip = tempArray.getInt("deliveryTip")
+                    var totalPrice = tempArray.getInt("totalPrice")
+                    Log.d("dddd","msg:$tempArray,$deliveryTip")
+                }
+
+
                 stateArr.add(tempState)
                 i++
             }
+
+
 
             var adapter : MyRvAdapter = MyRvAdapter(this@PriceResultActivity,stateArr)
             rv.adapter = adapter
             rv.layoutManager = LinearLayoutManager(this@PriceResultActivity)
 
             adapter.notifyDataSetChanged()
+
+            var adapter2 : MyRvAdapter2 = MyRvAdapter2(this@PriceResultActivity,menuArr)
+            rv2.adapter = adapter2
+            rv2.layoutManager = LinearLayoutManager(this@PriceResultActivity)
+
+
+
+            adapter2.notifyDataSetChanged()
+
         }
 
 
@@ -185,6 +206,18 @@ class PriceResultActivity : AppCompatActivity() {
     var fail = object  : Response.ErrorListener {
         override fun onErrorResponse(error: VolleyError?) {
             Log.d("aabb","서버 연결 실패 : $error")
+        }
+    }
+
+
+
+    var handler = object : Handler(){
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+
+            getPeople(matchNum, location, storeName2)
+            sendEmptyMessageDelayed(0,1000)
+
         }
     }
 
