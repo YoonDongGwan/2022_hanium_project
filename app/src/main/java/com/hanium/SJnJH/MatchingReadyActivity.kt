@@ -94,6 +94,7 @@ class MatchingReadyActivity : AppCompatActivity() {
             intent.putExtra("matchNum",matchNum)
             intent.putExtra("storeName2",storeName2)
             intent.putExtra("location",location)
+            intent.putExtra("userName",username)
             intent.putParcelableArrayListExtra("menuArr", menuArr)
             startActivity(intent)
 //            orderCancel(username!!)

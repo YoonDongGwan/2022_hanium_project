@@ -29,12 +29,17 @@ class PriceResultActivity : AppCompatActivity() {
     lateinit var rv : RecyclerView
     lateinit var rv2: RecyclerView
     lateinit var payBt : Button
+    lateinit var numTv : TextView
+    lateinit var resultTv : TextView
     var deliveryTip = 0
     var stateArr : ArrayList<StateData> = ArrayList()
     var matchNum = 0
     var location =""
     var storeName2 =""
+    var userName =""
     var menuArr : ArrayList<MenuData> = ArrayList()
+    var size = 0
+    var totalPrice = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +48,12 @@ class PriceResultActivity : AppCompatActivity() {
         rv = findViewById(R.id.rv)
         rv2 = findViewById(R.id.rv2)
         payBt = findViewById(R.id.payBt)
+        numTv = findViewById(R.id.numTv)
+        resultTv = findViewById(R.id.resultTv)
         matchNum = intent.getIntExtra("matchNum",0)
         location = intent.getStringExtra("location").toString()
         storeName2 = intent.getStringExtra("storeName2").toString()
+        userName = intent.getStringExtra("userName").toString()
         menuArr = intent.getParcelableArrayListExtra<MenuData>("menuArr")!!
 
 
@@ -62,6 +70,9 @@ class PriceResultActivity : AppCompatActivity() {
 //                i++
 //            }
         }
+
+
+
 
 
 
@@ -165,24 +176,33 @@ class PriceResultActivity : AppCompatActivity() {
         override fun onResponse(response: String) {
             var jsonObject =  JSONObject(response)
             var jsonArray = jsonObject.getJSONArray("data")
+            size = jsonArray.length()
             var i = 0
             while(i<jsonArray.length()) {
                 var tempArray = jsonArray.getJSONObject(i)
                 var name = tempArray.getString("name")
                 var state = tempArray.getString("state")
                 var tempState = StateData(name, state)
-                if (i==0) {
+                if (name.equals(userName)) {
                     deliveryTip = tempArray.getInt("deliveryTip")
-                    var totalPrice = tempArray.getInt("totalPrice")
-                    Log.d("dddd","msg:$tempArray,$deliveryTip")
+                    totalPrice = tempArray.getInt("totalPrice")
+                    Log.d("dddd","msg:$totalPrice,$deliveryTip")
                 }
+                Log.d("dddd","name:$name, userName:$userName")
+
 
 
                 stateArr.add(tempState)
                 i++
+
             }
 
 
+            var delivertPrice = deliveryTip/matchNum
+            var tempMenu = MenuData("배달비",delivertPrice)
+            menuArr.add(tempMenu)
+            var sum = totalPrice+delivertPrice
+            resultTv.setText("총합 :$sum 원")
 
             var adapter : MyRvAdapter = MyRvAdapter(this@PriceResultActivity,stateArr)
             rv.adapter = adapter
@@ -195,8 +215,9 @@ class PriceResultActivity : AppCompatActivity() {
             rv2.layoutManager = LinearLayoutManager(this@PriceResultActivity)
 
 
-
             adapter2.notifyDataSetChanged()
+
+
 
         }
 
@@ -214,9 +235,10 @@ class PriceResultActivity : AppCompatActivity() {
     var handler = object : Handler(){
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
+            numTv.setText(size.toString()+"/"+matchNum+"명")
 
             getPeople(matchNum, location, storeName2)
-            sendEmptyMessageDelayed(0,1000)
+            sendEmptyMessageDelayed(0,10000)
 
         }
     }
