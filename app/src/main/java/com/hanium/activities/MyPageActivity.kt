@@ -8,9 +8,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.hanium.CheckProgressListResult
 import com.hanium.MypageResponse
 import com.hanium.R
 import com.hanium.RetrofitService
+import com.hanium.SJnJH.FinalPriceActivity
 import com.hanium.databinding.ActivityMypageBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -36,8 +39,6 @@ class MyPageActivity : AppCompatActivity() {
         val majorTv = findViewById<TextView>(R.id.majorTv)
         val nameTv = findViewById<TextView>(R.id.nameTv)
         var id=""
-        orderListBtn.setOnClickListener(onClickListener)
-        processPurBtn.setOnClickListener(onClickListener)
         val preferences: SharedPreferences = getSharedPreferences("UserInfo", 0)
         val user_uid= preferences.getInt("uid", 0)
 
@@ -48,11 +49,36 @@ class MyPageActivity : AppCompatActivity() {
                     univTv.text=result?.school
                     majorTv.text = result?.major
                     nameTv.text=result?.name
+                    var name = result!!.name
                     id = result?.id.toString()
                     orderListBtn.setOnClickListener(){
                         var intent = Intent(this@MyPageActivity, HistoryActivity::class.java)
                         intent.putExtra("name",result?.name)
                         startActivity(intent)
+                    }
+
+                    processPurBtn.setOnClickListener(){
+                        service.getCheck(result!!.name).enqueue(object : Callback<CheckProgressListResult> {
+                            override fun onResponse(call: Call<CheckProgressListResult>, response: Response<CheckProgressListResult>) {
+                                if (response.isSuccessful){
+                                    var result: CheckProgressListResult? = response.body()
+                                    var value = result!!.value
+                                    if (value){
+                                        val intent = Intent(this@MyPageActivity, ProgressPurchaseActivity::class.java)
+                                        intent.putExtra("name",name)
+                                        startActivity(intent)
+                                    }
+                                    else{
+                                        Toast.makeText(applicationContext, "현재 진행 중인 공동배달이 없습니다.", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                            override fun onFailure(call: Call<CheckProgressListResult>, t: Throwable) {
+                                Log.d("state", "onFailure" + t.message.toString())
+                            }
+
+                        })
+
                     }
                 }
             }
@@ -62,14 +88,6 @@ class MyPageActivity : AppCompatActivity() {
 
         })
 
-    }
-    private val onClickListener = View.OnClickListener { view ->
-        when(view.id){
-            R.id.mypage_progressPur_btn -> {
-                var intent = Intent(this, ProgressPurActivity::class.java)
-                startActivity(intent)
-            }
-        }
     }
 
 }

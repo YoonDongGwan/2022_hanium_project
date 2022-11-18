@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hanium"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".ProgressPurchaseActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -58,6 +64,7 @@
         <activity android:name=".SJnJH.RoomSelectActivity" />
         <activity android:name=".SJnJH.StateActivity" />
         <activity android:name=".SJnJH.StoreActivity" />
+        <activity android:name=".activities.ProgressPurchaseActivity"/>
         <activity
             android:name=".SJnJH.LoginActivity"
             android:exported="true">
