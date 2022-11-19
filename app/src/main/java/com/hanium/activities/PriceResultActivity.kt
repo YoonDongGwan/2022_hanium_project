@@ -1,6 +1,7 @@
 package com.hanium.activities
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -44,6 +45,7 @@ class PriceResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_price_result)
+        val preferences: SharedPreferences = getSharedPreferences("UserInfo", 0)
         rv = findViewById(R.id.rv)
         rv2 = findViewById(R.id.rv2)
         payBt = findViewById(R.id.payBt)
@@ -52,11 +54,13 @@ class PriceResultActivity : AppCompatActivity() {
         matchNum = intent.getIntExtra("matchNum",0)
         location = intent.getStringExtra("location").toString()
         storeName2 = intent.getStringExtra("storeName2").toString()
-        userName = intent.getStringExtra("userName").toString()
+        userName = preferences.getString("username",null).toString()
         menuArr = intent.getParcelableArrayListExtra<MenuData>("menuArr")!!
 
+        handler.sendEmptyMessageDelayed(0,500)
 
-        handler.sendEmptyMessage(0)
+
+
 
 
         payBt.setOnClickListener(){
@@ -149,8 +153,8 @@ class PriceResultActivity : AppCompatActivity() {
 
 
 
-    fun getPeople(matchNum : Int, location : String,storeName2 : String){
-        var url = "http://52.78.209.45:3000/offline/get_people"
+    fun getPeople(){
+        var url = "http://52.78.209.45:3000/delivery/get_people"
         val requestQueue = Volley.newRequestQueue(this)
         val request: StringRequest = object : StringRequest(
             Request.Method.POST, url,request,fail ) {
@@ -210,7 +214,7 @@ class PriceResultActivity : AppCompatActivity() {
     }
 
     fun pay(){
-        var url = "http://52.78.209.45:3000/offline/pay"
+        var url = "http://52.78.209.45:3000/delivery/pay"
         val requestQueue = Volley.newRequestQueue(this)
         val request: StringRequest = object : StringRequest(
             Request.Method.POST, url,request2,fail ) {
@@ -251,7 +255,7 @@ class PriceResultActivity : AppCompatActivity() {
             super.handleMessage(msg)
             numTv.setText(size.toString()+"/"+matchNum+"명")
 
-            getPeople(matchNum, location, storeName2)
+            getPeople()
             sendEmptyMessageDelayed(0,5000)
 
         }

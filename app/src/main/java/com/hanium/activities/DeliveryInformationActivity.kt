@@ -76,13 +76,13 @@ class DeliveryInformationActivity : AppCompatActivity() {
                         service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid,deliveryTip,storeName2,deliveryFood)).enqueue(object : Callback<PreMatchingResult> {
                             override fun onResponse(call: Call<PreMatchingResult>, response: Response<PreMatchingResult>) {
                                 val result = response.body()
-                                val intent = Intent(this@DeliveryInformationActivity, MatchingReadyActivity::class.java)
+                                val intent = Intent(this@DeliveryInformationActivity, PriceResultActivity::class.java)
                                 intent.putExtra("totalPrice",intent.getIntExtra("priceSum", 0))
                                 intent.putExtra("matchNum",Integer.parseInt(matchNum.text.toString()))
-                                intent.putExtra("deliveryPlace",arrayList[spinner.selectedItemId.toInt()])
+                                intent.putExtra("location",arrayList[spinner.selectedItemId.toInt()])
                                 intent.putExtra("deliveryTip",deliveryTip)
                                 intent.putExtra("storeName2",storeName2)
-                                intent.putParcelableArrayListExtra("selectedFoods", menuArr)
+                                intent.putParcelableArrayListExtra("menuArr", menuArr)
                                 editor.putString("username", result?.name)
                                 editor.commit()
 
