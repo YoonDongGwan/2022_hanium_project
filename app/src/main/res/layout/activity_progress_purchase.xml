@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ProgressPurchaseActivity">
+
+    <TextView
+        android:id="@+id/storeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가게 이름"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.084" />
+
+
+    <TextView
+        android:id="@+id/person1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="윤동관"
+        android:textColor="@color/black"
+
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storeName" />
+
+    <TextView
+        android:id="@+id/personState1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="결제 완료"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/person1"
+        app:layout_constraintStart_toEndOf="@+id/person1" />
+
+    <TextView
+        android:id="@+id/person2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="권순준"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/person1"
+        app:layout_constraintTop_toBottomOf="@+id/person1" />
+
+    <TextView
+        android:id="@+id/personState2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="배달 중 "
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/person2"
+        app:layout_constraintTop_toTopOf="@+id/person2" />
+
+    <TextView
+        android:id="@+id/person3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="김지환"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/person2"
+        app:layout_constraintTop_toBottomOf="@+id/person2" />
+
+    <TextView
+        android:id="@+id/personState3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="결제 완료"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toEndOf="@+id/person3"
+        app:layout_constraintTop_toTopOf="@+id/person3" />
+
+    <TextView
+        android:id="@+id/person4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기기기"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/person3"
+        app:layout_constraintTop_toBottomOf="@+id/person3" />
+
+
+    <TextView
+        android:id="@+id/personState4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="결제 중"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/person4"
+        app:layout_constraintTop_toBottomOf="@+id/person3" />
+
+    <TextView
+        android:id="@+id/nowState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="조리 중입니다."
+        android:textSize="30sp"
+        android:layout_marginBottom="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

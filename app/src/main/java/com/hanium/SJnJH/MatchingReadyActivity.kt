@@ -53,6 +53,9 @@ class MatchingReadyActivity : AppCompatActivity() {
         val userName = getIntent().getStringExtra("userName")
         var nowNum=5
         var cnt=0
+        var menuArr = intent.getParcelableArrayListExtra<MenuData>("selectedFoods")
+
+
 
 
         thread(start = true) {
@@ -88,9 +91,11 @@ class MatchingReadyActivity : AppCompatActivity() {
 
         cancerBt.setOnClickListener(){
             val intent = Intent(this, PriceResultActivity::class.java)
-            intent.putExtra("userName",username)
+            intent.putExtra("matchNum",matchNum)
             intent.putExtra("storeName2",storeName2)
             intent.putExtra("location",location)
+            intent.putExtra("userName",username)
+            intent.putParcelableArrayListExtra("menuArr", menuArr)
             startActivity(intent)
 //            orderCancel(username!!)
 //            finish()

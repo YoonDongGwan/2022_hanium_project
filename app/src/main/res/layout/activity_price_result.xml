@@ -8,7 +8,7 @@
 
     <TextView
         android:textColor="@color/black"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/numTv"
         android:textColor="@color/black"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:textSize="27sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
@@ -28,20 +28,51 @@
         android:text="1/3 명"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/numTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rv"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
+    <TextView
+        android:id="@+id/priceTv"
         android:layout_below="@+id/rv"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="내가 내야할 금액"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/priceTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rv2"/>
+
+    <TextView
+        android:id="@+id/resultTv"
+        android:layout_below="@+id/rv2"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="총합 :"/>
+
+    <ProgressBar
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@+id/numTv" />
 
     <Button
         android:textSize="18sp"

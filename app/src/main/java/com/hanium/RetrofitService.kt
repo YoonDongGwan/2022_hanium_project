@@ -62,4 +62,12 @@ interface RetrofitService {
     @POST("delivery/prematching")
     fun postPreMatching(@Body jsonparams:PreMatchingModel) : Call<PreMatchingResult>
 
+    @GET("user/checkprogresslist")
+    fun getCheck(@Query("name") name : String) : Call<CheckProgressListResult>
+
+    @GET("user/myprogress")
+    fun getMyProgress(@Query("name") name:String) : Call<MyProgressResult>
+
+    @GET("user/progresslist")
+    fun getProgressList(@Query("store") store:String,@Query("date") date:String,@Query("matchNum") matchNum: Int) : Call<ProgressListResult>
 }

@@ -22,4 +22,9 @@ data class OrderListData(var date:String, var store : String,var deliveryFood:St
 data class NowNumResult(var nowNum:Int)
 data class PreMatchingModel(var totalPrice:Int,var matchNum:Int,var location:String,var UID:Int,var deliveryTip:Int,var storeName2:String)
 data class PreMatchingResult(var message: Boolean, var name: String)
+data class CheckProgressListResult(var value:Boolean)
+data class MyProgressResult(var store: String, var date: String, var matchNum: Int)
+data class ProgressListResult(val data: ArrayList<ProgressListData>)
+data class ProgressListData(var name: String, var state: String)
+
 

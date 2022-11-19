@@ -313,7 +313,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 params.put("content",content)
                 params.put("title",title)
-                Log.d("aacc","cont: $content, title: $title")
+                Log.d("bbbb","cont: $content, title: $title")
 
                 return params
             }
