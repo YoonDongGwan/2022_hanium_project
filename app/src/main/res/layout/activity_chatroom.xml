@@ -74,27 +74,31 @@
                 />
 
         </LinearLayout>
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/refresh_confirm"
-            android:visibility="gone"
-            android:src="@drawable/ic_baseline_check_24"
-            android:backgroundTint="@color/transparent"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chatroom_state"
+            android:text="state"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="10dp"
             />
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/refresh_btn"
-            android:visibility="gone"
-            android:src="@drawable/ic_baseline_refresh_24"
-            android:backgroundTint="@color/transparent"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chatroom_date"
+            android:text="date"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/refresh_confirm"
+            app:layout_constraintRight_toLeftOf="@+id/chatroom_state"
+            android:layout_marginRight="10dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.recyclerview.widget.RecyclerView

@@ -11,7 +11,7 @@ data class RetrofitResponse(
     val data: ArrayList<ResponseData>
 )
 
-data class LoginResult(var UID:Int)
+data class LoginResult(var UID:Int, val name: String)
 data class LoginModel(var id: String, var password: String)
 data class SignUpModel(var name: String, var id: String, var password: String, var school: String, var major : String)
 data class SignUpResult(var message: Boolean)
@@ -26,5 +26,5 @@ data class CheckProgressListResult(var value:Boolean)
 data class MyProgressResult(var store: String, var date: String, var matchNum: Int)
 data class ProgressListResult(val data: ArrayList<ProgressListData>)
 data class ProgressListData(var name: String, var state: String)
-
+data class ChatRoomResponse(val code: Int, val message: String, val store: String, val location: String, val date: String, val state: String, val chatId: Int)
 

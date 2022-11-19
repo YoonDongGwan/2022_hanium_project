@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hanium.Chat.ChatRoomActivity
 import com.hanium.Chat.ChatRoomListActivity
 import com.hanium.R
 import com.hanium.RetrofitResponse
@@ -93,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         chatBtn.setOnClickListener{
-            val intent = Intent(this, ChatRoomListActivity::class.java)
+            val intent = Intent(this, ChatRoomActivity::class.java)
             startActivity(intent)
         }
     }

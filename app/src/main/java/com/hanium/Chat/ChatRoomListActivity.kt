@@ -36,23 +36,23 @@ class ChatRoomListActivity : AppCompatActivity() {
         val retrofit = Retrofit.Builder().baseUrl("http://52.78.209.45:3000")
             .addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitService::class.java)
-        if (name != null) {
-            service.getChatList(name).enqueue(object : Callback<RetrofitResponse> {
-                override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
-                    if (response.isSuccessful){
-                        var result: RetrofitResponse? = response.body()
-                        val arrayList = result?.data
-                        rv.adapter = ChatListAdapter(arrayList)
-                        rv.layoutManager = LinearLayoutManager(this@ChatRoomListActivity, LinearLayoutManager.VERTICAL, false)
-                    }
-                }
-
-                override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
-                    Log.d("state", "onFailure" + t.message.toString())
-                }
-
-            })
-        }
+//        if (name != null) {
+//            service.getChatList(name).enqueue(object : Callback<RetrofitResponse> {
+//                override fun onResponse(call: Call<RetrofitResponse>, response: Response<RetrofitResponse>) {
+//                    if (response.isSuccessful){
+//                        var result: RetrofitResponse? = response.body()
+//                        val arrayList = result?.data
+//                        rv.adapter = ChatListAdapter(arrayList)
+//                        rv.layoutManager = LinearLayoutManager(this@ChatRoomListActivity, LinearLayoutManager.VERTICAL, false)
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<RetrofitResponse>, t: Throwable) {
+//                    Log.d("state", "onFailure" + t.message.toString())
+//                }
+//
+//            })
+//        }
 
         backBtn.setOnClickListener{
             finish()

@@ -41,7 +41,7 @@ interface RetrofitService {
     fun randomRecommend(): Call<RetrofitResponse>
 
     @GET("/delivery/chat")
-    fun getChatList(@Query("name") name: String): Call<RetrofitResponse>
+    fun getChatId(@Query("name") name: String): Call<ChatRoomResponse>
 
     @POST("/user/login")
     fun login(@Body jsonparams: LoginModel) : Call<LoginResult>
