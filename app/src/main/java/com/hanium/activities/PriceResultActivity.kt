@@ -31,6 +31,7 @@ class PriceResultActivity : AppCompatActivity() {
     lateinit var payBt : Button
     lateinit var numTv : TextView
     lateinit var resultTv : TextView
+    lateinit var matching_cancel_Btn : Button
     var deliveryTip = 0
     var stateArr : ArrayList<StateData> = ArrayList()
     var matchNum = 0
@@ -40,6 +41,7 @@ class PriceResultActivity : AppCompatActivity() {
     var menuArr : ArrayList<MenuData> = ArrayList()
     var size = 0
     var totalPrice = 0
+    var count = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,11 +53,17 @@ class PriceResultActivity : AppCompatActivity() {
         payBt = findViewById(R.id.payBt)
         numTv = findViewById(R.id.numTv)
         resultTv = findViewById(R.id.resultTv)
+        matching_cancel_Btn = findViewById(R.id.matching_cancel_Btn)
         matchNum = intent.getIntExtra("matchNum",0)
         location = intent.getStringExtra("location").toString()
         storeName2 = intent.getStringExtra("storeName2").toString()
         userName = preferences.getString("username",null).toString()
         menuArr = intent.getParcelableArrayListExtra<MenuData>("menuArr")!!
+        var deliveryPrice = intent.getIntExtra("deliveryTip",0)
+        var totalSum = intent.getIntExtra("totalPrice",0)
+
+
+        getPeople()
 
         handler.sendEmptyMessageDelayed(0,500)
 
@@ -63,6 +71,27 @@ class PriceResultActivity : AppCompatActivity() {
         payBt.setOnClickListener(){
             pay()
         }
+
+        matching_cancel_Btn.setOnClickListener(){
+            orderCancel()
+            finish()
+        }
+
+
+//        var dPrice = deliveryPrice/matchNum
+//        var tempMenu = MenuData("배달비",dPrice)
+//        menuArr.add(tempMenu)
+//        var sum = totalSum+dPrice
+//        resultTv.setText("총합 : $sum 원")
+//
+//        var adapter2 : MyRvAdapter2 = MyRvAdapter2(this@PriceResultActivity,menuArr)
+//        rv2.adapter = adapter2
+//        rv2.layoutManager = LinearLayoutManager(this@PriceResultActivity)
+//
+//
+//        adapter2.notifyDataSetChanged()
+
+
 
     }
 
@@ -129,6 +158,35 @@ class PriceResultActivity : AppCompatActivity() {
         }
     }
 
+    fun orderCancel(){
+        var url = "http://52.78.209.45:3000/delivery/cancel"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val request: StringRequest = object : StringRequest(
+            Request.Method.POST, url,request3,fail ) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params : MutableMap<String,String> = HashMap()
+
+                params.put("storeName2",storeName2)
+                params.put("userName",userName)
+                params.put("location",location)
+                params.put("matchNum",matchNum.toString())
+
+
+                return params
+            }
+        }
+
+        requestQueue.add(request)
+    }
+
+    var request3 = object  : Response.Listener<String> {
+        override fun onResponse(response: String) {
+
+        }
+    }
+
 
 
 
@@ -172,12 +230,15 @@ class PriceResultActivity : AppCompatActivity() {
 
             }
 
-            menuArr.removeAt(menuArr.size-1)
+
             var delivertPrice = deliveryTip/matchNum
             var tempMenu = MenuData("배달비",delivertPrice)
-            menuArr.add(tempMenu)
+            if(count==0)
+                menuArr.add(tempMenu)
+            count = 1
             var sum = totalPrice+delivertPrice
             resultTv.setText("총합 : $sum 원")
+
 
             var adapter : MyRvAdapter = MyRvAdapter(this@PriceResultActivity,stateArr)
             rv.adapter = adapter
@@ -234,9 +295,10 @@ class PriceResultActivity : AppCompatActivity() {
     var handler = object : Handler(){
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
-            numTv.setText(size.toString()+"/"+matchNum+"명")
+
 
             getPeople()
+            numTv.setText(size.toString()+"/"+matchNum+"명")
             sendEmptyMessageDelayed(0,5000)
 
         }
