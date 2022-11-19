@@ -103,8 +103,8 @@ class MatchingReadyActivity : AppCompatActivity() {
 
     }
 
-    fun orderCancel(UID : String){
-        var url = "http://52.78.209.45:3000/offline/temp"
+    fun orderCancel(){
+        var url = "http://52.78.209.45:3000/delivery/cancel"
         val requestQueue = Volley.newRequestQueue(this)
 
         val request: StringRequest = object : StringRequest(
@@ -113,7 +113,11 @@ class MatchingReadyActivity : AppCompatActivity() {
             override fun getParams(): MutableMap<String, String> {
                 val params : MutableMap<String,String> = HashMap()
 
-                params.put("UID",UID)
+//                params.put("storeName2",storeName2)
+//                params.put("userName",user)
+//                params.put("location",location)
+//                params.put("matchNum",matchNum)
+
 
                 return params
             }
