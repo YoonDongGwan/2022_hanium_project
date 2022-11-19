@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -20,7 +19,6 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.hanium.R
-import com.hanium.SJnJH.ItemData
 import com.hanium.SJnJH.MenuData
 import com.hanium.SJnJH.StateData
 import org.json.JSONObject
@@ -61,14 +59,7 @@ class PriceResultActivity : AppCompatActivity() {
 //        getPeople(matchNum, location, storeName2)
 
         payBt.setOnClickListener(){
-//            var i = 0
-//            while(i<stateArr.size) {
-//                var temp = stateArr.get(i)
-//                var name = temp.name
-//                var state = temp.state
-//                Log.d("ddss","dsd: $name,$state")
-//                i++
-//            }
+            pay()
         }
 
 
@@ -105,6 +96,7 @@ class PriceResultActivity : AppCompatActivity() {
                 holder.tv2.setText("결제대기")
             else
                 holder.tv2.setText("결제완료")
+
 
 
         }
@@ -154,17 +146,14 @@ class PriceResultActivity : AppCompatActivity() {
     fun getPeople(matchNum : Int, location : String,storeName2 : String){
         var url = "http://52.78.209.45:3000/offline/get_people"
         val requestQueue = Volley.newRequestQueue(this)
-
         val request: StringRequest = object : StringRequest(
             Request.Method.POST, url,request,fail ) {
-
             override fun getParams(): MutableMap<String, String> {
                 val params : MutableMap<String,String> = HashMap()
                 stateArr.clear()
                 params.put("matchNum",matchNum.toString())
                 params.put("location",location)
                 params.put("storeName2",storeName2)
-
                 return params
             }
         }
@@ -186,18 +175,13 @@ class PriceResultActivity : AppCompatActivity() {
                 if (name.equals(userName)) {
                     deliveryTip = tempArray.getInt("deliveryTip")
                     totalPrice = tempArray.getInt("totalPrice")
-                    Log.d("dddd","msg:$totalPrice,$deliveryTip")
                 }
-                Log.d("dddd","name:$name, userName:$userName")
-
-
-
                 stateArr.add(tempState)
                 i++
 
             }
 
-
+            menuArr.removeAt(menuArr.size-1)
             var delivertPrice = deliveryTip/matchNum
             var tempMenu = MenuData("배달비",delivertPrice)
             menuArr.add(tempMenu)
@@ -216,13 +200,37 @@ class PriceResultActivity : AppCompatActivity() {
 
 
             adapter2.notifyDataSetChanged()
+        }
+    }
 
+    fun pay(){
+        var url = "http://52.78.209.45:3000/offline/pay"
+        val requestQueue = Volley.newRequestQueue(this)
+        val request: StringRequest = object : StringRequest(
+            Request.Method.POST, url,request2,fail ) {
+            override fun getParams(): MutableMap<String, String> {
+                val params : MutableMap<String,String> = HashMap()
+                stateArr.clear()
+                params.put("matchNum",matchNum.toString())
+                params.put("location",location)
+                params.put("storeName2",storeName2)
+                params.put("userName",userName)
+                return params
+            }
+        }
+
+        requestQueue.add(request)
+    }
+
+    var request2 = object  : Response.Listener<String> {
+        override fun onResponse(response: String) {
 
 
         }
-
-
     }
+
+
+
 
     var fail = object  : Response.ErrorListener {
         override fun onErrorResponse(error: VolleyError?) {
@@ -238,7 +246,7 @@ class PriceResultActivity : AppCompatActivity() {
             numTv.setText(size.toString()+"/"+matchNum+"명")
 
             getPeople(matchNum, location, storeName2)
-            sendEmptyMessageDelayed(0,10000)
+            sendEmptyMessageDelayed(0,5000)
 
         }
     }
