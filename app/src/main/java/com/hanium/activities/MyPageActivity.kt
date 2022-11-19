@@ -53,7 +53,7 @@ class MyPageActivity : AppCompatActivity() {
                     id = result?.id.toString()
                     orderListBtn.setOnClickListener(){
 
-                        service.getCheck(result!!.name).enqueue(object : Callback<CheckProgressListResult> {
+                        service.getCheckOrderList(result!!.name).enqueue(object : Callback<CheckProgressListResult> {
                             override fun onResponse(call: Call<CheckProgressListResult>, response: Response<CheckProgressListResult>) {
                                 if (response.isSuccessful){
                                     var result: CheckProgressListResult? = response.body()
