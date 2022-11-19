@@ -51,7 +51,18 @@ class DeliveryInformationActivity : AppCompatActivity() {
         var menuArr = intent.getParcelableArrayListExtra<MenuData>("selectedFoods")
         val deliveryTip = intent.getIntExtra("deliveryTip",0)
         val storeName2 = intent.getStringExtra("storeName").toString()
-        Log.d("ddd","msg:$storeName2")
+        var deliveryFood =""
+        var i = 0
+        while(i<menuArr!!.size){
+            var tempMenu = menuArr[i].menu
+            if(i==menuArr.size-1)
+                deliveryFood += tempMenu
+            else
+                deliveryFood = deliveryFood + tempMenu +","
+            i++
+        }
+
+
 
         service.getDeliveryLocation().enqueue(object : Callback<LocationResponse> {
             override fun onResponse(call: Call<LocationResponse>, response: Response<LocationResponse>) {
@@ -62,7 +73,7 @@ class DeliveryInformationActivity : AppCompatActivity() {
                     spinner.adapter = arrayAdapter
 
                     information_match_btn.setOnClickListener{
-                        service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid,deliveryTip,storeName2)).enqueue(object : Callback<PreMatchingResult> {
+                        service.postPreMatching(PreMatchingModel(intent.getIntExtra("priceSum", 0),Integer.parseInt(matchNum.text.toString()),arrayList[spinner.selectedItemId.toInt()],uid,deliveryTip,storeName2,deliveryFood)).enqueue(object : Callback<PreMatchingResult> {
                             override fun onResponse(call: Call<PreMatchingResult>, response: Response<PreMatchingResult>) {
                                 val result = response.body()
                                 val intent = Intent(this@DeliveryInformationActivity, MatchingReadyActivity::class.java)

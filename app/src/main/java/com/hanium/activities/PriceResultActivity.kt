@@ -1,6 +1,7 @@
 package com.hanium.activities
 
 import android.content.Context
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -56,11 +57,14 @@ class PriceResultActivity : AppCompatActivity() {
 
 
         handler.sendEmptyMessage(0)
-//        getPeople(matchNum, location, storeName2)
+
 
         payBt.setOnClickListener(){
             pay()
         }
+
+
+
 
 
 
@@ -94,8 +98,10 @@ class PriceResultActivity : AppCompatActivity() {
             holder.tv1.setText(arr.get(position).name)
             if(arr.get(position).state.equals("before"))
                 holder.tv2.setText("결제대기")
-            else
+            else {
                 holder.tv2.setText("결제완료")
+                holder.tv2.setTextColor(Color.parseColor("#FF204996"))
+            }
 
 
 
