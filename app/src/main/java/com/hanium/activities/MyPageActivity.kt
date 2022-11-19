@@ -52,9 +52,27 @@ class MyPageActivity : AppCompatActivity() {
                     var name = result!!.name
                     id = result?.id.toString()
                     orderListBtn.setOnClickListener(){
-                        var intent = Intent(this@MyPageActivity, HistoryActivity::class.java)
-                        intent.putExtra("name",result?.name)
-                        startActivity(intent)
+
+                        service.getCheckOrderList(result!!.name).enqueue(object : Callback<CheckProgressListResult> {
+                            override fun onResponse(call: Call<CheckProgressListResult>, response: Response<CheckProgressListResult>) {
+                                if (response.isSuccessful){
+                                    var result: CheckProgressListResult? = response.body()
+                                    var value = result!!.value
+                                    if (value){
+                                        val intent = Intent(this@MyPageActivity, HistoryActivity::class.java)
+                                        intent.putExtra("name",name)
+                                        startActivity(intent)
+                                    }
+                                    else{
+                                        Toast.makeText(applicationContext, "주문 내역이 없습니다.", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                            override fun onFailure(call: Call<CheckProgressListResult>, t: Throwable) {
+                                Log.d("state", "onFailure" + t.message.toString())
+                            }
+
+                        })
                     }
 
                     processPurBtn.setOnClickListener(){

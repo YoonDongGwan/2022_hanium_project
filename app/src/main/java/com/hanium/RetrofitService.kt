@@ -70,4 +70,7 @@ interface RetrofitService {
 
     @GET("user/progresslist")
     fun getProgressList(@Query("store") store:String,@Query("date") date:String,@Query("matchNum") matchNum: Int) : Call<ProgressListResult>
+
+    @GET("user/checkorderlist")
+    fun getCheckOrderList(@Query("name") name:String): Call<CheckProgressListResult>
 }
