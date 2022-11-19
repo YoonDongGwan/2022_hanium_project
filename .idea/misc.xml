@@ -96,7 +96,7 @@
         <entry key="app/src/main/res/layout/menu.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/mychat.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/order.xml" value="0.13229166666666667" />
-        <entry key="app/src/main/res/layout/people.xml" value="0.13728470111448834" />
+        <entry key="app/src/main/res/layout/people.xml" value="0.25" />
         <entry key="app/src/main/res/layout/present.xml" value="0.13229166666666667" />
         <entry key="app/src/main/res/layout/price.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/product_recyclerview_item.xml" value="0.165" />

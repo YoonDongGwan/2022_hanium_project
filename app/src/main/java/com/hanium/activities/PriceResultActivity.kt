@@ -60,28 +60,9 @@ class PriceResultActivity : AppCompatActivity() {
         handler.sendEmptyMessageDelayed(0,500)
 
 
-
-
-
         payBt.setOnClickListener(){
             pay()
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
