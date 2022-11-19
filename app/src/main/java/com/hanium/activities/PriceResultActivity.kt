@@ -131,7 +131,7 @@ class PriceResultActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: Holder, position: Int) {
             holder.tv1.setText(arr.get(position).menu)
-            holder.tv2.setText(arr.get(position).price.toString())
+            holder.tv2.setText("${arr.get(position).price} 원")
 
 
         }
@@ -192,7 +192,7 @@ class PriceResultActivity : AppCompatActivity() {
             var tempMenu = MenuData("배달비",delivertPrice)
             menuArr.add(tempMenu)
             var sum = totalPrice+delivertPrice
-            resultTv.setText("총합 :$sum 원")
+            resultTv.setText("총합 : $sum 원")
 
             var adapter : MyRvAdapter = MyRvAdapter(this@PriceResultActivity,stateArr)
             rv.adapter = adapter

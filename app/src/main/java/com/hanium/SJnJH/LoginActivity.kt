@@ -64,14 +64,15 @@ class LoginActivity : AppCompatActivity() {
                     val result = response.body()
                     val user_uid = result?.UID
                     val username = result?.name
+
                     if (user_uid!=-1){
                         Log.d("login", "성공 +${user_uid}")
                         val nextIntent = Intent(this@LoginActivity, MainActivity::class.java)
                         preferences = getSharedPreferences("UserInfo", 0)
                         editor = preferences.edit()
                         editor.putInt("uid", user_uid!!)
-                        editor.putString("username", username)
 
+                        editor.putString("username", username)
                         editor.commit()
 
                         startActivity(nextIntent)

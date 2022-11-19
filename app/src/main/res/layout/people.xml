@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
-    //주의 화면이 꽉차면 다음 화면이 안나옴
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
     <TextView
-        android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
@@ -15,10 +22,9 @@
         android:layout_marginBottom="7dp"
         android:text="이름"
         android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 
     <TextView
-        android:textStyle="bold"
         android:layout_marginTop="7dp"
         android:id="@+id/tv2"
         android:layout_width="wrap_content"
@@ -27,6 +33,6 @@
         android:layout_marginLeft="7dp"
         android:text="상태"
         android:textColor="@color/black"
-        android:textSize="22sp" />
-
-</RelativeLayout>
+        android:textSize="18sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
