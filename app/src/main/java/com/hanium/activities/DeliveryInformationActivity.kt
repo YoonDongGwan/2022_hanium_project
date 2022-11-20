@@ -1,5 +1,6 @@
 package com.hanium.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,11 +11,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hanium.*
 import com.hanium.SJnJH.MatchingReadyActivity
 import com.hanium.SJnJH.MenuData
+import com.hanium.SJnJH.StoreActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +28,14 @@ class DeliveryInformationActivity : AppCompatActivity() {
     lateinit var matchDownBtn: ImageButton
     lateinit var matchUpBtn: ImageButton
     lateinit var matchNum: TextView
+    val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result ->
+        if(result.resultCode == Activity.RESULT_OK){
+            val intent2 = Intent(this@DeliveryInformationActivity, StoreActivity::class.java)
+            setResult(Activity.RESULT_OK, intent2)
+            finish()
+        }
+    }
     var num: Int = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +97,7 @@ class DeliveryInformationActivity : AppCompatActivity() {
                                 editor.putString("username", result?.name)
                                 editor.commit()
 
-                                startActivity(intent)
+                                launcher.launch(intent)
                             }
                             override fun onFailure(call: Call<PreMatchingResult>, t: Throwable) {
                                 Log.d("state", "onFailure" + t.message.toString())

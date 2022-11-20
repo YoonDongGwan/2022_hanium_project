@@ -1,5 +1,6 @@
 package com.hanium.SJnJH
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +39,12 @@ class StoreActivity : AppCompatActivity() {
     lateinit var rv : RecyclerView
     lateinit var bottomBar: LinearLayout
     lateinit var finalPriceTextView: TextView
+    val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result ->
+        if(result.resultCode == Activity.RESULT_OK){
+            finish()
+        }
+    }
     var arr: ArrayList<ItemData> = ArrayList()
     var allChecked = 0
     var menuArr : ArrayList<MenuData> = ArrayList()
@@ -202,7 +210,7 @@ class StoreActivity : AppCompatActivity() {
             intent.putExtra("uid", uid)
             intent.putExtra("deliveryTip",deliveryTip)
 
-            startActivity(intent)
+            launcher.launch(intent)
         }
 
 

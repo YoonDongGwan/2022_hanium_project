@@ -1,5 +1,6 @@
 package com.hanium.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -14,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -21,6 +23,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.hanium.Chat.ChatRoomActivity
 import com.hanium.R
 import com.hanium.SJnJH.MenuData
 import com.hanium.SJnJH.StateData
@@ -216,11 +219,17 @@ class PriceResultActivity : AppCompatActivity() {
         override fun onResponse(response: String) {
             var jsonObject =  JSONObject(response)
             var chk = jsonObject.getString("code")
-            if(chk.equals("code:200")){
-//                val intent = Intent(this@PriceResultActivity, PriceResultActivity::class.java)
-//
-//                startActivity(intent)
+            if(chk.equals("200")){
+                val builder = AlertDialog.Builder(this@PriceResultActivity)
+                builder.setMessage("매칭 성공. 채팅방 개설 중")
+                builder.show()
 
+                val intent2 = Intent(this@PriceResultActivity, DeliveryInformationActivity::class.java)
+                setResult(Activity.RESULT_OK, intent2)
+
+                val intent = Intent(this@PriceResultActivity, ChatRoomActivity::class.java)
+                startActivity(intent)
+                finish()
 
             }
         }
@@ -338,7 +347,7 @@ class PriceResultActivity : AppCompatActivity() {
 
             getPeople()
             chkMatch()
-            numTv.setText(size.toString()+"/"+matchNum+"명")
+            numTv.setText(size.toString()+" / "+matchNum+" 명")
             sendEmptyMessageDelayed(0,5000)
 
         }
