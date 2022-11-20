@@ -1,6 +1,7 @@
 package com.hanium.activities
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -188,6 +189,44 @@ class PriceResultActivity : AppCompatActivity() {
     }
 
 
+    fun chkMatch(){
+        var url = "http://52.78.209.45:3000/delivery/chk_match"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val request: StringRequest = object : StringRequest(
+            Request.Method.POST, url,request4,fail ) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params : MutableMap<String,String> = HashMap()
+
+                params.put("storeName2",storeName2)
+                params.put("userName",userName)
+                params.put("location",location)
+                params.put("matchNum",matchNum.toString())
+
+
+                return params
+            }
+        }
+
+        requestQueue.add(request)
+    }
+
+    var request4 = object  : Response.Listener<String> {
+        override fun onResponse(response: String) {
+            var jsonObject =  JSONObject(response)
+            var chk = jsonObject.getString("code")
+            if(chk.equals("code:200")){
+//                val intent = Intent(this@PriceResultActivity, PriceResultActivity::class.java)
+//
+//                startActivity(intent)
+
+
+            }
+        }
+    }
+
+
 
 
 
@@ -298,6 +337,7 @@ class PriceResultActivity : AppCompatActivity() {
 
 
             getPeople()
+            chkMatch()
             numTv.setText(size.toString()+"/"+matchNum+"명")
             sendEmptyMessageDelayed(0,5000)
 
