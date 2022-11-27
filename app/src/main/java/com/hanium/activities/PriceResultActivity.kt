@@ -43,6 +43,7 @@ class PriceResultActivity : AppCompatActivity() {
     lateinit var numTv : TextView
     lateinit var resultTv : TextView
     lateinit var matching_cancel_Btn : Button
+    lateinit var titleTv : TextView
     var deliveryTip = 0
     var stateArr : ArrayList<StateData> = ArrayList()
     var matchNum = 0
@@ -53,6 +54,9 @@ class PriceResultActivity : AppCompatActivity() {
     var size = 0
     var totalPrice = 0
     var count = 0
+    var count1 = 0
+    var result2 = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +68,7 @@ class PriceResultActivity : AppCompatActivity() {
         payBt = findViewById(R.id.payBt)
         numTv = findViewById(R.id.numTv)
         resultTv = findViewById(R.id.resultTv)
+        titleTv = findViewById(R.id.price_result_match_tv)
         matching_cancel_Btn = findViewById(R.id.matching_cancel_Btn)
         matchNum = intent.getIntExtra("matchNum",0)
         location = intent.getStringExtra("location").toString()
@@ -73,11 +78,9 @@ class PriceResultActivity : AppCompatActivity() {
         var deliveryPrice = intent.getIntExtra("deliveryTip",0)
         var totalSum = intent.getIntExtra("totalPrice",0)
 
-
         getPeople()
 
         handler.sendEmptyMessageDelayed(0,500)
-
 
         payBt.setOnClickListener(){
             showDialog()
@@ -87,20 +90,6 @@ class PriceResultActivity : AppCompatActivity() {
             orderCancel()
             finish()
         }
-
-
-//        var dPrice = deliveryPrice/matchNum
-//        var tempMenu = MenuData("배달비",dPrice)
-//        menuArr.add(tempMenu)
-//        var sum = totalSum+dPrice
-//        resultTv.setText("총합 : $sum 원")
-//
-//        var adapter2 : MyRvAdapter2 = MyRvAdapter2(this@PriceResultActivity,menuArr)
-//        rv2.adapter = adapter2
-//        rv2.layoutManager = LinearLayoutManager(this@PriceResultActivity)
-//
-//
-//        adapter2.notifyDataSetChanged()
 
 
 
@@ -146,7 +135,6 @@ class PriceResultActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             val view = LayoutInflater.from(context).inflate(R.layout.price, parent, false)
-
             return Holder(view)
         }
 
@@ -224,13 +212,42 @@ class PriceResultActivity : AppCompatActivity() {
 
     var request4 = object  : Response.Listener<String> {
         override fun onResponse(response: String) {
+        }
+    }
+
+
+    fun start_chat(){
+        var url = "http://52.78.209.45:3000/delivery/start_chat"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val request: StringRequest = object : StringRequest(
+            Request.Method.POST, url,request5,fail ) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params : MutableMap<String,String> = HashMap()
+
+                params.put("storeName2",storeName2)
+                params.put("userName",userName)
+                params.put("location",location)
+                params.put("matchNum",matchNum.toString())
+
+
+                return params
+            }
+        }
+
+        requestQueue.add(request)
+    }
+
+    var request5 = object  : Response.Listener<String> {
+        override fun onResponse(response: String) {
             var jsonObject =  JSONObject(response)
             var chk = jsonObject.getString("code")
+            if(chk.equals("200"))
+                result2 = 1
+            if(result2==1){
 
-            if(chk.equals("200")){
-                val builder = AlertDialog.Builder(this@PriceResultActivity)
-                builder.setMessage("매칭 성공. 채팅방 개설 중")
-                builder.show()
+
 
 
                 val intent2 = Intent(this@PriceResultActivity, DeliveryInformationActivity::class.java)
@@ -238,6 +255,7 @@ class PriceResultActivity : AppCompatActivity() {
 
                 val intent = Intent(this@PriceResultActivity, ChatRoomActivity::class.java)
                 startActivity(intent)
+                handler.removeMessages(0)
                 finish()
 
             }
@@ -352,12 +370,30 @@ class PriceResultActivity : AppCompatActivity() {
     var handler = object : Handler(){
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
+            if(count1==0) {
+                titleTv.setText("매칭중.")
+                count1 = 1
+            }
+            else if(count1==1){
+                titleTv.setText("매칭중..")
+                count1 = 2
+            }
+            else if(count1==2){
+                titleTv.setText("매칭중...")
+                count1 = 0
+            }
 
 
+            start_chat()
             getPeople()
             chkMatch()
             numTv.setText(size.toString()+" / "+matchNum+" 명")
-            sendEmptyMessageDelayed(0,5000)
+            if(result2==1){
+                removeMessages(0)
+            }
+            else
+               sendEmptyMessageDelayed(0,1500)
+
 
         }
     }
