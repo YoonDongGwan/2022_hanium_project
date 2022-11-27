@@ -1,9 +1,13 @@
 package com.hanium.activities
 
+import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -13,7 +17,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -21,6 +27,10 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
+import com.hanium.Chat.ChatRoomActivity
 import com.hanium.R
 import com.hanium.SJnJH.MenuData
 import com.hanium.SJnJH.StateData
@@ -70,7 +80,7 @@ class PriceResultActivity : AppCompatActivity() {
 
 
         payBt.setOnClickListener(){
-            pay()
+            showDialog()
         }
 
         matching_cancel_Btn.setOnClickListener(){
@@ -216,13 +226,19 @@ class PriceResultActivity : AppCompatActivity() {
         override fun onResponse(response: String) {
             var jsonObject =  JSONObject(response)
             var chk = jsonObject.getString("code")
-            Log.d("dddd","chk:$chk")
-            if(chk.equals("200")){
-                Log.d("dddd","chk:$chk")
-//                val intent = Intent(this@PriceResultActivity, PriceResultActivity::class.java)
-//
-//                startActivity(intent)
 
+            if(chk.equals("200")){
+                val builder = AlertDialog.Builder(this@PriceResultActivity)
+                builder.setMessage("매칭 성공. 채팅방 개설 중")
+                builder.show()
+
+
+                val intent2 = Intent(this@PriceResultActivity, DeliveryInformationActivity::class.java)
+                setResult(Activity.RESULT_OK, intent2)
+
+                val intent = Intent(this@PriceResultActivity, ChatRoomActivity::class.java)
+                startActivity(intent)
+                finish()
 
             }
         }
@@ -340,10 +356,36 @@ class PriceResultActivity : AppCompatActivity() {
 
             getPeople()
             chkMatch()
-            numTv.setText(size.toString()+"/"+matchNum+"명")
+            numTv.setText(size.toString()+" / "+matchNum+" 명")
             sendEmptyMessageDelayed(0,5000)
 
         }
+    }
+
+
+    fun showDialog() {
+
+        val layoutR = layoutInflater.inflate(R.layout.dialog, null)
+        var builder: AlertDialog.Builder = AlertDialog.Builder(this)
+
+        builder.setTitle("결제 완료")
+        builder.setMessage("\n확인 버튼을 눌러주세요")
+
+
+
+
+
+
+        builder.setNegativeButton("확인", object : DialogInterface.OnClickListener {
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                pay()
+
+            }
+
+        })
+        builder.setCancelable(false)
+        builder.show()
+
     }
 
 
