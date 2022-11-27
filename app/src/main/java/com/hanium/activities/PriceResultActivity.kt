@@ -216,7 +216,9 @@ class PriceResultActivity : AppCompatActivity() {
         override fun onResponse(response: String) {
             var jsonObject =  JSONObject(response)
             var chk = jsonObject.getString("code")
-            if(chk.equals("code:200")){
+            Log.d("dddd","chk:$chk")
+            if(chk.equals("200")){
+                Log.d("dddd","chk:$chk")
 //                val intent = Intent(this@PriceResultActivity, PriceResultActivity::class.java)
 //
 //                startActivity(intent)
