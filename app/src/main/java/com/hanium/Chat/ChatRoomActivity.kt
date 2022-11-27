@@ -89,7 +89,9 @@ class ChatRoomActivity : AppCompatActivity(){
 
                         storeImage.visibility = View.GONE
                         storeNameTv.text = store
+                        stateTv.visibility = View.VISIBLE
                         stateTv.text = state
+                        dateTv.visibility = View.VISIBLE
                         dateTv.text = date
                         storeContentTextView.text = "배달지 : $location"
 

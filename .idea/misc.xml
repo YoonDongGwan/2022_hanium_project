@@ -47,6 +47,7 @@
         <entry key="app/src/main/res/layout/activity_delivery_information.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_delivery_stores.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_final_price.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_finding_people.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_history.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.28596496582031256" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
@@ -56,7 +57,7 @@
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_matching.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_matching_ready.xml" value="0.13728470111448834" />
-        <entry key="app/src/main/res/layout/activity_mypage.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_mypage.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_num10.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_num5.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_num7.xml" value="0.1" />
